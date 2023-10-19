@@ -8,12 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 import { SearchBlockComponent } from 'src/app/components/search-block/search-block.component';
-
-
+import { CardComponent } from 'src/app/components/card/card.component';
+import { FilterService } from 'src/app/models/filter-service.service';
 
 @NgModule({
   declarations: [
-    MainPageComponent
+    MainPageComponent,
+    CardComponent,
+    SearchBlockComponent,
+    SearchResultsComponent,
   ],
   imports: [
     CommonModule,
@@ -21,8 +24,7 @@ import { SearchBlockComponent } from 'src/app/components/search-block/search-blo
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    SearchBlockComponent,
-    SearchResultsComponent,
-  ]
+  ],
+  providers: [FilterService]
 })
 export class MainPageModule { }

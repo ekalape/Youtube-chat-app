@@ -3,6 +3,9 @@
 
   justify-content: space-around;
 }
+.active {
+  color: aqua;
+}
 .login-btn {
   background: transparent;
   display: flex;
@@ -12,8 +15,8 @@
   width: fit-content;
   cursor: pointer;
 }
-a {
+/* a {
   &:visited {
     color: white;
   }
-}
+} */
