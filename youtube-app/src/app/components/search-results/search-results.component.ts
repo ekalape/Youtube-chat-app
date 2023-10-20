@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
 
 })
 export class SearchResultsComponent {
+  youtubeItems: IYoutubeItem[] = []
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 @Component({
   selector: 'app-card',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CardComponent implements OnInit {
   id: string | null = '';
+
 
   constructor(private route: ActivatedRoute) {
   }
