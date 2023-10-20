@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 @Component({
   selector: 'app-card',
