@@ -1,15 +1,4 @@
-export interface IResponce {
-  TODO: string
-  kind: string
-  etag: string
-  pageInfo: {
-    totalResults: number
-    resultsPerPage: number
-  }
-  IItems: IItem[]
-}
-
-export interface IItem {
+export interface IYoutubeItem {
   kind: string
   etag: string
   id: string
@@ -27,7 +16,10 @@ export interface ISnippet {
   tags: string[]
   categoryId: string
   liveBroadcastContent: string
-  ILocalized: ILocalized
+  ILocalized: {
+    title: string
+    description: string
+  }
   defaultAudioLanguage: string
 }
 
@@ -43,11 +35,6 @@ export interface IThumbDetails {
   url: string
   width: number
   height: number
-}
-
-export interface ILocalized {
-  title: string
-  description: string
 }
 
 export interface IStatistics {

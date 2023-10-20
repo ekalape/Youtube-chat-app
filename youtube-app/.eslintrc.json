@@ -8,6 +8,9 @@
       "files": [
         "*.ts"
       ],
+      "parserOptions": {
+        "project": ["tsconfig.(app|spec).json"]
+      },
       "extends": [
         "airbnb-base",
         "airbnb-typescript/base",
@@ -32,7 +35,10 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any":"error",
+        "import/prefer-default-export":"off",
+        "no-console": "warn"
       }
     },
     {
@@ -44,7 +50,7 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "@typescript-eslint/no-explicit-any":"error"
+
       }
     }
   ]
