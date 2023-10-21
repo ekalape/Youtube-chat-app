@@ -13,7 +13,6 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   imports: [
 
-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

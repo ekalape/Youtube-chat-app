@@ -5,9 +5,8 @@ import {
 import { CardComponent } from 'src/app/components/card/card.component';
 import { MainPageComponent } from './main-page.component';
 
-
 const routes: Routes = [{ path: '', component: MainPageComponent },
-{ path: ':itemId', title: 'Details', component: CardComponent },
+  { path: ':itemId', title: 'Details', component: CardComponent },
 ];
 
 @NgModule({

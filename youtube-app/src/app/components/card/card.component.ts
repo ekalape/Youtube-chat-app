@@ -10,12 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 export class CardComponent implements OnInit {
   id: string | null = '';
 
-
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('itemId');
-    console.log('id', this.id);
+    // console.log('id', this.id);
   }
 }

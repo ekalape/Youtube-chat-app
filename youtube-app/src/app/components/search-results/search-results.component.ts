@@ -8,6 +8,5 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 })
 export class SearchResultsComponent {
-  youtubeItems: IYoutubeItem[] = []
-
+  youtubeItems: IYoutubeItem[] = [];
 }
