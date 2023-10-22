@@ -10,6 +10,10 @@ import { CardComponent } from 'src/app/components/card/card.component';
 import { FilterService } from 'src/app/services/filter-service.service';
 import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,12 @@ import { MainPageRoutingModule } from './main-page-routing.module';
     CommonModule,
     MainPageRoutingModule,
     MatButtonModule,
+    MatDividerModule,
+    MatCardModule,
     MatInputModule,
     FormsModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [FilterService],
 })

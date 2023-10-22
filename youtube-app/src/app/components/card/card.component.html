@@ -1,2 +1,41 @@
-<p>card works!</p>
-<p>Opened card with name {{id}}</p>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Shiba Inu</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-image class="video-thumb"
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu">
+    <mat-divider></mat-divider>
+    <div class="info-block">
+      <div class="info-block__content"> <mat-icon aria-hidden="false"
+          aria-label="Views counter" fontIcon="visibility"></mat-icon>
+        <span>{{views}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Likes count"
+          fontIcon="thumb_up"></mat-icon>
+        <span>{{likes}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Dislikes count"
+          fontIcon="thumb_down"></mat-icon>
+        <span>{{dislikes}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Comments count"
+          fontIcon="library_books"></mat-icon>
+        <span>{{comments}}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions>
+
+    <button mat-raised-button color="primary">MORE...</button>
+
+  </mat-card-actions>
+  <mat-card-footer [style.background-color]="dateStatus" class="footer">
+
+  </mat-card-footer>
+</mat-card>

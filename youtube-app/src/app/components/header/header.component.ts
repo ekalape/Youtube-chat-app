@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 
 })
 export class HeaderComponent {
+  filtersOpened: boolean = false;
+
+  openFiltersBlock() {
+    this.filtersOpened = !this.filtersOpened
+  }
 
 }

@@ -1,26 +1,42 @@
 .header {
   display: flex;
-
+  align-items: center;
   justify-content: space-around;
+  height: max-content;
 }
 .active {
   color: aqua;
 }
 .active {
-  color: aqua;
+  color: #2f80ed;
 }
-.login-btn {
+.settings-btn {
   background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #fff;
+  margin: 15px 0 0 10px;
+  padding: 5px;
   width: fit-content;
+  transition: 0.3s;
   cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 6px #fff;
+  }
 }
 
-/* a {
-  &:visited {
-    color: white;
-  }
-} */
+.center-part {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.input-field {
+  height: 4rem;
+}
+.searchBtn {
+  height: 56px;
+}

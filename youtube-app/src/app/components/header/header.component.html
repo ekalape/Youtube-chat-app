@@ -1,8 +1,28 @@
-<mat-toolbar color="primary" class="header">
-  <h1>YouTube Client App</h1>
-  <a routerLink="/" routerLinkActive="active">Main</a>
-  <button class="login-btn">
-    <img src="src/app/assets/icons/login.svg" alt="">
-  </button>
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="header">
+    <h1>YTClient App Logo</h1>
+    <div class="center-part">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matNativeControl placeholder="...">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="searchBtn">Search</button>
 
+      <button class="settings-btn" (click)="openFiltersBlock()">
+        <img src="../../../assets/icons/settings-icon.png" alt="">
+      </button>
+    </div>
+    <div>Login info block</div>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="filtersOpened">
+    <span>Sorting by: </span>
+    <mat-button-toggle-group name="sortingMethod" aria-label="sortingMethod">
+      <mat-button-toggle value="date">Date</mat-button-toggle>
+      <mat-button-toggle value="views">Views</mat-button-toggle>
+      <span>By word or sentance: </span>
+
+      <input type="text">
+    </mat-button-toggle-group>
+
+  </mat-toolbar-row>
 </mat-toolbar>

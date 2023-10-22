@@ -5,6 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +23,11 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatDividerModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
