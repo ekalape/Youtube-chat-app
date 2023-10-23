@@ -2,8 +2,8 @@ export interface IYoutubeItem {
   kind: string
   etag: string
   id: string
-  ISnippet: ISnippet
-  IStatistics: IStatistics
+  snippet: ISnippet
+  statistics: IStatistics
 }
 
 export interface ISnippet {
@@ -11,12 +11,12 @@ export interface ISnippet {
   channelId: string
   title: string
   description: string
-  IThumbnails: IThumbnails
+  thumbnails: IThumbnails
   channelTitle: string
   tags: string[]
   categoryId: string
   liveBroadcastContent: string
-  ILocalized: {
+  localized: {
     title: string
     description: string
   }

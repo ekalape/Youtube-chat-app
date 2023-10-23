@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IItem } from '../utils/interfaces';
+import { IYoutubeItem } from '../models/youtube-item.model';
 
 @Injectable()
 export class FilterService {
-  items: IItem[] = [];
+  items: IYoutubeItem[] = [];
 
   addItem() {
     console.log('Item is added!', this.items);

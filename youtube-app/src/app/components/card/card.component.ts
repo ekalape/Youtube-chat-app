@@ -11,11 +11,7 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 export class CardComponent implements OnInit {
   id: string | null = '';
   dateStatus: string = "";
-  title: string = "";
-  views: number = 0;
-  likes: number = 0;
-  dislikes: number = 0;
-  comments: number = 0;
+
 
 
   @Input() cardData: IYoutubeItem | null = null

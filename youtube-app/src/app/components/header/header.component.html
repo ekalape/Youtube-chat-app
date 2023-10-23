@@ -2,7 +2,7 @@
   <mat-toolbar-row class="header">
     <h1>YTClient App Logo</h1>
     <div class="center-part">
-      <mat-form-field>
+      <mat-form-field class="search-field">
         <mat-label>Search</mat-label>
         <input matNativeControl placeholder="...">
       </mat-form-field>
@@ -19,10 +19,11 @@
     <mat-button-toggle-group name="sortingMethod" aria-label="sortingMethod">
       <mat-button-toggle value="date">Date</mat-button-toggle>
       <mat-button-toggle value="views">Views</mat-button-toggle>
-      <span>By word or sentance: </span>
 
-      <input type="text">
     </mat-button-toggle-group>
+    <span>Filter by word or sentance: </span>
+
+    <input type="text">
 
   </mat-toolbar-row>
 </mat-toolbar>

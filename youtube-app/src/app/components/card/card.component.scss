@@ -1,9 +1,12 @@
 .card {
   width: 400px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.card-title {
+  text-align: center;
+  color: #3f51b5;
 }
 .video-thumb {
   display: block;

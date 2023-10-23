@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 @Component({
@@ -8,5 +8,9 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 
 })
 export class SearchResultsComponent {
-  youtubeItems: IYoutubeItem[] = [];
+
+
+
+
+
 }

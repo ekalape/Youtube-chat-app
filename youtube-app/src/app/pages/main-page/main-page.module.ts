@@ -14,12 +14,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
     MainPageComponent,
     CardComponent,
     SearchResultsComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     FormsModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonToggleModule
   ],
   providers: [FilterService],
 })
