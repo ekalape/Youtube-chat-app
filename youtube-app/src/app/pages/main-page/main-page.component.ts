@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { ApidataService } from 'src/app/services/apidata-service.service';
@@ -8,23 +8,17 @@ import { ApidataService } from 'src/app/services/apidata-service.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
-  youtubeItems: IYoutubeItem[] = [];
-
-  constructor(private apiDataService: ApidataService) {
-  }
+export class MainPageComponent {
 
 
-  ngOnInit(): void {
+  @Input() searchWord = ""
 
-    this.apiDataService.getAll("").subscribe({
-      next: (items: IYoutubeItem[]) => {
-        console.log("items", items);
-        this.youtubeItems = items
-      }
-    })
-    console.log("this.youtubeItems", this.youtubeItems);
 
+
+
+
+  setSearchWord(value: string) {
+    this.searchWord = value;
   }
 
 }

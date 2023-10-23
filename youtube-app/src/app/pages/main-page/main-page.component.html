@@ -1,4 +1,4 @@
-<app-header></app-header>
-<app-search-results>
-  <app-card *ngFor="let item of youtubeItems" [cardData]="item"></app-card>
+<app-header (setSearchText)="setSearchWord($event)"></app-header>
+<app-search-results [searchWord]="searchWord">
+
 </app-search-results>

@@ -14,7 +14,8 @@ export class ApidataService {
   }
 
   getAll(searchword: string) {
-    return this.httpService.get<IResponce>('assets/mock-data/data.json').pipe(map(item => item.items))
+    console.log("searchword --> ", searchword);
+    return this.httpService.get<IResponce>('assets/mock-data/data.json', { params: { fromString: `title=${searchword}` } }).pipe(map(item => item.items))
 
 
   }

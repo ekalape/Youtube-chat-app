@@ -1,17 +1,19 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
     <h1>YTClient App Logo</h1>
-    <div class="center-part">
+    <form class="center-part"
+      (ngSubmit)="setSearchText.emit(searchInput.value); searchInput.value=''">
       <mat-form-field class="search-field">
         <mat-label>Search</mat-label>
-        <input matNativeControl placeholder="...">
+        <input matNativeControl placeholder="..." #searchInput>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="searchBtn">Search</button>
+      <button mat-raised-button color="primary" class="searchBtn"
+        type="submit">Search</button>
 
       <button class="settings-btn" (click)="openFiltersBlock()">
         <img src="../../../assets/icons/settings-icon.png" alt="">
       </button>
-    </div>
+    </form>
     <div>Login info block</div>
   </mat-toolbar-row>
   <mat-toolbar-row *ngIf="filtersOpened">
