@@ -1,4 +1,12 @@
 .header {
+  position: relative;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-row {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -39,8 +47,4 @@
 }
 .searchBtn {
   height: 56px;
-}
-
-.search-field {
-  height: 60px;
 }

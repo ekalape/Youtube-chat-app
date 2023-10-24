@@ -7,13 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 })
 export class HeaderComponent {
-  filtersOpened: boolean = false;
+  filtersOpened = false;
 
-  @Output() setSearchText = new EventEmitter<string>()
+  @Output() setSearchWord = new EventEmitter<string>();
 
   openFiltersBlock() {
-    this.filtersOpened = !this.filtersOpened
+    this.filtersOpened = !this.filtersOpened;
   }
-  // (click)="setSearchText.emit(searchInput.value)"
 
+  setSearchText(value: string) {
+    this.setSearchWord.emit(value);
+  }
 }
