@@ -2,12 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { TimeDistanceColor } from 'src/app/utils/enums';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-
+  standalone: true,
+  imports: [MatButtonModule,
+    MatDividerModule,
+    MatCardModule, MatIconModule,]
 })
 export class CardComponent implements OnInit {
   id: string | null = '';

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { FilterService } from 'src/app/services/filter-service.service';
-import { MatCardModule } from '@angular/material/card';
+
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,7 @@ import { MainPageComponent } from './main-page.component';
 @NgModule({
   declarations: [
     MainPageComponent,
-    CardComponent,
+
     SearchResultsComponent,
     HeaderComponent,
   ],
@@ -29,13 +29,14 @@ import { MainPageComponent } from './main-page.component';
     MainPageRoutingModule,
     MatButtonModule,
     MatDividerModule,
-    MatCardModule,
+
     MatInputModule,
     FormsModule,
     MatFormFieldModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonToggleModule,
+    CardComponent,
   ],
   providers: [FilterService],
 })
