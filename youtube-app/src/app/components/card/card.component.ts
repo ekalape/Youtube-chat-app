@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -13,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatButtonModule,
     MatDividerModule,
-    MatCardModule, MatIconModule,]
+    MatCardModule, MatIconModule],
 })
 export class CardComponent implements OnInit {
   id: string | null = '';
