@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
 
   timeDiff = 0;
 
-  timeDistance: TimeDistanceColor = TimeDistanceColor.new;
+  timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
 
   @Input() cardData: IYoutubeItem | null = null;
 
@@ -29,9 +29,9 @@ export class CardComponent implements OnInit {
       this.timeDiff = (Date.now() - Date.parse(published)) / 1000;
     }
 
-    if (this.timeDiff < 604800) this.timeDistance = TimeDistanceColor.new;
-    else if (this.timeDiff >= 604800 && this.timeDiff < 2592000) this.timeDistance = TimeDistanceColor.medium;
-    else if (this.timeDiff >= 2592000 && this.timeDiff < 15552000) this.timeDistance = TimeDistanceColor.old;
-    else this.timeDistance = TimeDistanceColor.oldiest;
+    if (this.timeDiff < 604800) this.timeDistance = TimeDistanceColor.NEW;
+    else if (this.timeDiff >= 604800 && this.timeDiff < 2592000) this.timeDistance = TimeDistanceColor.MEDIUM;
+    else if (this.timeDiff >= 2592000 && this.timeDiff < 15552000) this.timeDistance = TimeDistanceColor.OLD;
+    else this.timeDistance = TimeDistanceColor.OLDIEST;
   }
 }

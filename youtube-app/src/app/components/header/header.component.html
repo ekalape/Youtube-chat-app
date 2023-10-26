@@ -10,22 +10,36 @@
       <button mat-raised-button color="primary" class="searchBtn"
         type="submit">Search</button>
 
-      <button class="settings-btn" (click)="openFiltersBlock()">
+      <button class="settings-btn" (click)="openFiltersBlock()"
+        title="Open filters block">
         <img src="assets/icons/settings-icon.png" alt="">
       </button>
     </form>
     <div>Login info block</div>
   </mat-toolbar-row>
-  <mat-toolbar-row *ngIf="filtersOpened">
-    <span>Sorting by: </span>
-    <mat-button-toggle-group name="sortingMethod" aria-label="sortingMethod">
-      <mat-button-toggle value="date">Date</mat-button-toggle>
-      <mat-button-toggle value="views">Views</mat-button-toggle>
+  <mat-toolbar-row class="header-row">
+    <div class="sorting-block">
+      <span class="sorting-title">Sorting by: </span>
+      <mat-button-toggle-group name="dateSortingMethod" aria-label="dateSortingMethod"
+        (change)="setDateSortingRule($event.value)" class="sorting-toggle-group"
+        #dateSortingMethod>
+        <span>Date</span>
+        <mat-button-toggle value="dateUp">↑</mat-button-toggle>
+        <mat-button-toggle value="dateDown">↓</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-button-toggle-group name="viewsSortingMethod" aria-label="viewsSortingMethod"
+        (change)="setViewsSortingRule($event.value)" class="sorting-toggle-group"
+        #viewsSortingMethod>
+        <span>Views</span>
+        <mat-button-toggle value="viewsUp">↑</mat-button-toggle>
+        <mat-button-toggle value="viewsDown">↓</mat-button-toggle>
+      </mat-button-toggle-group>
 
-    </mat-button-toggle-group>
-    <span>Filter by word or sentance: </span>
-
-    <input type="text">
-
+    </div>
+    <div class="filterByWord-form">
+      <span class="sorting-title">Filter by word or sentance: </span>
+      <input class="filter-input" type="text" #filterInput
+        (input)="setFilterText(filterInput.value)">
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

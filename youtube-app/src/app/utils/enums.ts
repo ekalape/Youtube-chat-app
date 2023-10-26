@@ -1,6 +1,10 @@
 export enum TimeDistanceColor {
-  oldiest = '#F8312F',
-  old = '#FFB02E',
-  medium = '#00D26A',
-  new = '#00A6ED',
+  OLDIEST = '#F8312F',
+  OLD = '#FFB02E',
+  MEDIUM = '#00D26A',
+  NEW = '#00A6ED',
+}
+
+export enum SortingRule {
+  UP, DOWN
 }

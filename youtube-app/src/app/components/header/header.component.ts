@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { SortingRule } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,12 @@ export class HeaderComponent {
   filtersOpened = false;
 
   @Output() setSearchWord = new EventEmitter<string>();
+  @Output() setFilterWord = new EventEmitter<string>()
+  @Output() setDateSorting = new EventEmitter<SortingRule | null>()
+  @Output() setViewsSorting = new EventEmitter<SortingRule | null>()
+
+
+
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
@@ -18,4 +25,27 @@ export class HeaderComponent {
   setSearchText(value: string) {
     this.setSearchWord.emit(value);
   }
+  setFilterText(value: string) {
+    this.setFilterWord.emit(value);
+    console.log(value);
+  }
+  setDateSortingRule(value: string) {
+    let sorting;
+    console.log('value', value)
+    if (value === "dateUp") sorting = SortingRule.UP;
+    else sorting = SortingRule.DOWN
+    this.setDateSorting.emit(sorting);
+  }
+
+  setViewsSortingRule(value: string) {
+    let sorting;
+    if (value === "viewsUp") sorting = SortingRule.UP;
+    else sorting = SortingRule.DOWN
+    this.setViewsSorting.emit(sorting);
+
+  }
+
+
 }
+
+//*ngIf="filtersOpened"

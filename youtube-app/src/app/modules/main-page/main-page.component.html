@@ -1,4 +1,6 @@
-<app-header (setSearchWord)="setSearchWord($event)"></app-header>
-<app-search-results [searchWord]="searchWord">
+<app-header (setSearchWord)="setSearchWord($event)"
+  (setFilterWord)="setFilterWord($event)" (setDateSorting)="onDateSortingChange($event)"
+  (setViewsSorting)="onViewsSortingChange($event)"></app-header>
+<app-search-results [youtubeItems]="filteredItems">
 
 </app-search-results>
