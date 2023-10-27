@@ -12,34 +12,15 @@
   align-items: center;
   justify-content: space-around;
   height: max-content;
-  padding-bottom: 1rem;
-  &:last-of-type {
-    justify-content: center;
-    gap: 2rem;
-  }
 }
-.active {
-  color: aqua;
-}
-.active {
-  color: #2f80ed;
-}
-.settings-btn {
-  background: transparent;
+.header-sorting-row {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #fff;
-  margin: 15px 0 0 10px;
-  padding: 5px;
-  width: fit-content;
-  transition: 0.3s;
-  cursor: pointer;
-  &:hover {
-    box-shadow: 0 0 6px #fff;
-  }
+  height: max-content;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .center-part {

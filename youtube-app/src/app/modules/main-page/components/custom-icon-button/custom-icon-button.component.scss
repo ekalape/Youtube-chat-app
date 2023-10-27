@@ -1,0 +1,17 @@
+.icon-btn {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #fff;
+  margin: 15px 0 0 10px;
+  padding: 5px;
+  width: fit-content;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 6px #fff;
+  }
+}

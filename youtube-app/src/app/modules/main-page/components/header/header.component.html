@@ -8,15 +8,13 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="searchBtn"
         type="submit">Search</button>
-
-      <button class="settings-btn" (click)="openFiltersBlock()"
-        title="Open filters block">
-        <img src="assets/icons/settings-icon.png" alt="">
-      </button>
+      <app-custom-icon-button [onClick]="openFiltersBlock.bind(this)"
+        title="Open filters block"><img src="assets/icons/settings-icon.png"
+          alt=""></app-custom-icon-button>
     </form>
     <div>Login info block</div>
   </mat-toolbar-row>
-  <mat-toolbar-row class="header-row">
+  <mat-toolbar-row class="header-sorting-row" *ngIf="filtersOpened">
     <div class="sorting-block">
       <span class="sorting-title">Sorting by: </span>
       <mat-button-toggle-group name="dateSortingMethod" aria-label="dateSortingMethod"
