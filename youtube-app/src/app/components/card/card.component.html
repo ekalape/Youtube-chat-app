@@ -1,6 +1,7 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title class="card-title">{{cardData?.snippet?.title}}</mat-card-title>
+    <mat-card-title class="card-title"
+      [title]="cardData?.snippet?.title">{{cardData?.snippet?.title}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <img mat-card-image class="video-thumb"

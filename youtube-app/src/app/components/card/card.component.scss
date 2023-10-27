@@ -7,6 +7,11 @@
 .card-title {
   text-align: center;
   color: #3f51b5;
+  font-size: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .video-thumb {
   display: block;
