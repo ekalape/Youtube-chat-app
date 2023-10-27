@@ -40,7 +40,6 @@ export class HeaderComponent {
   setDateSortingRule(value: string) {
     this.dateSorting = value;
     let sorting;
-    console.log('value', value);
     if (value === 'dateUp') sorting = SortingRule.UP;
     else sorting = SortingRule.DOWN;
     this.setDateSorting.emit(sorting);

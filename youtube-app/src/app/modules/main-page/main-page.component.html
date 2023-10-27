@@ -1,6 +1,6 @@
 <app-header (setSearchWord)="setSearchWord($event)"
   (setFilterWord)="setFilterWord($event)" (setDateSorting)="onDateSortingChange($event)"
   (setViewsSorting)="onViewsSortingChange($event)"></app-header>
-<app-search-results [youtubeItems]="filteredItems">
+<app-search-results [youtubeItems]="youtubeItems|filterCards:filterWord:sorting">
 
 </app-search-results>

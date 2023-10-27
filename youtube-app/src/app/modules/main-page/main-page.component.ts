@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { ApidataService } from 'src/app/services/apidata-service.service';
 import { SortingRule } from 'src/app/utils/enums';
@@ -12,42 +12,33 @@ import { SortingRule } from 'src/app/utils/enums';
 export class MainPageComponent {
   youtubeItems: IYoutubeItem[] = [];
 
-  filteredItems: IYoutubeItem[] = [];
-
   filterWord = '';
+
+  sorting: [string, SortingRule | null] | null = null;
 
   searchWord = '';
 
-  constructor(private apiDataService: ApidataService) {
+  constructor(private apiDataService: ApidataService, private cdr: ChangeDetectorRef) {
   }
 
   setSearchWord(value: string) {
+    this.cdr.detectChanges();
     this.searchWord = value;
     if (value?.trim().length > 0) this.displayCards(value);
   }
 
   setFilterWord(value: string) {
     this.filterWord = value;
-    this.filteredItems = this.youtubeItems.filter((x) => x.snippet.title.toLowerCase()
-      .includes(value.trim().toLowerCase()));
   }
 
   onDateSortingChange(value: SortingRule | null) {
-    if (value === SortingRule.DOWN) {
-      this.filteredItems.sort((a, b) => Date.parse(a.snippet.publishedAt) - Date.parse(b.snippet.publishedAt));
-    }
-    if (value === SortingRule.UP) {
-      this.filteredItems.sort((a, b) => Date.parse(b.snippet.publishedAt) - Date.parse(a.snippet.publishedAt));
-    }
+    this.sorting = ["date", value];
+
   }
 
   onViewsSortingChange(value: SortingRule | null) {
-    if (value === SortingRule.DOWN) {
-      this.filteredItems.sort((a, b) => +a.statistics.viewCount - +b.statistics.viewCount);
-    }
-    if (value === SortingRule.UP) {
-      this.filteredItems.sort((a, b) => +b.statistics.viewCount - +a.statistics.viewCount);
-    }
+    this.sorting = ["views", value];
+
   }
 
   displayCards(value: string) {
@@ -55,11 +46,6 @@ export class MainPageComponent {
       next: (items: IYoutubeItem[]) => {
         this.youtubeItems = items
           .filter((x) => x.snippet.title.toLowerCase().includes(value.toLowerCase()));
-        if (this.filterWord && this.filterWord.trim().length > 0) {
-          this.filteredItems = this.youtubeItems
-            .filter((x) => x.snippet.title.toLowerCase()
-              .includes(this.filterWord.trim().toLowerCase()));
-        } else this.filteredItems = this.youtubeItems;
       },
     });
   }

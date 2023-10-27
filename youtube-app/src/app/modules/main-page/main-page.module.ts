@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { SearchResultsComponent } from 'src/app/components/search-results/search-results.component';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { FilterService } from 'src/app/services/filter-service.service';
+
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { MainPageComponent } from './main-page.component';
+import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MainPageComponent } from './main-page.component';
     MainPageComponent,
     SearchResultsComponent,
     HeaderComponent,
+    FilterCardsPipe,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,6 @@ import { MainPageComponent } from './main-page.component';
     MatButtonToggleModule,
     CardComponent,
   ],
-  providers: [FilterService],
+  providers: [],
 })
 export class MainPageModule { }
