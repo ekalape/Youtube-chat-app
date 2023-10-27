@@ -8,11 +8,11 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="searchBtn"
         type="submit">Search</button>
-      <app-custom-icon-button [onClick]="openFiltersBlock.bind(this)"
+      <app-custom-button [onClick]="openFiltersBlock.bind(this)" class="settings-btn"
         title="Open filters block"><img src="assets/icons/settings-icon.png"
-          alt=""></app-custom-icon-button>
+          alt=""></app-custom-button>
     </form>
-    <div>Login info block</div>
+    <app-login-info-block></app-login-info-block>
   </mat-toolbar-row>
   <mat-toolbar-row class="header-sorting-row" *ngIf="filtersOpened">
     <div class="sorting-block">
