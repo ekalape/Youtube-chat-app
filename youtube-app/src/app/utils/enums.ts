@@ -6,5 +6,5 @@ export enum TimeDistanceColor {
 }
 
 export enum SortingRule {
-  UP, DOWN,
+  DATE_UP, DATE_DOWN, VIEWS_UP, VIEWS_DOWN
 }

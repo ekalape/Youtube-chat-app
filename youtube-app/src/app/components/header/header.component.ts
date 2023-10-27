@@ -14,13 +14,12 @@ export class HeaderComponent {
 
   @Output() setFilterWord = new EventEmitter<string>();
 
-  @Output() setDateSorting = new EventEmitter<SortingRule | null>();
+  @Output() setSorting = new EventEmitter<SortingRule | null>();
 
-  @Output() setViewsSorting = new EventEmitter<SortingRule | null>();
 
-  dateSorting: string | null = null;
+  sorting: string | null = null;
 
-  viewsSorting: string | null = null;
+
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
@@ -28,8 +27,8 @@ export class HeaderComponent {
 
   setSearchText(value: string) {
     this.setSearchWord.emit(value);
-    this.dateSorting = null;
-    this.viewsSorting = null;
+    this.sorting = null;
+
   }
 
   setFilterText(value: string) {
@@ -37,21 +36,16 @@ export class HeaderComponent {
     console.log(value);
   }
 
-  setDateSortingRule(value: string) {
-    this.dateSorting = value;
+  setSortingRule(value: string) {
+    this.sorting = value;
     let sorting;
-    if (value === 'dateUp') sorting = SortingRule.UP;
-    else sorting = SortingRule.DOWN;
-    this.setDateSorting.emit(sorting);
+    if (value === 'dateUp') sorting = SortingRule.DATE_UP;
+    else if (value === 'dateDown') sorting = SortingRule.DATE_DOWN;
+    else if (value === 'viewsUp') sorting = SortingRule.VIEWS_UP;
+    else sorting = SortingRule.VIEWS_DOWN;
+    this.setSorting.emit(sorting);
   }
 
-  setViewsSortingRule(value: string) {
-    this.viewsSorting = value;
-    let sorting;
-    if (value === 'viewsUp') sorting = SortingRule.UP;
-    else sorting = SortingRule.DOWN;
-    this.setViewsSorting.emit(sorting);
-  }
 }
 
 //* ngIf="filtersOpened"

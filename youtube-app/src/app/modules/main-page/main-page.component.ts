@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { ApidataService } from 'src/app/services/apidata-service.service';
 import { SortingRule } from 'src/app/utils/enums';
@@ -14,7 +14,7 @@ export class MainPageComponent {
 
   filterWord = '';
 
-  sorting: [string, SortingRule | null] | null = null;
+  sorting: SortingRule | null = null;
 
   searchWord = '';
 
@@ -31,15 +31,11 @@ export class MainPageComponent {
     this.filterWord = value;
   }
 
-  onDateSortingChange(value: SortingRule | null) {
-    this.sorting = ["date", value];
+  onSortingChange(value: SortingRule | null) {
+    this.sorting = value
 
   }
 
-  onViewsSortingChange(value: SortingRule | null) {
-    this.sorting = ["views", value];
-
-  }
 
   displayCards(value: string) {
     this.apiDataService.getAll().subscribe({

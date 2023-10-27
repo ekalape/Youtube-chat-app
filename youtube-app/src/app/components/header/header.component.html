@@ -20,15 +20,11 @@
     <div class="sorting-block">
       <span class="sorting-title">Sorting by: </span>
       <mat-button-toggle-group name="dateSortingMethod" aria-label="dateSortingMethod"
-        (change)="setDateSortingRule($event.value)" class="sorting-toggle-group"
-        [(ngModel)]="dateSorting" #dateSortingMethod>
+        (change)="setSortingRule($event.value)" class="sorting-toggle-group"
+        [(ngModel)]="sorting" #dateSortingMethod>
         <span>Date</span>
         <mat-button-toggle value="dateUp">↑</mat-button-toggle>
         <mat-button-toggle value="dateDown">↓</mat-button-toggle>
-      </mat-button-toggle-group>
-      <mat-button-toggle-group name="viewsSortingMethod" aria-label="viewsSortingMethod"
-        (change)="setViewsSortingRule($event.value)" class="sorting-toggle-group"
-        [(ngModel)]="viewsSorting" #viewsSortingMethod>
         <span>Views</span>
         <mat-button-toggle value="viewsUp">↑</mat-button-toggle>
         <mat-button-toggle value="viewsDown">↓</mat-button-toggle>
