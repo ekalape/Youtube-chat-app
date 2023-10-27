@@ -8,7 +8,7 @@ describe('LoginInfoBlockComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginInfoBlockComponent]
+      declarations: [LoginInfoBlockComponent],
     });
     fixture = TestBed.createComponent(LoginInfoBlockComponent);
     component = fixture.componentInstance;

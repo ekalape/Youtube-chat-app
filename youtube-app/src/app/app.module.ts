@@ -12,8 +12,6 @@ import { MainPageModule } from './modules/main-page/main-page.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

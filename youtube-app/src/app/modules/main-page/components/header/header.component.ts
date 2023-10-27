@@ -16,10 +16,7 @@ export class HeaderComponent {
 
   @Output() setSorting = new EventEmitter<SortingRule | null>();
 
-
   sorting: string | null = null;
-
-
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
@@ -28,7 +25,6 @@ export class HeaderComponent {
   setSearchText(value: string) {
     this.setSearchWord.emit(value);
     this.sorting = null;
-
   }
 
   setFilterText(value: string) {
@@ -45,7 +41,4 @@ export class HeaderComponent {
     else sorting = SortingRule.VIEWS_DOWN;
     this.setSorting.emit(sorting);
   }
-
 }
-
-

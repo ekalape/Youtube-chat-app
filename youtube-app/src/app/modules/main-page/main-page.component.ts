@@ -32,10 +32,8 @@ export class MainPageComponent {
   }
 
   onSortingChange(value: SortingRule | null) {
-    this.sorting = value
-
+    this.sorting = value;
   }
-
 
   displayCards(value: string) {
     this.apiDataService.getAll().subscribe({
