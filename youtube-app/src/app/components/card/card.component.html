@@ -35,7 +35,8 @@
     <button mat-raised-button color="primary">MORE...</button>
 
   </mat-card-actions>
-  <mat-card-footer [style.background-color]="timeDistance" class="footer">
+  <mat-card-footer [appColorTimeIndicator]="cardData?.snippet?.publishedAt"
+    class="footer">
 
   </mat-card-footer>
 </mat-card>

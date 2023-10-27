@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.directive';
 
 @Component({
   selector: 'app-card',
@@ -14,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatButtonModule,
     MatDividerModule,
-    MatCardModule, MatIconModule],
+    MatCardModule, MatIconModule, ColorTimeIndicatorDirective],
 })
 export class CardComponent implements OnInit {
   id: string | null = '';
@@ -31,14 +32,14 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('itemId');
-    const published = this.cardData?.snippet.publishedAt;
-    if (published) {
-      this.timeDiff = (Date.now() - Date.parse(published)) / 1000;
-    }
+    /*     const published = this.cardData?.snippet.publishedAt;
+        if (published) {
+          this.timeDiff = (Date.now() - Date.parse(published)) / 1000;
+        }
 
-    if (this.timeDiff < 604800) this.timeDistance = TimeDistanceColor.NEW;
-    else if (this.timeDiff >= 604800 && this.timeDiff < 2592000) this.timeDistance = TimeDistanceColor.MEDIUM;
-    else if (this.timeDiff >= 2592000 && this.timeDiff < 15552000) this.timeDistance = TimeDistanceColor.OLD;
-    else this.timeDistance = TimeDistanceColor.OLDIEST;
+        if (this.timeDiff < 604800) this.timeDistance = TimeDistanceColor.NEW;
+        else if (this.timeDiff >= 604800 && this.timeDiff < 2592000) this.timeDistance = TimeDistanceColor.MEDIUM;
+        else if (this.timeDiff >= 2592000 && this.timeDiff < 15552000) this.timeDistance = TimeDistanceColor.OLD;
+        else this.timeDistance = TimeDistanceColor.OLDIEST; */
   }
 }

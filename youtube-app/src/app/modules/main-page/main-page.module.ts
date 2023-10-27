@@ -17,10 +17,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { MainPageComponent } from './main-page.component';
 
+
 @NgModule({
   declarations: [
     MainPageComponent,
-
     SearchResultsComponent,
     HeaderComponent,
   ],
