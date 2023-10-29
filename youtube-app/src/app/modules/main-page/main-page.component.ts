@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { ApidataService } from 'src/app/services/apidata-service.service';
+import { ItemsManagementService } from 'src/app/services/items-management.service';
 import { SortingRule } from 'src/app/utils/enums';
 
 @Component({
@@ -18,21 +19,20 @@ export class MainPageComponent {
 
   searchWord = '';
 
-  constructor(private apiDataService: ApidataService, private cdr: ChangeDetectorRef) {
+  constructor(private apiDataService: ApidataService, private itemsManager: ItemsManagementService) {
   }
 
-  setSearchWord(value: string) {
-    this.cdr.detectChanges();
-    this.searchWord = value;
-    if (value?.trim().length > 0) this.displayCards(value);
-  }
+  ngOnInit() {
+    this.itemsManager.currentData.subscribe(data => {
+      console.log("inside subscribe ---> ", data.searchWord);
+      this.filterWord = data.filterWord;
+      this.searchWord = data.searchWord;
+      this.sorting = data.sorting;
 
-  setFilterWord(value: string) {
-    this.filterWord = value;
-  }
+      if (data.searchWord?.trim().length > 0) this.displayCards(data.searchWord)
+    })
 
-  onSortingChange(value: SortingRule | null) {
-    this.sorting = value;
+    console.log("onInit main-page --->", this.searchWord);
   }
 
   displayCards(value: string) {

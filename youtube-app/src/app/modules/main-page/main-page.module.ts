@@ -17,6 +17,7 @@ import { MainPageComponent } from './main-page.component';
 import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
 import { LoginInfoBlockComponent } from '../../components/login-info-block/login-info-block.component';
+import { ItemsManagementService } from 'src/app/services/items-management.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,6 @@ import { LoginInfoBlockComponent } from '../../components/login-info-block/login
     MatButtonToggleModule,
     CardComponent,
   ],
-  providers: [],
+  providers: [ItemsManagementService],
 })
 export class MainPageModule { }
