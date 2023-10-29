@@ -24,6 +24,7 @@ export class ItemsManagementService {
 
   setSearchWord(value: string) {
     this.data.next({ ...this.data.value, searchWord: value })
+    console.log("inside service");
   }
   setFilterWord(value: string) {
     this.data.next({ ...this.data.value, filterWord: value })

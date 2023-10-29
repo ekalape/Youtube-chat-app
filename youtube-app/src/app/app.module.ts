@@ -12,16 +12,24 @@ import { MainPageModule } from './modules/main-page/main-page.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { CustomButtonComponent } from 'src/app/components/custom-button/custom-button.component';
+import { LoginInfoBlockComponent } from 'src/app/components/login-info-block/login-info-block.component';
+import { FormsModule } from '@angular/forms';
+import { ItemsManagementService } from './services/items-management.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    CustomButtonComponent,
+    LoginInfoBlockComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MainPageModule,
+    MatButtonToggleModule,
     BrowserAnimationsModule,
     MatDividerModule,
     MatInputModule,
@@ -30,10 +38,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatButtonToggleModule,
-    NotFoundComponent
+
+    NotFoundComponent,
+    FormsModule
   ],
-  providers: [],
+  providers: [ItemsManagementService],
+  exports: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

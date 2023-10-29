@@ -1,1 +1,5 @@
 <p>item-details works!</p>
+
+<p *ngIf="item ;else notFoundItem">{{item.snippet.title}}</p>
+
+<ng-template #notFoundItem> No item with this id</ng-template>

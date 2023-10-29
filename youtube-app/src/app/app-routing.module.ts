@@ -7,7 +7,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [{
   path: '',
   title: 'Main page',
-  pathMatch: "full",
   loadChildren: () => import('./modules/main-page/main-page.module')
     .then((m) => m.MainPageModule),
 },

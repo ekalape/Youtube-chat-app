@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ItemsManagementService } from 'src/app/services/items-management.service';
 import { SortingRule } from 'src/app/utils/enums';
 
@@ -10,10 +10,15 @@ import { SortingRule } from 'src/app/utils/enums';
 })
 export class HeaderComponent {
   filtersOpened = false;
+  main = false;
 
   sorting: string | null = null;
 
   constructor(private itemsManager: ItemsManagementService) { }
+
+  ngOnInit() {
+
+  }
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
