@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  padding: 2rem;
+}
+.not-found-message {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-style: italic;
+}

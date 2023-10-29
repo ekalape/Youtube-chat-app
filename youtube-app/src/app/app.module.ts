@@ -11,11 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainPageModule } from './modules/main-page/main-page.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -31,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatIconModule,
     MatButtonModule,
     MatButtonToggleModule,
+    NotFoundComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
