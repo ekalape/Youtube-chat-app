@@ -17,6 +17,8 @@ import { CustomButtonComponent } from 'src/app/components/custom-button/custom-b
 import { LoginInfoBlockComponent } from 'src/app/components/login-info-block/login-info-block.component';
 import { FormsModule } from '@angular/forms';
 import { ItemsManagementService } from './services/items-management.service';
+import { AuthPageModule } from './modules/auth-page/auth-page.module';
+import { AuthMainComponent } from './modules/auth-page/auth-main/auth-main.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ItemsManagementService } from './services/items-management.service';
     HeaderComponent,
     CustomButtonComponent,
     LoginInfoBlockComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,6 @@ import { ItemsManagementService } from './services/items-management.service';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-
     NotFoundComponent,
     FormsModule
   ],

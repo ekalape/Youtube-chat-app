@@ -4,17 +4,26 @@ import {
 } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-const routes: Routes = [{
-  path: '',
-  title: 'Main page',
-  loadChildren: () => import('./modules/main-page/main-page.module')
-    .then((m) => m.MainPageModule),
-},
-{
-  path: "**",
-  title: "Not found page",
-  component: NotFoundComponent
-}
+const routes: Routes = [
+
+  {
+    path: 'main',
+    title: 'Main page',
+    loadChildren: () => import('./modules/main-page/main-page.module')
+      .then((m) => m.MainPageModule),
+  },
+  {
+    path: '',
+    title: 'Authorization page',
+    pathMatch: "full",
+    loadChildren: () => import('./modules/auth-page/auth-page.module')
+      .then((m) => m.AuthPageModule),
+  },
+  {
+    path: "**",
+    title: "Not found page",
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
