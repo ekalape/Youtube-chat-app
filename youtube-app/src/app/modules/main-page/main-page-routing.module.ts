@@ -12,7 +12,7 @@ const routes: Routes = [
 
   { path: 'main/:itemId', component: ItemDetailsComponent },
   { path: 'main', component: MainPageComponent },
-  { path: '**', component: NotFoundComponent },
+
 
 ];
 

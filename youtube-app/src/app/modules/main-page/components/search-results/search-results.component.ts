@@ -15,6 +15,8 @@ export class SearchResultsComponent {
   sorting: SortingRule | null = null;
   searchWord = '';
 
+  itemsLength = 0
+
   constructor(private apiDataService: ApidataService, private itemsManager: ItemsManagementService) {
   }
 
@@ -36,6 +38,7 @@ export class SearchResultsComponent {
       next: (items: IYoutubeItem[]) => {
         this.youtubeItems = items
           .filter((x) => x.snippet.title.toLowerCase().includes(value.toLowerCase()));
+
       },
     });
   }

@@ -22,6 +22,8 @@ import { CustomButtonComponent } from 'src/app/components/custom-button/custom-b
 import { LoginInfoBlockComponent } from 'src/app/components/login-info-block/login-info-block.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { MatCardModule } from '@angular/material/card';
+import { ColorTimeIndicatorDirective } from 'src/app/components/card/directives/color-time-indicator.directive';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,9 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
     MatFormFieldModule,
     MatIconModule,
     MatToolbarModule,
-
+    MatCardModule,
     CardComponent,
+    ColorTimeIndicatorDirective
   ],
   providers: [],
   exports: []

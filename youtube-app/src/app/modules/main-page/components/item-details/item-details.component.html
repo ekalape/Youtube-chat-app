@@ -1,5 +1,43 @@
-<p>item-details works!</p>
+<mat-card class="card" *ngIf="item ;else notFoundItem"
+  [appColorTimeIndicator]="item.snippet.publishedAt" [hasShadow]=true>
+  <img mat-card-image class="video-thumb" [src]="item.snippet.thumbnails.standard.url"
+    alt="Video thumb">
+  <mat-card-content class="card-content">
+    <div class="card-description">
+      <h1>{{item.snippet.title}}</h1>
+      <p>{{item.snippet.publishedAt|date}}</p>
+      <h4>Description:</h4>
+      <p>{{item.snippet.description}}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="info-block">
+      <div class="info-block__content"> <mat-icon aria-hidden="false"
+          aria-label="Views counter" fontIcon="visibility" color="primary"></mat-icon>
+        <span>{{item.statistics.viewCount}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Likes count" fontIcon="thumb_up"
+          color="primary"></mat-icon>
+        <span>{{item.statistics.likeCount}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Dislikes count" fontIcon="thumb_down"
+          color="primary"></mat-icon>
+        <span>{{item.statistics.dislikeCount}}</span>
+      </div>
+      <div class="info-block__content">
+        <mat-icon aria-hidden="false" aria-label="Comments count" fontIcon="library_books"
+          color="primary"></mat-icon>
+        <span>{{item.statistics.commentCount}}</span>
+      </div>
+    </div>
+    <mat-card-footer [appColorTimeIndicator]="item.snippet.publishedAt" class="footer">
+    </mat-card-footer>
+  </mat-card-content>
 
-<p *ngIf="item ;else notFoundItem">{{item.snippet.title}}</p>
+
+</mat-card>
+
+
 
 <ng-template #notFoundItem> No item with this id</ng-template>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemsManagementService } from 'src/app/services/items-management.service';
 import { SortingRule } from 'src/app/utils/enums';
 
@@ -14,9 +15,10 @@ export class HeaderComponent {
 
   sorting: string | null = null;
 
-  constructor(private itemsManager: ItemsManagementService) { }
+  constructor(private itemsManager: ItemsManagementService, private router: Router) { }
 
   ngOnInit() {
+    console.log('first', this.router.routerState.snapshot.url)
 
   }
 
