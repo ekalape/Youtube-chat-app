@@ -1,1 +1,18 @@
-<p>auth-main works!</p>
+<mat-card class="form">
+  <form (submit)="onLogin($event, emailField.value, passwordField.value)"
+    class="form-content">
+    <h1>Login</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" #emailField>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" #passwordField>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-card-footer class="form-footer">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-button (click)="onCancel($event)">Cancel</button></mat-card-footer>
+  </form>
+</mat-card>

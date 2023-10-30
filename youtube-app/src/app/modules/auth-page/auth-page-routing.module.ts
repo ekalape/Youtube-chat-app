@@ -3,7 +3,7 @@ import {
   RouterModule, Routes, provideRouter, withComponentInputBinding,
 } from '@angular/router';
 
-import { AuthMainComponent } from './auth-main.component';
+import { AuthMainComponent } from './auth-main/auth-main.component';
 
 
 const routes: Routes = [
