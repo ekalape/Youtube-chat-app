@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-auth-main',
@@ -8,9 +9,14 @@ import { Component } from '@angular/core';
 export class AuthMainComponent {
 
 
-  onLogin($event: Event, email: string, password: string) {
+  constructor(private authService: AuthService) { }
+
+  onLogin($event: Event, name: string, password: string) {
     $event.preventDefault()
-    console.log("email");
+    if (name.trim().length > 0 && password.trim().length > 0) {
+      this.authService.login(name);
+      return true
+    }
     return false
   }
   onCancel(event: Event) {

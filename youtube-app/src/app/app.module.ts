@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { ItemsManagementService } from './services/items-management.service';
 import { AuthPageModule } from './modules/auth-page/auth-page.module';
 import { AuthMainComponent } from './modules/auth-page/auth-main/auth-main.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { AuthMainComponent } from './modules/auth-page/auth-main/auth-main.compo
     NotFoundComponent,
     FormsModule
   ],
-  providers: [ItemsManagementService],
+  providers: [ItemsManagementService, AuthService],
   exports: [],
   bootstrap: [AppComponent],
 })

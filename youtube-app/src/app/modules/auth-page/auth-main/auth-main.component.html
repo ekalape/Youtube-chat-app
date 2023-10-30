@@ -1,10 +1,10 @@
 <mat-card class="form">
-  <form (submit)="onLogin($event, emailField.value, passwordField.value)"
+  <form (submit)="onLogin($event, nameField.value, passwordField.value)"
     class="form-content">
     <h1>Login</h1>
     <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="pat@example.com" #emailField>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" #nameField>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
