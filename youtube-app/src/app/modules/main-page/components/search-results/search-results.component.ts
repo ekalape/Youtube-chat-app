@@ -22,15 +22,12 @@ export class SearchResultsComponent {
 
   ngOnInit() {
     this.itemsManager.currentData.subscribe(data => {
-      console.log("inside subscribe ---> ", data.searchWord);
       this.filterWord = data.filterWord;
       this.searchWord = data.searchWord;
       this.sorting = data.sorting;
-
       if (data.searchWord?.trim().length > 0) this.displayCards(data.searchWord)
     })
 
-    console.log("onInit searchItemsComponent --->", this.searchWord);
   }
 
   displayCards(value: string) {

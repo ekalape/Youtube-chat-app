@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Pathes } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-login-info-block',
@@ -10,11 +12,10 @@ export class LoginInfoBlockComponent {
   loggedIn = false;
   username = ""
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService.username.subscribe(name => {
-      console.log('name', name)
       this.username = name;
       if (name.length > 0) this.loggedIn = true
     }
@@ -27,7 +28,7 @@ export class LoginInfoBlockComponent {
 
   logout() {
     this.loggedIn = false;
-    this.authService.logout()
-    console.log('You are logged out now');
+    this.authService.logout();
+    this.router.navigate([Pathes.BASE])
   }
 }

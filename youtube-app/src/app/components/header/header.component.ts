@@ -17,11 +17,6 @@ export class HeaderComponent {
 
   constructor(private itemsManager: ItemsManagementService, private router: Router) { }
 
-  ngOnInit() {
-    console.log('first', this.router.routerState.snapshot.url)
-
-  }
-
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
   }

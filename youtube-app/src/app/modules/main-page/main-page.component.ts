@@ -14,12 +14,5 @@ import { SortingRule } from 'src/app/utils/enums';
 export class MainPageComponent {
   youtubeItems: IYoutubeItem[] = [];
 
-  constructor(private route: Router) {
-    console.log('route', route)
-  }
-
-  ngOnInit() {
-
-  }
 
 }

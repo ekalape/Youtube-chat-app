@@ -34,10 +34,10 @@
     <mat-card-footer [appColorTimeIndicator]="item.snippet.publishedAt" class="footer">
     </mat-card-footer>
   </mat-card-content>
-
-
 </mat-card>
 
 
 
-<ng-template #notFoundItem> No item with this id</ng-template>
+<ng-template #notFoundItem>
+  <h1 class="not-found"> No item found with this id</h1>
+</ng-template>

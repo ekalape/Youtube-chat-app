@@ -6,23 +6,19 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-
-  private _loggedIn = new BehaviorSubject<boolean>(false);
   private _username = new BehaviorSubject<string>("")
 
-  loggedIn = this._loggedIn.asObservable()
+  isLogged = false
   username = this._username.asObservable()
 
 
-  constructor() { }
-
   login(name: string) {
-    this._loggedIn.next(true);
     this._username.next(name);
-    console.log("service name", this._username.value);
+    this.isLogged = true
+
   }
   logout() {
-    this._loggedIn.next(false);
     this._username.next("");
+    this.isLogged = false
   }
 }
