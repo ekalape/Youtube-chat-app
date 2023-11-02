@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { ApidataService } from 'src/app/services/apidata-service.service';
+import { ApidataService } from 'src/app/core/services/apidata/apidata-service.service';
 
 @Component({
   selector: 'app-item-details',

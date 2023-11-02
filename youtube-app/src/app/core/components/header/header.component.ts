@@ -2,8 +2,8 @@ import {
   Component,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { ItemsManagementService } from 'src/app/services/items-management.service';
+import { AuthService } from 'src/app/core/services/authentification/auth.service';
+import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 
 @Component({
   selector: 'app-header',

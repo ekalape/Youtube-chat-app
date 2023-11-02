@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { SortingRule } from '../utils/enums';
+import { SortingRule } from '../../../utils/enums';
 
 interface IFilterSortingData {
   filterWord: string;

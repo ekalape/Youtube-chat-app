@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { DevLoggerService } from 'src/app/services/loggers/dev-logger.service';
+import { AuthService } from 'src/app/core/services/authentification/auth.service';
+import { DevLoggerService } from 'src/app/core/services/loggers/dev-logger.service';
 import { Pathes } from 'src/app/utils/enums';
 
 @Component({
