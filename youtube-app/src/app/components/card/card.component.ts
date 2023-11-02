@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { TimeDistanceColor } from 'src/app/utils/enums';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,17 +18,9 @@ import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.d
     MatCardModule, MatIconModule, ColorTimeIndicatorDirective, RouterModule],
 })
 export class CardComponent {
-
-
   timeDiff = 0;
 
   timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
 
   @Input() cardData: IYoutubeItem | null = null;
-
-  constructor(private route: ActivatedRoute) {
-
-  }
-
-
 }

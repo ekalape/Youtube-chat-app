@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it('should have as title \'youtube-app\'', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    //expect(app.title).toEqual('youtube-app');
+    expect(app.title).toEqual('youtube-app');
   });
 
   it('should render title', () => {

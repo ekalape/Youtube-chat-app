@@ -16,15 +16,15 @@ const routes: Routes = [
   {
     path: '',
     title: 'Authorization page',
-    pathMatch: "full",
+    pathMatch: 'full',
     loadChildren: () => import('./modules/auth-page/auth-page.module')
       .then((m) => m.AuthPageModule),
   },
   {
-    path: "**",
-    title: "Not found page",
-    component: NotFoundComponent
-  }
+    path: '**',
+    title: 'Not found page',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({

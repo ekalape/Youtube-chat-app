@@ -9,16 +9,25 @@ import { TimeDistanceColor } from 'src/app/utils/enums';
 })
 export class ColorTimeIndicatorDirective implements AfterViewInit {
   @Input('appColorTimeIndicator') publishedAt: string | undefined;
-  @Input() hasShadow: boolean = false
+
+  @Input() hasShadow = false;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 
   }
 
   ngAfterViewInit() {
-
-    if (this.hasShadow) this.renderer.setStyle(this.elementRef.nativeElement, 'box-shadow', `15px 15px 20px 0 color-mix(in srgb, ${this.setColorIndicator()} 50%, black)`);
-    else this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', this.setColorIndicator());
+    if (this.hasShadow) {
+      this.renderer
+        .setStyle(
+          this.elementRef.nativeElement,
+          'box-shadow',
+          `15px 15px 20px 0 color-mix(in srgb, ${this.setColorIndicator()} 50%, black)`,
+        );
+    } else {
+      this.renderer
+        .setStyle(this.elementRef.nativeElement, 'background-color', this.setColorIndicator());
+    }
   }
 
   private setColorIndicator() {

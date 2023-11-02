@@ -1,28 +1,29 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DevLoggerService } from 'src/app/services/loggers/dev-logger.service';
 import { Pathes } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-auth-main',
   templateUrl: './auth-main.component.html',
-  styleUrls: ['./auth-main.component.scss']
+  styleUrls: ['./auth-main.component.scss'],
 })
 export class AuthMainComponent {
-
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private logService: DevLoggerService) { }
 
   onLogin($event: Event, name: string, password: string) {
-    $event.preventDefault()
+    $event.preventDefault();
     if (name.trim().length > 0 && password.trim().length > 0) {
-      console.log("inside login method in auth-main");
       this.authService.login(name);
-      this.router.navigate([Pathes.MAIN])
+      this.logService.logMessage('You are logged in!');
+      this.router.navigate([Pathes.MAIN]);
     }
   }
+
   onCancel(event: Event) {
-    event.preventDefault()
-    console.log("cancelled");
+    event.preventDefault();
+    console.log('cancelled');
+    this.logService.logMessage("You presses 'cancel'");
   }
 }

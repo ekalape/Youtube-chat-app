@@ -5,7 +5,6 @@ import {
 
 import { AuthMainComponent } from './auth-main/auth-main.component';
 
-
 const routes: Routes = [
   { path: '', component: AuthMainComponent },
 

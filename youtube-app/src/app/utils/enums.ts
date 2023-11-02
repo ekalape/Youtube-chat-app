@@ -10,6 +10,6 @@ export enum SortingRule {
 }
 
 export enum Pathes {
-  BASE = "/",
-  MAIN = "/main"
+  BASE = '/',
+  MAIN = '/main',
 }

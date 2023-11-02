@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IYoutubeItem } from '../models/youtube-item.model';
-import { SortingRule } from '../utils/enums';
 import { BehaviorSubject } from 'rxjs';
+import { SortingRule } from '../utils/enums';
 
 interface IFilterSortingData {
   filterWord: string;
@@ -10,32 +9,32 @@ interface IFilterSortingData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemsManagementService {
-
   private data = new BehaviorSubject<IFilterSortingData>({
     filterWord: '',
     sorting: null,
-    searchWord: ''
-  })
+    searchWord: '',
+  });
 
-  currentData = this.data.asObservable()
+  currentData = this.data.asObservable();
 
   setSearchWord(value: string) {
-    this.data.next({ ...this.data.value, searchWord: value })
-    console.log("inside service");
+    this.data.next({ ...this.data.value, searchWord: value });
+    console.log('inside service');
   }
+
   setFilterWord(value: string) {
-    this.data.next({ ...this.data.value, filterWord: value })
+    this.data.next({ ...this.data.value, filterWord: value });
   }
+
   setSorting(value: string) {
     let sorting;
     if (value === 'dateUp') sorting = SortingRule.DATE_UP;
     else if (value === 'dateDown') sorting = SortingRule.DATE_DOWN;
     else if (value === 'viewsUp') sorting = SortingRule.VIEWS_UP;
     else sorting = SortingRule.VIEWS_DOWN;
-    this.data.next({ ...this.data.value, sorting })
+    this.data.next({ ...this.data.value, sorting });
   }
-
 }

@@ -1,9 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { ApidataService } from 'src/app/services/apidata-service.service';
-import { ItemsManagementService } from 'src/app/services/items-management.service';
-import { SortingRule } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-main-page',
@@ -13,6 +10,4 @@ import { SortingRule } from 'src/app/utils/enums';
 })
 export class MainPageComponent {
   youtubeItems: IYoutubeItem[] = [];
-
-
 }

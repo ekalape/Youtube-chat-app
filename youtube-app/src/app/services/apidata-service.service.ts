@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { filter, map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { IResponce } from '../models/response.model';
 
 @Injectable({
@@ -16,7 +16,6 @@ export class ApidataService {
   }
 
   getById(itemId: string) {
-    return this.getAll().pipe(map((items) => items.find((item) => item.id === itemId)))
-
+    return this.getAll().pipe(map((items) => items.find((item) => item.id === itemId)));
   }
 }
