@@ -2,6 +2,7 @@ import {
   Component,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { ItemsManagementService } from 'src/app/services/items-management.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class HeaderComponent {
 
   sorting: string | null = null;
 
-  constructor(private itemsManager: ItemsManagementService, private router: Router) { }
+  constructor(private itemsManager: ItemsManagementService, public authService: AuthService) { }
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
