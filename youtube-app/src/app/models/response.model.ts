@@ -8,5 +8,5 @@ export interface IResponce {
     totalResults: number
     resultsPerPage: number
   }
-  IItems: IYoutubeItem[]
+  items: IYoutubeItem[]
 }

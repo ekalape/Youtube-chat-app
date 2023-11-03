@@ -1,0 +1,4 @@
+<p>Found: {{youtubeItems.length}} items</p>
+<div class="items-container">
+  <app-card *ngFor="let item of youtubeItems" [cardData]="item"></app-card>
+</div>
