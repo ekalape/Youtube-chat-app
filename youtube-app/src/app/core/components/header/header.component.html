@@ -1,7 +1,8 @@
 <mat-toolbar color="primary" class="header">
   <mat-toolbar-row class="header-row">
     <h1>YTClient App Logo</h1>
-    <form class="center-part" (ngSubmit)="setSearchText(searchInput.value)">
+    <form class="center-part" (ngSubmit)="setSearchText(searchInput.value)"
+      *ngIf="authService.isLogged">
       <mat-form-field class="search-field">
         <mat-label>Search</mat-label>
         <input matNativeControl placeholder="..." #searchInput>

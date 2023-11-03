@@ -32,7 +32,8 @@
   </mat-card-content>
   <mat-card-actions>
 
-    <button mat-raised-button color="primary">MORE...</button>
+    <a mat-raised-button color="primary"
+      [routerLink]="['/main', cardData?.id]">MORE...</a>
 
   </mat-card-actions>
   <mat-card-footer [appColorTimeIndicator]="cardData?.snippet?.publishedAt"

@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { ApidataService } from 'src/app/services/apidata-service.service';
-import { SortingRule } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-main-page',
@@ -11,36 +10,4 @@ import { SortingRule } from 'src/app/utils/enums';
 })
 export class MainPageComponent {
   youtubeItems: IYoutubeItem[] = [];
-
-  filterWord = '';
-
-  sorting: SortingRule | null = null;
-
-  searchWord = '';
-
-  constructor(private apiDataService: ApidataService, private cdr: ChangeDetectorRef) {
-  }
-
-  setSearchWord(value: string) {
-    this.cdr.detectChanges();
-    this.searchWord = value;
-    if (value?.trim().length > 0) this.displayCards(value);
-  }
-
-  setFilterWord(value: string) {
-    this.filterWord = value;
-  }
-
-  onSortingChange(value: SortingRule | null) {
-    this.sorting = value;
-  }
-
-  displayCards(value: string) {
-    this.apiDataService.getAll().subscribe({
-      next: (items: IYoutubeItem[]) => {
-        this.youtubeItems = items
-          .filter((x) => x.snippet.title.toLowerCase().includes(value.toLowerCase()));
-      },
-    });
-  }
 }

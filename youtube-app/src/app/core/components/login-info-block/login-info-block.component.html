@@ -1,0 +1,6 @@
+<div class="container">
+  {{username}}
+  <app-custom-button
+    [onClick]="loggedIn?logout.bind(this):login.bind(this)">{{loggedIn?'LOG-OUT':'LOG-IN'}}</app-custom-button>
+
+</div>

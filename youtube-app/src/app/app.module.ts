@@ -8,20 +8,30 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HttpClientModule } from '@angular/common/http';
-import { MainPageModule } from './modules/main-page/main-page.module';
-import { AppComponent } from './app.component';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
+import { CustomButtonComponent } from 'src/app/components/custom-button/custom-button.component';
+import { LoginInfoBlockComponent } from 'src/app/core/components/login-info-block/login-info-block.component';
+import { FormsModule } from '@angular/forms';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ItemsManagementService } from './core/services/item-management/items-management.service';
+import { AuthService } from './core/services/authentification/auth.service';
+import { DevLoggerService } from './core/services/loggers/dev-logger.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    CustomButtonComponent,
+    LoginInfoBlockComponent,
 
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MainPageModule,
+    MatButtonToggleModule,
     BrowserAnimationsModule,
     MatDividerModule,
     MatInputModule,
@@ -30,9 +40,11 @@ import { AppRoutingModule } from './app-routing.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatButtonToggleModule,
+    NotFoundComponent,
+    FormsModule,
   ],
-  providers: [],
+  providers: [ItemsManagementService, AuthService, DevLoggerService],
+  exports: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

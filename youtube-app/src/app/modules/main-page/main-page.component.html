@@ -1,6 +1,2 @@
-<app-header (setSearchWord)="setSearchWord($event)"
-  (setFilterWord)="setFilterWord($event)"
-  (setSorting)="onSortingChange($event)"></app-header>
-<app-search-results [youtubeItems]="youtubeItems|filterCards:filterWord:sorting">
-
-</app-search-results>
+<app-search-results>
+  <router-outlet></router-outlet></app-search-results>

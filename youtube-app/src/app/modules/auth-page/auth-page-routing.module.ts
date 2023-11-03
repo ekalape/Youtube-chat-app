@@ -3,12 +3,11 @@ import {
   RouterModule, Routes, provideRouter, withComponentInputBinding,
 } from '@angular/router';
 
-import { MainPageComponent } from './main-page.component';
-import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { AuthMainComponent } from './auth-main/auth-main.component';
 
 const routes: Routes = [
-  { path: ':itemId', component: ItemDetailsComponent },
-  { path: '', component: MainPageComponent },
+  { path: '', component: AuthMainComponent },
+
 ];
 
 @NgModule({
@@ -19,4 +18,4 @@ const routes: Routes = [
 
   ],
 })
-export class MainPageRoutingModule { }
+export class AuthPageRoutingModule { }
