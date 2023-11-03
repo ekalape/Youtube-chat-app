@@ -1,7 +1,12 @@
-<p *ngIf="!itemsLength">Use "search" field to find items...</p>
+<p *ngIf="!itemsLength;else foundItemsLength">Use "search" field to find items...</p>
 <div class="items-container">
-  <app-card *ngFor="let item of (youtubeItems|async)|filterCards:filterWord:sorting"
+  <app-card *ngFor="let item of youtubeItems|filterCards:filterWord:sorting"
     [cardData]="item" class="card-selected"></app-card>
-  <app-card *ngFor="let item of  (youtubeItems|async)|notSelected:filterWord"
-    [cardData]="item" class="card-non-selected"></app-card>
+  <app-card *ngFor="let item of  youtubeItems|notSelected:filterWord" [cardData]="item"
+    class="card-non-selected"></app-card>
 </div>
+
+
+<ng-template #foundItemsLength>
+  <p>Found {{itemsLength}} items</p>
+</ng-template>

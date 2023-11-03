@@ -19,6 +19,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const itemId = this.route.snapshot.paramMap.get('itemId');
+
     if (itemId)
       this.subscription = this.apiService.getById(itemId).subscribe({ next: (res) => (this.item = res) });
   }

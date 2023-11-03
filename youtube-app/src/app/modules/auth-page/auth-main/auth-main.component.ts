@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { DevLoggerService } from 'src/app/core/services/loggers/dev-logger.service';
-import { Pathes } from 'src/app/utils/enums';
+import { Pathes } from 'src/app/utils/enums/pathes';
 
 @Component({
   selector: 'app-auth-main',
