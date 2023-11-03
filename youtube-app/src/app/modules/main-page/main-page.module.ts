@@ -15,6 +15,7 @@ import { ItemDetailsComponent } from './components/item-details/item-details.com
 import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
+import { NotSelectedPipe } from './pipes/not-selected.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MainPageRoutingModule } from './main-page-routing.module';
     SearchResultsComponent,
     FilterCardsPipe,
     ItemDetailsComponent,
+    NotSelectedPipe,
 
   ],
   imports: [

@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthPageRoutingModule } from './auth-page-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AuthMainComponent],
@@ -20,6 +22,7 @@ import { AuthPageRoutingModule } from './auth-page-routing.module';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
+    ReactiveFormsModule
   ],
   providers: [],
 })
