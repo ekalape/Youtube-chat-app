@@ -6,7 +6,8 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 })
 export class NotSelectedPipe implements PipeTransform {
 
-  transform(cards: IYoutubeItem[], filterWord: string) {
+  transform(cards: IYoutubeItem[] | null, filterWord: string) {
+    if (!cards) return []
     let othercards: IYoutubeItem[]
     if (filterWord.trim() === '') othercards = [];
     else { othercards = cards.filter((c) => !c.snippet.title.toLowerCase().includes(filterWord.toLowerCase())); }

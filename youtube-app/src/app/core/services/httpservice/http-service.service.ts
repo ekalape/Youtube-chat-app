@@ -6,7 +6,7 @@ import { IResponce } from '../../../models/response.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ApidataService {
+export class HttpService {
   constructor(private httpService: HttpClient) {
 
   }

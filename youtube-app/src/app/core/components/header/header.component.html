@@ -9,7 +9,7 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="searchBtn"
         type="submit">Search</button>
-      <app-custom-button [onClick]="openFiltersBlock.bind(this)" class="settings-btn"
+      <app-custom-button (onClick)="openFiltersBlock()" class="settings-btn"
         title="Open filters block"><img src="assets/icons/settings-icon.png"
           alt=""></app-custom-button>
     </form>

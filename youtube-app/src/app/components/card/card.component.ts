@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { TimeDistanceColor } from 'src/app/utils/enums';
+import { TimeDistanceColor } from 'src/app/utils/enums/colors';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';

@@ -1,7 +1,8 @@
 import {
   AfterViewInit, Directive, ElementRef, Input, Renderer2,
 } from '@angular/core';
-import { TimeDistanceColor } from 'src/app/utils/enums';
+import { TimeDistanceColor } from 'src/app/utils/enums/colors';
+import { Seconds } from 'src/app/utils/enums/seconds';
 
 @Directive({
   selector: '[appColorTimeIndicator]',
@@ -34,9 +35,9 @@ export class ColorTimeIndicatorDirective implements AfterViewInit {
     if (this.publishedAt) {
       let timeDiff = 0;
       timeDiff = (Date.now() - Date.parse(this.publishedAt)) / 1000;
-      if (timeDiff < 604800) return TimeDistanceColor.NEW;
-      if (timeDiff >= 604800 && timeDiff < 2592000) return TimeDistanceColor.MEDIUM;
-      if (timeDiff >= 2592000 && timeDiff < 15552000) return TimeDistanceColor.OLD;
+      if (timeDiff < Seconds.week) return TimeDistanceColor.NEW;
+      if (timeDiff >= Seconds.week && timeDiff < Seconds.month) return TimeDistanceColor.MEDIUM;
+      if (timeDiff >= Seconds.month && timeDiff < Seconds.halfYear) return TimeDistanceColor.OLD;
       return TimeDistanceColor.OLDIEST;
     }
     return TimeDistanceColor.NEW;

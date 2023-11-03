@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { SortingRule } from 'src/app/utils/enums';
+import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 @Pipe({
   name: 'filterCards',
 
 })
 export class FilterCardsPipe implements PipeTransform {
-  transform(cards: IYoutubeItem[], filterWord: string, sorting: SortingRule | null): IYoutubeItem[] {
-
+  transform(cards: IYoutubeItem[] | null, filterWord: string, sorting: SortingRule | null): IYoutubeItem[] {
+    if (!cards) return []
     let filteredCards: IYoutubeItem[];
     if (filterWord.trim() === '') filteredCards = cards;
     else { filteredCards = cards.filter((c) => c.snippet.title.toLowerCase().includes(filterWord.toLowerCase())); }
