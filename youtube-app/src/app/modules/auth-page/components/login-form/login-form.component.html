@@ -1,0 +1,25 @@
+<mat-card class="form">
+  <form (ngSubmit)="onLogin()" class="form-content" [formGroup]="loginForm">
+    <h1>Login</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="nameInput">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="E-mail" formControlName="emailInput">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" formControlName="passInput">
+    </mat-form-field>
+
+
+    <mat-divider></mat-divider>
+    <mat-card-footer class="form-footer">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!loginForm.valid">Submit</button>
+      <button mat-button (click)="onCancel($event)">Cancel</button></mat-card-footer>
+  </form>
+</mat-card>
+<p>status: {{loginForm.status}}</p>

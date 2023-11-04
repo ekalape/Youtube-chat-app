@@ -1,0 +1,13 @@
+<ng-content></ng-content>
+<p>TODO create card form</p>
+
+<div formArrayName="tags" class="tags">
+  <mat-form-field appearance="outline" *ngFor="let tag of tags.controls; let i=index">
+    <mat-label>Tag-{{i+1}}</mat-label>
+    <input matInput placeholder="Enter tag" [formControlName]="i" id="tag-{{i}}">
+  </mat-form-field>
+</div>
+
+<button mat-raised-button color="primary" type="submit"
+  [disabled]="!loginForm.valid">Submit</button>
+<button mat-button (click)="addTag()">Cancel</button>

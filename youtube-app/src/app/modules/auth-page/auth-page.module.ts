@@ -9,10 +9,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthPageRoutingModule } from './auth-page-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 
 @NgModule({
-  declarations: [AuthMainComponent],
+  declarations: [AuthMainComponent, LoginFormComponent],
   imports: [
     CommonModule,
     AuthPageRoutingModule,

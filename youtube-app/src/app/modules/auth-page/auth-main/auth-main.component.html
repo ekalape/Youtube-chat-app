@@ -1,17 +1,1 @@
-<mat-card class="form">
-  <form (submit)="onLogin($event)" class="form-content">
-    <h1>Login</h1>
-    <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" [formControl]="nameInput">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="Password" [formControl]="passInput">
-    </mat-form-field>
-    <mat-divider></mat-divider>
-    <mat-card-footer class="form-footer">
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-      <button mat-button (click)="onCancel($event)">Cancel</button></mat-card-footer>
-  </form>
-</mat-card>
+<app-login-form></app-login-form>

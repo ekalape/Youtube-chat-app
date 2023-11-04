@@ -4,6 +4,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
+import { Pathes } from 'src/app/utils/enums/pathes';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent {
 
   sorting: string | null = null;
 
-  constructor(private itemsManager: ItemsManagementService, public authService: AuthService) { }
+  constructor(private itemsManager: ItemsManagementService, public authService: AuthService, private router: Router) { }
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
@@ -36,5 +37,11 @@ export class HeaderComponent {
   setSortingRule(value: string) {
     this.sorting = value;
     this.itemsManager.setSorting(value);
+  }
+  gotoAdmin() {
+    this.router.navigate([Pathes.ADMIN])
+  }
+  gotoMainPage() {
+    this.router.navigate([Pathes.MAIN])
   }
 }
