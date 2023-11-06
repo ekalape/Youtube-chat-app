@@ -1,7 +1,9 @@
 import {
-  Component,
+  Component, OnInit,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { Pathes } from 'src/app/utils/enums/pathes';
@@ -12,14 +14,24 @@ import { Pathes } from 'src/app/utils/enums/pathes';
   styleUrls: ['./header.component.scss'],
 
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   filtersOpened = false;
 
   main = false;
 
   sorting: string | null = null;
 
+  searchInput = new FormControl("")
+
   constructor(private itemsManager: ItemsManagementService, public authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.searchInput.valueChanges.pipe(
+      debounceTime(800),
+      map(x => x && x.length >= 3 ? x : ""),
+      distinctUntilChanged()
+    ).subscribe(x => this.setSearchText(x || ""))
+  }
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;

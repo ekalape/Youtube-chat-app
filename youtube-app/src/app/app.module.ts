@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
 import { CustomButtonComponent } from 'src/app/components/custom-button/custom-button.component';
 import { LoginInfoBlockComponent } from 'src/app/core/components/login-info-block/login-info-block.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,7 @@ import { ComplexPasswordValidator } from './core/directives/complex-password.dir
     MatButtonModule,
     NotFoundComponent,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ItemsManagementService, AuthService, DevLoggerService],
   exports: [],

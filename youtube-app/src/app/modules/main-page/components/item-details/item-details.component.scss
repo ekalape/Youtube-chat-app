@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding-top: 2rem;
+  height: max-content;
 }
 
 .card {
@@ -9,7 +10,7 @@
   border: 1px solid grey;
   display: grid;
   grid-template-columns: 1fr 50%;
-  align-items: stretch;
+  align-items: center;
   justify-items: center;
   margin: 5%;
 
@@ -34,6 +35,7 @@
 .card-title {
   text-align: center;
   color: #3f51b5;
+  height: 2rem;
   font-size: 1.5rem;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -47,12 +49,13 @@
 }
 
 .footer {
-  width: calc(100% + 3px);
+  width: calc(50% + 3px);
   height: 0.5rem;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
   position: absolute;
-  top: calc(100% - 6px);
+  bottom: -3px;
+  right: -1px;
 }
 .card-description {
   display: grid;
