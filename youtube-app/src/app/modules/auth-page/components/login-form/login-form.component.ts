@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ComplexPasswordValidator } from 'src/app/core/directives/complex-password.directive';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { DevLoggerService } from 'src/app/core/services/loggers/dev-logger.service';
 import { Pathes } from 'src/app/utils/enums/pathes';
@@ -11,12 +12,12 @@ import { Pathes } from 'src/app/utils/enums/pathes';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy {
 
   loginForm: FormGroup = this.fb.group({
-    nameInput: ["", Validators.required],
-    emailInput: ["", Validators.required],
-    passInput: ["", Validators.required]
+    nameInput: [""],
+    emailInput: ["", [Validators.required, Validators.email]],
+    passInput: ["", [Validators.required, ComplexPasswordValidator()]]
   })
   valueChangesSubscription: Subscription | undefined;
 
@@ -27,35 +28,28 @@ export class LoginFormComponent {
     return this.loginForm.get("emailInput") as FormControl
   }
   get password() {
-    return this.loginForm.get("passwordInput") as FormControl
+    return this.loginForm.get("passInput") as FormControl
   }
 
   constructor(private authService: AuthService, private router: Router, private logService: DevLoggerService, private fb: FormBuilder) { }
 
-  ngOnInit() {
-    //this.valueChangesSubscription = this.nameInput.valueChanges.subscribe(v => console.log("value now ==> ", v));
-
-  }
 
   onLogin() {
+    if (!this.name.value.trim()) {
+      this.loginForm.patchValue({ nameInput: this.email.value.match(/^(.*?)@/i)[1] });
 
-    console.log('value', this.loginForm.get("nameInput")?.value)
+    }
 
-    this.authService.login(this.loginForm.get("nameInput")?.value);
+    this.authService.login(this.name?.value);
     this.logService.logMessage('You are logged in!');
     this.router.navigate([Pathes.MAIN]);
-
-    /*  if (this.nameInput.value && this.passInput.value) {
-       this.authService.login(this.nameInput.value);
-       this.logService.logMessage('You are logged in!');
-       this.router.navigate([Pathes.MAIN]);
-     } */
   }
 
-  onCancel(event: Event) {
+  onReset(event: Event) {
     event.preventDefault();
-    console.log('cancelled');
-    this.logService.logMessage("You presses 'cancel'");
+    this.loginForm.reset()
+
+    this.logService.logMessage("You pressed 'reset'");
   }
   ngOnDestroy() {
     if (this.valueChangesSubscription) {

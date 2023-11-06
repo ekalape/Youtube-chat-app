@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { ItemsManagementService } from './core/services/item-management/items-management.service';
 import { AuthService } from './core/services/authentification/auth.service';
 import { DevLoggerService } from './core/services/loggers/dev-logger.service';
+import { ComplexPasswordValidator } from './core/directives/complex-password.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DevLoggerService } from './core/services/loggers/dev-logger.service';
     HeaderComponent,
     CustomButtonComponent,
     LoginInfoBlockComponent,
+
 
   ],
   imports: [
