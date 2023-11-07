@@ -9,20 +9,21 @@ const routes: Routes = [
   {
     path: 'main',
     title: 'Main page',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () => import('./modules/main-page/main-page.module')
       .then((m) => m.MainPageModule),
   },
   {
-    path: 'admin',
+    path: '',
     title: 'Admin page',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadChildren: () => import('./modules/admin-page/admin-page.module')
       .then((m) => m.AdminPageModule),
   },
 
   {
-    path: '',
+    path: 'temp',
+
     title: 'Authorization page',
     pathMatch: 'full',
 

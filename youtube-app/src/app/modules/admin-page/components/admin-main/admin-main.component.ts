@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-main',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-main.component.scss']
 })
 export class AdminMainComponent {
+
+  formSubmitted = false;
+
+  submitForm(data: FormGroup) {
+    console.log(data);
+    this.formSubmitted = true
+  }
 
 }

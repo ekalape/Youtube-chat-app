@@ -1,14 +1,7 @@
 import { Directive } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-/* @Directive({
-  selector: '[appComplexPassword]'
-})
-export class ComplexPasswordDirective {
 
-  constructor() { }
-
-} */
 export function ComplexPasswordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
 

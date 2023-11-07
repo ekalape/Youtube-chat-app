@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ComplexPasswordValidator } from 'src/app/core/directives/complex-password.directive';
+import { ComplexPasswordValidator } from 'src/app/core/directives/complex-password-validator.directive';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { DevLoggerService } from 'src/app/core/services/loggers/dev-logger.service';
 import { Pathes } from 'src/app/utils/enums/pathes';

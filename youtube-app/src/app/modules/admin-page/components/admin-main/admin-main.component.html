@@ -1,3 +1,11 @@
-<app-create-card-form>
-  Please compile the form
+<app-create-card-form *ngIf="!formSubmitted; else submittedTemplate"
+  (submitEvent)="submitForm($event)">
 </app-create-card-form>
+
+<ng-template #submittedTemplate>
+  <div class="successful-block">
+    <p>Thank you! Your form was submitted</p>
+    <button mat-button color="primary" (click)="formSubmitted=false">Create new
+      card</button>
+  </div>
+</ng-template>

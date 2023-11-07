@@ -9,29 +9,43 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
   providedIn: 'root',
 })
 export class HttpService {
-
-
-
   constructor(private httpService: HttpClient) {
 
   }
 
   getAll(searchValue: string = "") {
-    const firstRequest = `${apienvdata.baseUrl}search?key=${apienvdata.apiKey}&maxResults=25&q=${searchValue}`
+    /*     const firstRequest = `search?maxResults=10&q=${searchValue}`
 
-    return this.httpService.get<ISearchResponce>(firstRequest).pipe(
-      map((item) => item.items.map(x => x.id.videoId)),
-      switchMap((ids) => {
-        const secondRequest = `${apienvdata.baseUrl}videos?key=${apienvdata.apiKey}&id=${ids.join(",")}&part=snippet,statistics`;
-        return this.httpService.get<IResponce>(secondRequest)
-      }),
-      map(res => res.items)
-    )
+        return this.httpService.get<ISearchResponce>(firstRequest).pipe(
+          map((item) => item.items.map(x => x.id.videoId)),
+          switchMap((ids) => {
+            const secondRequest = `videos?id=${ids.join(",")}&part=snippet,statistics`;
+            return this.httpService.get<IResponce>(secondRequest)
+          }),
+          map(res => res.items)
+        ) */
+
+    return this.httpService.get<IResponce>("assets/mock-data/data.json").pipe(map((items: IResponce) => {
+      console.log('items', items)
+      return items.items.filter(x => x.snippet.title.toLowerCase().includes(searchValue.toLowerCase()))
+    }))
 
   }
 
   getById(itemId: string) {
-    //return this.getAll().pipe(map((items) => items.find((item) => item.id === itemId)));
-    return this.httpService.get<IResponce>(`${apienvdata.baseUrl}videos?key=${apienvdata.apiKey}&id=${itemId}&part=snippet,statistics`).pipe(map((items) => items.items[0]))
+
+    //const url = `videos?id=${itemId}&part=snippet,statistics`
+    const url = "assets/mock-data/data.json"
+
+    /*  const res = this.httpService.get<IResponce>(url)
+       .pipe(map((items) => {
+         console.log('items==> ', items)
+         return items.items[0]
+       })) */
+    const res = this.httpService.get<IResponce>(url).pipe(map((items: IResponce) => {
+      console.log('items', items)
+      return items.items.find(x => x.id === itemId)
+    }))
+    return res
   }
 }

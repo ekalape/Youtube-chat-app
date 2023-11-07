@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from 'src/app/core/components/header/header.component';
 import { CustomButtonComponent } from 'src/app/components/custom-button/custom-button.component';
 import { LoginInfoBlockComponent } from 'src/app/core/components/login-info-block/login-info-block.component';
@@ -16,9 +16,9 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemsManagementService } from './core/services/item-management/items-management.service';
-import { AuthService } from './core/services/authentification/auth.service';
 import { DevLoggerService } from './core/services/loggers/dev-logger.service';
-import { ComplexPasswordValidator } from './core/directives/complex-password.directive';
+import { YoutubeHttpInterceptor } from './core/interceptors/youtube-http.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -26,8 +26,6 @@ import { ComplexPasswordValidator } from './core/directives/complex-password.dir
     HeaderComponent,
     CustomButtonComponent,
     LoginInfoBlockComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -46,7 +44,9 @@ import { ComplexPasswordValidator } from './core/directives/complex-password.dir
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ItemsManagementService, AuthService, DevLoggerService],
+  providers: [ItemsManagementService, DevLoggerService,
+    { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true }
+  ],
   exports: [],
   bootstrap: [AppComponent],
 })
