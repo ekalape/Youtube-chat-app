@@ -19,7 +19,6 @@ import { ItemsManagementService } from './core/services/item-management/items-ma
 import { DevLoggerService } from './core/services/loggers/dev-logger.service';
 import { YoutubeHttpInterceptor } from './core/interceptors/youtube-http.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +41,10 @@ import { YoutubeHttpInterceptor } from './core/interceptors/youtube-http.interce
     MatButtonModule,
     NotFoundComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [ItemsManagementService, DevLoggerService,
-    { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true },
   ],
   exports: [],
   bootstrap: [AppComponent],

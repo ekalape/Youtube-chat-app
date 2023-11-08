@@ -2,5 +2,5 @@
   {{username}}
   <ng-content></ng-content>
   <app-custom-button
-    (onClick)="loggedIn?logout():login()">{{loggedIn?'LOG-OUT':'LOG-IN'}}</app-custom-button>
+    (btnClick)="loggedIn?logout():login()">{{loggedIn?'LOG-OUT':'LOG-IN'}}</app-custom-button>
 </div>

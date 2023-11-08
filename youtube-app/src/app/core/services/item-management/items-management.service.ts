@@ -22,7 +22,6 @@ export class ItemsManagementService {
 
   setSearchWord(value: string) {
     this.data.next({ ...this.data.value, searchWord: value });
-    console.log('inside service');
   }
 
   setFilterWord(value: string) {
@@ -32,16 +31,16 @@ export class ItemsManagementService {
   setSorting(value: string) {
     let sorting;
     switch (value) {
-      case "dateUp":
+      case 'dateUp':
         sorting = SortingRule.DATE_UP;
         break;
-      case "dateDown":
+      case 'dateDown':
         sorting = SortingRule.DATE_DOWN;
         break;
-      case "viewsUp":
+      case 'viewsUp':
         sorting = SortingRule.VIEWS_UP;
         break;
-      case "viewsDown":
+      case 'viewsDown':
         sorting = SortingRule.VIEWS_DOWN;
         break;
       default: sorting = null;

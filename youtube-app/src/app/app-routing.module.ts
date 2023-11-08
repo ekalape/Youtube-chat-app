@@ -9,24 +9,22 @@ const routes: Routes = [
   {
     path: 'main',
     title: 'Main page',
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     loadChildren: () => import('./modules/main-page/main-page.module')
       .then((m) => m.MainPageModule),
   },
   {
-    path: '',
+    path: 'admin',
     title: 'Admin page',
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     loadChildren: () => import('./modules/admin-page/admin-page.module')
       .then((m) => m.AdminPageModule),
   },
 
   {
-    path: 'temp',
-
+    path: '',
     title: 'Authorization page',
     pathMatch: 'full',
-
     loadChildren: () => import('./modules/auth-page/auth-page.module')
       .then((m) => m.AuthPageModule),
   },

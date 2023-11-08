@@ -87,9 +87,9 @@
       </mat-form-field>
       <div class="tag-control-btns">
         <button mat-mini-fab color="base" class="add-btn" (click)="addTag()"
-          [disabled]="addTagDisable">+</button>
+          [disabled]="addTagDisable" type="button">+</button>
         <button mat-mini-fab color="base" class="add-btn" (click)="removeTag()"
-          [disabled]="removeTagDisable">-</button>
+          [disabled]="removeTagDisable" type="button">-</button>
       </div>
     </div>
 
@@ -97,6 +97,7 @@
     <mat-card-footer class="form-footer">
       <button mat-raised-button color="primary" type="submit"
         [disabled]="!cardCreationForm.valid">Submit</button>
-      <button mat-button (click)="onReset()">Reset</button></mat-card-footer>
+      <button mat-button (click)="onReset()"
+        type="button">Reset</button></mat-card-footer>
   </form>
 </mat-card>

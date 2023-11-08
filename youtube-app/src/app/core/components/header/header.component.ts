@@ -3,7 +3,9 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounce, debounceTime, distinctUntilChanged, map } from 'rxjs';
+import {
+  debounceTime, distinctUntilChanged, map,
+} from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { Pathes } from 'src/app/utils/enums/pathes';
@@ -21,16 +23,16 @@ export class HeaderComponent implements OnInit {
 
   sorting: string | null = null;
 
-  searchInput = new FormControl("")
+  searchInput = new FormControl('');
 
   constructor(private itemsManager: ItemsManagementService, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.searchInput.valueChanges.pipe(
       debounceTime(800),
-      map(x => x && x.length >= 3 ? x : ""),
-      distinctUntilChanged()
-    ).subscribe(x => this.setSearchText(x || ""))
+      map((x) => (x && x.length >= 3 ? x : '')),
+      distinctUntilChanged(),
+    ).subscribe((x) => this.setSearchText(x || ''));
   }
 
   openFiltersBlock() {
@@ -50,10 +52,12 @@ export class HeaderComponent implements OnInit {
     this.sorting = value;
     this.itemsManager.setSorting(value);
   }
+
   gotoAdmin() {
-    this.router.navigate([Pathes.ADMIN])
+    this.router.navigate([Pathes.ADMIN]);
   }
+
   gotoMainPage() {
-    this.router.navigate([Pathes.MAIN])
+    this.router.navigate([Pathes.MAIN]);
   }
 }

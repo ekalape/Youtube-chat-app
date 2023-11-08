@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
   item: IYoutubeItem | undefined;
-  subscription: Subscription | undefined
+
+  subscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: HttpService) {
 
@@ -19,12 +20,12 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const itemId = this.route.snapshot.paramMap.get('itemId');
-    console.log('inside detaild component', itemId)
+    console.log('inside detaild component', itemId);
 
-    if (itemId)
-      this.subscription = this.apiService.getById(itemId).subscribe({ next: (res) => (this.item = res) });
+    if (itemId) this.subscription = this.apiService.getById(itemId).subscribe({ next: (res) => (this.item = res) });
   }
+
   ngOnDestroy() {
-    this.subscription?.unsubscribe()
+    this.subscription?.unsubscribe();
   }
 }

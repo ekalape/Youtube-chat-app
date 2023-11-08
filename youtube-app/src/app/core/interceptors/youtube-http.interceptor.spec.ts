@@ -5,8 +5,8 @@ import { YoutubeHttpInterceptor } from './youtube-http.interceptor';
 describe('YoutubeHttpInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      YoutubeHttpInterceptor
-      ]
+      YoutubeHttpInterceptor,
+    ],
   }));
 
   it('should be created', () => {

@@ -8,11 +8,10 @@ import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 })
 export class FilterCardsPipe implements PipeTransform {
   transform(cards: IYoutubeItem[] | null, filterWord: string, sorting: SortingRule | null): IYoutubeItem[] {
-    if (!cards) return []
+    if (!cards) return [];
     let filteredCards: IYoutubeItem[];
     if (filterWord.trim() === '') filteredCards = cards;
     else { filteredCards = cards.filter((c) => c.snippet.title.toLowerCase().includes(filterWord.toLowerCase())); }
-
 
     switch (sorting) {
       case SortingRule.DATE_DOWN:
@@ -33,7 +32,6 @@ export class FilterCardsPipe implements PipeTransform {
         break;
       default: return filteredCards;
     }
-
 
     return filteredCards;
   }

@@ -3,7 +3,9 @@ import { IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
-import { Observable, Subscription, filter, map } from 'rxjs';
+import {
+  Subscription,
+} from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -13,7 +15,7 @@ import { Observable, Subscription, filter, map } from 'rxjs';
 export class SearchResultsComponent implements OnInit, OnDestroy {
   youtubeItems: IYoutubeItem[] = [];
 
-  subscription: Subscription | undefined
+  subscription: Subscription | undefined;
 
   filterWord = '';
 
@@ -39,12 +41,12 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.subscription = this.apiDataService.getAll(value).subscribe({
       next: (items: IYoutubeItem[]) => {
         this.youtubeItems = items;
-        this.itemsLength = items.length
+        this.itemsLength = items.length;
       },
     });
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe()
+    this.subscription?.unsubscribe();
   }
 }
