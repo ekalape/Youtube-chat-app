@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,10 @@ import { AppComponent } from './app.component';
 import { ItemsManagementService } from './core/services/item-management/items-management.service';
 import { DevLoggerService } from './core/services/loggers/dev-logger.service';
 import { YoutubeHttpInterceptor } from './core/interceptors/youtube-http.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,11 @@ import { YoutubeHttpInterceptor } from './core/interceptors/youtube-http.interce
     NotFoundComponent,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [ItemsManagementService, DevLoggerService,
     { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true },

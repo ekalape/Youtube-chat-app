@@ -3,6 +3,7 @@ import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
+import { ICustomCard } from 'src/app/store/entities/custom-card.model';
 
 @Component({
   selector: 'app-create-card-form',
@@ -70,7 +71,18 @@ export class CreateCardFormComponent {
   }
 
   onSubmit() {
-    this.submitEvent.emit(this.cardCreationForm.value);
+
+    const newitem: ICustomCard = {
+      id: 0,
+      title: this.title.value,
+      imageLink: this.imageLink.value,
+      videoLink: this.videoLink.value,
+      description: this.description.value,
+      createdAt: this.createdAt.value,
+      tags: this.tags.value
+    }
+
+    this.submitEvent.emit(newitem);
     console.log('Submitted');
     this.onReset();
   }

@@ -9,7 +9,9 @@
         "*.ts"
       ],
       "parserOptions": {
-        "project": ["tsconfig.(app|spec).json"]
+        "project": [
+          "tsconfig.(app|spec).json"
+        ]
       },
       "extends": [
         "airbnb-base",
@@ -36,13 +38,23 @@
             "style": "kebab-case"
           }
         ],
-        "@typescript-eslint/no-explicit-any":"error",
-        "import/prefer-default-export":"off",
-        "max-len": ["error", { "code": 120 }],
+        "@typescript-eslint/no-explicit-any": "error",
+        "import/prefer-default-export": "off",
+        "max-len": [
+          "error",
+          {
+            "code": 120
+          }
+        ],
         "class-methods-use-this": "off",
         "no-console": "off",
-        "no-underscore-dangle":["off"],
-        "no-return-assign":["error", "except-parens"]
+        "no-underscore-dangle": [
+          "off"
+        ],
+        "no-return-assign": [
+          "error",
+          "except-parens"
+        ]
       }
     },
     {
@@ -53,9 +65,15 @@
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility"
       ],
-      "rules": {
-
-      }
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }
