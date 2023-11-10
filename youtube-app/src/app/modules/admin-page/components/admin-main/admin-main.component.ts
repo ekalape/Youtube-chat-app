@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 
 import { AddCustomCard } from 'src/app/store/actions';
-import { State } from 'src/app/store';
+import { IState } from 'src/app/store';
 import { ICustomCard } from 'src/app/store/entities/custom-card.model';
 import { Subscription } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class AdminMainComponent {
   customItemsLength = 0
   indexSub: Subscription | undefined
 
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<IState>) {
 
   }
   ngOnInit() {
@@ -32,7 +32,7 @@ export class AdminMainComponent {
   }
 
   addCard(data: ICustomCard) {
-    this.indexSub = this.store.select<number>((state: State) => state.custom.customItems.length).subscribe(x => this.customItemsLength = x);
+    this.indexSub = this.store.select<number>((state: IState) => state.customItems.length).subscribe(x => this.customItemsLength = x);
     data.id = this.customItemsLength + 1
     this.store.dispatch(AddCustomCard({ card: data }))
     console.log("dispatched");
