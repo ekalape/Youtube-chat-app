@@ -22,30 +22,21 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    CustomButtonComponent,
-    LoginInfoBlockComponent,
+
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     HttpClientModule,
     AppRoutingModule,
-    MatButtonToggleModule,
     BrowserAnimationsModule,
-    MatDividerModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatDividerModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
     NotFoundComponent,
-    FormsModule,
-    ReactiveFormsModule,
+
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
