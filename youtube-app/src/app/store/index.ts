@@ -3,7 +3,7 @@ import {
   ActionReducerMap,
   MetaReducer
 } from '@ngrx/store';
-import { IItem } from '../models/youtube-item.model';
+import { IItem } from '../models/common-item.model';
 import { customCardReducer } from './reducers/custom-card.reducer';
 
 export interface IState {

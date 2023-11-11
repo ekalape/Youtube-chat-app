@@ -9,7 +9,8 @@ import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [AuthMainComponent, LoginFormComponent],
   imports: [
-    CommonModule, AuthPageRoutingModule,
+    CommonModule,
+    AuthPageRoutingModule,
     CoreModule,
     ReactiveFormsModule,
   ],

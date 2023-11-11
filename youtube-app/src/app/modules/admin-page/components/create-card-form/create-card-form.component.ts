@@ -3,7 +3,7 @@ import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
-import { IItem } from 'src/app/models/youtube-item.model';
+import { IItem } from 'src/app/models/common-item.model';
 
 import randomStatistics from 'src/app/utils/randomStatistics'
 
@@ -74,10 +74,19 @@ export class CreateCardFormComponent {
 
   onSubmit() {
 
+    let image = this.imageLink.value
+    const pattern = /^http(s):\/\/.*/i
+    if (this.imageLink.value && !pattern.test(this.imageLink.value))
+      image = 'assets/nothing.jpg'
+
+    console.log('image==>', image)
+    console.log('!pattern.test(this.imageLink.value)==>', !pattern.test(this.imageLink.value))
+
     const newitem: IItem = {
       id: "0",
+      custom: true,
       title: this.title.value,
-      imageLinks: { default: this.imageLink.value },
+      imageLinks: { default: { url: image } },
       videoLink: this.videoLink.value,
       description: this.description.value,
       createdAt: this.createdAt.value,

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IItem, IYoutubeItem } from 'src/app/models/youtube-item.model';
+import { IItem } from 'src/app/models/common-item.model';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IItem, IYoutubeItem } from 'src/app/models/youtube-item.model';
+import { IItem } from 'src/app/models/common-item.model';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 @Pipe({

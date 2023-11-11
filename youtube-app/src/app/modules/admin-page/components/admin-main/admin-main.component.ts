@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AddCustomCard } from 'src/app/store/actions';
+import { AddCustomCard } from 'src/app/store/actions/custom-card.actions';
 import { IState } from 'src/app/store';
 import { Subscription } from 'rxjs';
-import { IItem } from 'src/app/models/youtube-item.model';
+import { IItem } from 'src/app/models/common-item.model';
 
 @Component({
   selector: 'app-admin-main',
