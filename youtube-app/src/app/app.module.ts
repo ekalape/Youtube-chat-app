@@ -27,7 +27,6 @@ import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,6 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     NotFoundComponent,
-
     StoreModule.forRoot(reducers, {
       metaReducers
     }),

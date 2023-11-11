@@ -1,39 +1,39 @@
 <mat-card class="card" *ngIf="item ;else notFoundItem"
-  [appColorTimeIndicator]="item.snippet.publishedAt" [hasShadow]=true>
+  [appColorTimeIndicator]="item.createdAt" [hasShadow]=true>
   <img mat-card-image class="video-thumb"
-    [src]="item.snippet.thumbnails.standard?item.snippet.thumbnails.standard.url:item.snippet.thumbnails.default.url"
+    [src]="item.imageLinks.standard?item.imageLinks.standard.url:item.imageLinks.default.url"
     alt="Video thumb">
   <mat-card-content class="card-content">
     <div class="card-description">
-      <h1>{{item.snippet.title}}</h1>
-      <p>{{item.snippet.publishedAt|date}}</p>
+      <h1>{{item.title}}</h1>
+      <p>{{item.createdAt|date}}</p>
       <h4>Description:</h4>
-      <p>{{item.snippet.description}}</p>
+      <p>{{item.description}}</p>
     </div>
     <mat-divider></mat-divider>
     <div class="info-block">
       <div class="info-block__content"> <mat-icon aria-hidden="false"
           aria-label="Views counter" fontIcon="visibility" color="primary"></mat-icon>
-        <span>{{item.statistics.viewCount}}</span>
+        <span>{{item.statistics.views}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Likes count" fontIcon="thumb_up"
           color="primary"></mat-icon>
-        <span>{{item.statistics.likeCount}}</span>
+        <span>{{item.statistics.likes}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Dislikes count" fontIcon="thumb_down"
           color="primary"></mat-icon>
-        <span>{{item.statistics.dislikeCount}}</span>
+        <span>{{item.statistics.dislikes||+item.statistics.likes*0.1}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Comments count" fontIcon="library_books"
           color="primary"></mat-icon>
-        <span>{{item.statistics.commentCount}}</span>
+        <span>{{item.statistics.comments}}</span>
       </div>
     </div>
   </mat-card-content>
-  <mat-card-footer [appColorTimeIndicator]="item.snippet.publishedAt" class="footer">
+  <mat-card-footer [appColorTimeIndicator]="item.createdAt" class="footer">
   </mat-card-footer>
 </mat-card>
 

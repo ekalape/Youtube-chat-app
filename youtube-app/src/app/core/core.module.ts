@@ -12,13 +12,21 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginInfoBlockComponent } from './components/login-info-block/login-info-block.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { FilterCardsPipe } from '../modules/main-page/pipes/filter-cards.pipe';
+import { NotSelectedPipe } from '../modules/main-page/pipes/not-selected.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
 @NgModule({
   declarations: [CustomButtonComponent,
     HeaderComponent,
-    LoginInfoBlockComponent],
+    LoginInfoBlockComponent,
+    FilterCardsPipe,
+    NotSelectedPipe,
+
+  ],
   imports: [
     CommonModule,
     CardComponent,
@@ -33,6 +41,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
 
   ],
   exports: [CommonModule,
@@ -48,6 +58,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    HeaderComponent]
+    HeaderComponent,
+    FilterCardsPipe,
+    NotSelectedPipe,
+    MatCardModule,
+    MatFormFieldModule,]
 })
 export class CoreModule { }

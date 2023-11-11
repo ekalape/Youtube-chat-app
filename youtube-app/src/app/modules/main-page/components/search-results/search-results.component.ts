@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IYoutubeItem } from 'src/app/models/youtube-item.model';
+import { IItem, IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
@@ -13,7 +13,7 @@ import {
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  youtubeItems: IYoutubeItem[] = [];
+  youtubeItems: IItem[] = [];
 
   subscription: Subscription | undefined;
 
@@ -39,7 +39,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   displayCards(value: string) {
     this.subscription = this.apiDataService.getAll(value).subscribe({
-      next: (items: IYoutubeItem[]) => {
+      next: (items: IItem[]) => {
         this.youtubeItems = items;
         this.itemsLength = items.length;
       },

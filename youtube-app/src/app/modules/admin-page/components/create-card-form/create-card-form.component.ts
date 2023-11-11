@@ -3,7 +3,9 @@ import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
-import { ICustomCard } from 'src/app/store/entities/custom-card.model';
+import { IItem } from 'src/app/models/youtube-item.model';
+
+import randomStatistics from 'src/app/utils/randomStatistics'
 
 @Component({
   selector: 'app-create-card-form',
@@ -72,14 +74,20 @@ export class CreateCardFormComponent {
 
   onSubmit() {
 
-    const newitem: ICustomCard = {
-      id: 0,
+    const newitem: IItem = {
+      id: "0",
       title: this.title.value,
-      imageLink: this.imageLink.value,
+      imageLinks: { default: this.imageLink.value },
       videoLink: this.videoLink.value,
       description: this.description.value,
       createdAt: this.createdAt.value,
-      tags: this.tags.value
+      tags: this.tags.value,
+      statistics: {
+        views: randomStatistics(false),
+        likes: randomStatistics(false),
+        dislikes: randomStatistics(false),
+        comments: randomStatistics(true),
+      }
     }
 
     this.submitEvent.emit(newitem);

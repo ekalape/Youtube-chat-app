@@ -11,6 +11,21 @@ export interface IYoutubeItem {
   snippet: ISnippet
   statistics: IStatistics
 }
+export interface IItem {
+  id: string,
+  title: string,
+  description: string,
+  imageLinks: IThumbnails,
+  videoLink: string,
+  createdAt: string,
+  tags: string[],
+  statistics: {
+    views: string,
+    likes: string,
+    dislikes: string,
+    comments: string
+  }
+}
 
 export interface ISnippet {
   publishedAt: string
@@ -31,10 +46,10 @@ export interface ISnippet {
 
 export interface IThumbnails {
   default: IThumbDetails
-  medium: IThumbDetails
-  high: IThumbDetails
-  standard: IThumbDetails
-  maxres: IThumbDetails
+  medium?: IThumbDetails
+  high?: IThumbDetails
+  standard?: IThumbDetails
+  maxres?: IThumbDetails
 }
 
 export interface IThumbDetails {

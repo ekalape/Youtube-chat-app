@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Store, select } from '@ngrx/store';
-
+import { Store } from '@ngrx/store';
 import { AddCustomCard } from 'src/app/store/actions';
 import { IState } from 'src/app/store';
-import { ICustomCard } from 'src/app/store/entities/custom-card.model';
 import { Subscription } from 'rxjs';
+import { IItem } from 'src/app/models/youtube-item.model';
 
 @Component({
   selector: 'app-admin-main',
@@ -25,19 +23,17 @@ export class AdminMainComponent {
     //const index = this.store.pipe(select((state: State) => state.custom.customItems.length));
   }
 
-  submitForm(data: ICustomCard) {
+  submitForm(data: IItem) {
     console.log(data);
     this.addCard(data)
     this.formSubmitted = true;
   }
 
-  addCard(data: ICustomCard) {
+  addCard(data: IItem) {
     this.indexSub = this.store.select<number>((state: IState) => state.customItems.length).subscribe(x => this.customItemsLength = x);
-    data.id = this.customItemsLength + 1
+    data.id = (this.customItemsLength + 1).toString()
     this.store.dispatch(AddCustomCard({ card: data }))
     console.log("dispatched");
-    //this.store.subscribe(x => console.log(x))
-
   }
 
   ngOnDestroy() {

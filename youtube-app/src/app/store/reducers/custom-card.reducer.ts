@@ -1,12 +1,9 @@
-import { Action, createReducer, on } from '@ngrx/store';
-
+import { createReducer, on } from '@ngrx/store';
 import { AddCustomCard, DeleteCustomCard } from '../actions';
-import { ICustomCard } from '../entities/custom-card.model';
-import { IState, StoreInitialState } from '..';
+import { IItem } from 'src/app/models/youtube-item.model';
 
 
-
-export const customCardReducer = createReducer<ICustomCard[]>([],
+export const customCardReducer = createReducer<IItem[]>([],
   on(AddCustomCard, (state, { card }) => {
     console.log('state', state)
     return ([...state, card])

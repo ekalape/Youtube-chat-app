@@ -1,19 +1,13 @@
 import { isDevMode } from '@angular/core';
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeature,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { IYoutubeItem } from '../models/youtube-item.model';
-import { ICustomCard } from './entities/custom-card.model';
-
+import { IItem } from '../models/youtube-item.model';
 import { customCardReducer } from './reducers/custom-card.reducer';
 
 export interface IState {
-  customItems: ICustomCard[],
+  customItems: IItem[],
   /*   youtubeItems: IYoutubeItem[] */
 
 }

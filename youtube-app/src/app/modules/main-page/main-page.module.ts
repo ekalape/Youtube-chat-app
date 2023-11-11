@@ -12,33 +12,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { ColorTimeIndicatorDirective } from 'src/app/components/card/directives/color-time-indicator.directive';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import { FilterCardsPipe } from './pipes/filter-cards.pipe';
 import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
-import { NotSelectedPipe } from './pipes/not-selected.pipe';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
     MainPageComponent,
     SearchResultsComponent,
-    FilterCardsPipe,
     ItemDetailsComponent,
-    NotSelectedPipe,
-
   ],
   imports: [
     CommonModule,
     MainPageRoutingModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatCardModule,
     CardComponent,
     ColorTimeIndicatorDirective,
+    CoreModule
   ],
   providers: [],
   exports: [],

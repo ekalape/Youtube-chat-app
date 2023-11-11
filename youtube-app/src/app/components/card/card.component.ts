@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IYoutubeItem } from 'src/app/models/youtube-item.model';
+import { IItem } from 'src/app/models/youtube-item.model';
 import { TimeDistanceColor } from 'src/app/utils/enums/colors';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,5 +22,5 @@ export class CardComponent {
 
   timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
 
-  @Input() cardData: IYoutubeItem | null = null;
+  @Input() cardData: IItem | null = null;
 }

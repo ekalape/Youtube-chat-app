@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IYoutubeItem } from 'src/app/models/youtube-item.model';
+import { IItem, IYoutubeItem } from 'src/app/models/youtube-item.model';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 @Pipe({
@@ -7,28 +7,28 @@ import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 })
 export class FilterCardsPipe implements PipeTransform {
-  transform(cards: IYoutubeItem[] | null, filterWord: string, sorting: SortingRule | null): IYoutubeItem[] {
+  transform(cards: IItem[] | null, filterWord: string, sorting: SortingRule | null): IItem[] {
     if (!cards) return [];
-    let filteredCards: IYoutubeItem[];
+    let filteredCards: IItem[];
     if (filterWord.trim() === '') filteredCards = cards;
-    else { filteredCards = cards.filter((c) => c.snippet.title.toLowerCase().includes(filterWord.toLowerCase())); }
+    else { filteredCards = cards.filter((c) => c.title.toLowerCase().includes(filterWord.toLowerCase())); }
 
     switch (sorting) {
       case SortingRule.DATE_DOWN:
         filteredCards
-          .sort((a, b) => Date.parse(a.snippet.publishedAt) - Date.parse(b.snippet.publishedAt));
+          .sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
         break;
       case SortingRule.DATE_UP:
         filteredCards
-          .sort((a, b) => Date.parse(b.snippet.publishedAt) - Date.parse(a.snippet.publishedAt));
+          .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
         break;
       case SortingRule.VIEWS_DOWN:
         filteredCards
-          .sort((a, b) => +a.statistics.viewCount - +b.statistics.viewCount);
+          .sort((a, b) => +a.statistics.views - +b.statistics.views);
         break;
       case SortingRule.VIEWS_UP:
         filteredCards
-          .sort((a, b) => +b.statistics.viewCount - +a.statistics.viewCount);
+          .sort((a, b) => +b.statistics.views - +a.statistics.views);
         break;
       default: return filteredCards;
     }
