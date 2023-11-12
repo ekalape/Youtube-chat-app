@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([Pathes.ADMIN]);
   }
   gotoFavourites() {
-    //this.router.navigate([Pathes.ADMIN]);
+    this.router.navigate([Pathes.FAVORITES]);
     console.log("go to favourites");
   }
   gotoCustom() {

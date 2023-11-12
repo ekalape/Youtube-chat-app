@@ -13,7 +13,6 @@ export class CustomPageComponent implements OnInit {
 
   items: Observable<IItem[]> | undefined
 
-  itemsLength = 0;
 
   constructor(private store: Store<IState>) {
 
