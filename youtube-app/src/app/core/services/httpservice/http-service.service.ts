@@ -8,12 +8,11 @@ import { IResponce, ISearchResponce } from '../../../models/response.model';
 })
 export class HttpService {
   constructor(private httpService: HttpClient) {
-
   }
 
   getAll(searchValue = '') {
     const firstRequest = `search?maxResults=10&q=${searchValue}`;
-
+    console.log("inside service");
     return this.httpService.get<ISearchResponce>(firstRequest).pipe(
       map((item) => item.items.map((x) => x.id.videoId)),
       switchMap((ids) => {

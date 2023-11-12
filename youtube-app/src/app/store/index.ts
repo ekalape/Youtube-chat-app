@@ -6,22 +6,28 @@ import {
 import { IItem } from '../models/common-item.model';
 import { customCardReducer } from './reducers/custom-card.reducer';
 import { favoriteReducer } from './reducers/favorites.reducer';
+import { IStoredItem } from './models/store.models';
+import { youtubeItemsReducer } from './reducers/youtube-items.reducer';
 
 export interface IState {
+
   customItems: IItem[],
   favoriteItems: IItem[],
-  /*   youtubeItems: IYoutubeItem[] */
+  youtubeItems: IStoredItem[]
 
 }
 export const StoreInitialState: IState = {
+
   customItems: [],
   favoriteItems: [],
-  /*   youtubeItems: [] */
+  youtubeItems: []
 }
 
 export const reducers: ActionReducerMap<IState> = {
   customItems: customCardReducer,
-  favoriteItems: favoriteReducer
+  favoriteItems: favoriteReducer,
+  youtubeItems: youtubeItemsReducer
+
 };
 
 

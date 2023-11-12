@@ -23,6 +23,7 @@ import { reducers, metaReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
+import { HttpInteractionEffects } from './store/effects/http-interaction.effects';
 
 @NgModule({
   declarations: [
@@ -38,8 +39,9 @@ import { CoreModule } from './core/core.module';
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([HttpInteractionEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    /* EffectsModule.forFeature([]), */
   ],
   providers: [ItemsManagementService, DevLoggerService,
     { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true },

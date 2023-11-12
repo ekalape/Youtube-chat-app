@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { IItem } from 'src/app/models/common-item.model';
+import { IState } from 'src/app/store';
+import { getAllYoutubeItems } from 'src/app/store/actions/youtube-items.actions';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 @Component({
@@ -14,7 +17,7 @@ import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 export class MainPageComponent implements OnInit {
 
 
-  youtubeItems: Observable<IItem[]> | undefined;
+  youtubeItems: Observable<IItem[]> | undefined = this.store.select(state => state.youtubeItems.map(x => x.item));
 
   filterWord = '';
 
@@ -22,7 +25,9 @@ export class MainPageComponent implements OnInit {
 
   searchWord = '';
 
-  constructor(private apiDataService: HttpService, private itemsManager: ItemsManagementService) {
+  constructor(private apiDataService: HttpService,
+    private itemsManager: ItemsManagementService,
+    private store: Store<IState>) {
   }
 
   ngOnInit() {
@@ -30,8 +35,8 @@ export class MainPageComponent implements OnInit {
       this.filterWord = data.filterWord;
       this.searchWord = data.searchWord;
       this.sorting = data.sorting;
-      if (data.searchWord?.trim().length)
-        this.youtubeItems = this.apiDataService.getAll(this.searchWord)
+      /*  if (data.searchWord?.trim().length) */
+      //this.youtubeItems = this.apiDataService.getAll(this.searchWord)
     });
 
   }

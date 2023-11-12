@@ -3,6 +3,7 @@ import { IItem } from 'src/app/models/common-item.model';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { IState } from 'src/app/store';
+import { customItemsSelector } from 'src/app/store/selectors/custom-card.selector';
 
 @Component({
   selector: 'app-custom-page',
@@ -11,7 +12,7 @@ import { IState } from 'src/app/store';
 })
 export class CustomPageComponent implements OnInit {
 
-  items: Observable<IItem[]> | undefined
+  items$: Observable<IItem[]> | undefined
 
 
   constructor(private store: Store<IState>) {
@@ -19,7 +20,7 @@ export class CustomPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.items = this.store.pipe(select(x => x.customItems))
+    this.items$ = this.store.select(customItemsSelector)
   }
 
 }

@@ -3,11 +3,14 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import {
   debounceTime, distinctUntilChanged, map,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
+import { IState } from 'src/app/store';
+import { getAllYoutubeItems } from 'src/app/store/actions/youtube-items.actions';
 import { Pathes } from 'src/app/utils/enums/pathes';
 
 @Component({
@@ -25,7 +28,10 @@ export class HeaderComponent implements OnInit {
 
   searchInput = new FormControl('');
 
-  constructor(private itemsManager: ItemsManagementService, public authService: AuthService, private router: Router) { }
+  constructor(private itemsManager: ItemsManagementService,
+    public authService: AuthService,
+    private router: Router,
+    private store: Store<IState>) { }
 
   ngOnInit() {
     this.searchInput.valueChanges.pipe(
@@ -41,6 +47,7 @@ export class HeaderComponent implements OnInit {
 
   setSearchText(value: string) {
     this.itemsManager.setSearchWord(value);
+    this.store.dispatch(getAllYoutubeItems())
   }
 
   setFilterText(value: string) {

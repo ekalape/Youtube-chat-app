@@ -10,14 +10,14 @@ import { IState } from 'src/app/store';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent {
-  items: Observable<IItem[]> | undefined
+  items$: Observable<IItem[]> | undefined
 
 
   constructor(private store: Store<IState>) {
   }
 
   ngOnInit(): void {
-    this.items = this.store.pipe(select(x => x.favoriteItems))
+    this.items$ = this.store.pipe(select(x => x.favoriteItems))
   }
 
 }

@@ -33,7 +33,8 @@
   </mat-card-content>
   <mat-card-actions class="action-btns">
 
-    <button mat-raised-button [color]="favorite ? 'primary' : 'base'"
+    <button mat-raised-button *ngIf="!cardData?.custom"
+      [color]="favorite ? 'primary' : 'base'"
       (click)="favorite?removeFromFavorite():addToFavorite()">
       <mat-icon *ngIf="favorite" fontIcon="favorite"></mat-icon>
       {{favorite?"Favorite":"Add to favorite"}}</button>
