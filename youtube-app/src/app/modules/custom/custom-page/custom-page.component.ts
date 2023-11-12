@@ -15,7 +15,6 @@ export class CustomPageComponent implements OnInit {
 
 
   constructor(private store: Store<IState>) {
-
   }
 
 

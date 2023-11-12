@@ -16,6 +16,7 @@ import { FilterCardsPipe } from '../modules/main-page/pipes/filter-cards.pipe';
 import { NotSelectedPipe } from '../modules/main-page/pipes/not-selected.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 
@@ -25,7 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     LoginInfoBlockComponent,
     FilterCardsPipe,
     NotSelectedPipe,
-
+    SearchResultsComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +44,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
-
   ],
   exports: [CommonModule,
     CardComponent,
@@ -62,6 +62,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FilterCardsPipe,
     NotSelectedPipe,
     MatCardModule,
-    MatFormFieldModule,]
+    MatFormFieldModule,
+    SearchResultsComponent]
 })
 export class CoreModule { }

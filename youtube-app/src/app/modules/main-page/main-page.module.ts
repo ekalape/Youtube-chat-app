@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { SearchResultsComponent } from 'src/app/modules/main-page/components/search-results/search-results.component';
+import { SearchResultsComponent } from 'src/app/core/components/search-results/search-results.component';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +19,6 @@ import { CoreModule } from 'src/app/core/core.module';
 @NgModule({
   declarations: [
     MainPageComponent,
-    SearchResultsComponent,
     ItemDetailsComponent,
   ],
   imports: [

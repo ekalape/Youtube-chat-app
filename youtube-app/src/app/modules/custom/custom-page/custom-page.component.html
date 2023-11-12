@@ -1,10 +1,4 @@
-<p *ngIf="!(items|async);else foundItemsLength">Custom created videos</p>
-<div class="items-container">
-  <app-card *ngFor="let item of items|async" [cardData]="item"
-    class="card-selected"></app-card>
-</div>
-
-
-<ng-template #foundItemsLength>
+<app-search-results [items]="(items|async) || []">
+  <h2>Custom created videos</h2>
   <p>Found 0 items</p>
-</ng-template>
+</app-search-results>
