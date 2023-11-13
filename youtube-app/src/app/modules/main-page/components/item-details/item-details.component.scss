@@ -6,7 +6,7 @@
 }
 
 .card {
-  width: 90%;
+  width: 80%;
   border: 1px solid grey;
   display: grid;
   grid-template-columns: 1fr 50%;
@@ -21,6 +21,7 @@
 
 .card-content {
   min-width: 50%;
+  width: 90%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -28,7 +29,6 @@
   align-items: center;
   position: relative;
 
-  border-left: 1px solid grey;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -56,6 +56,9 @@
   position: absolute;
   bottom: -3px;
   right: -1px;
+  @media (max-width: 1060px) {
+    width: calc(100% + 3px);
+  }
 }
 .card-description {
   display: grid;

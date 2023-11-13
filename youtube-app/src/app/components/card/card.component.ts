@@ -12,6 +12,7 @@ import { Store, select } from '@ngrx/store';
 import { IState } from 'src/app/store';
 import { AddToFavorite, RemoveFromFavorite } from 'src/app/store/actions/favorites.actions';
 import { Subscription, map } from 'rxjs';
+import { favoriteItemsSelector } from 'src/app/store/selectors/items.selector';
 
 @Component({
   selector: 'app-card',
@@ -38,21 +39,20 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.store.pipe(select(state => state.favoriteItems),
+    this.sub = this.store.select(favoriteItemsSelector).pipe(
       map(items => items.some(item => item.id === this.cardData?.id)))
       .subscribe(x => this.favorite = x)
-
   }
 
   addToFavorite() {
     if (this.cardData) {
-      this.store.dispatch(AddToFavorite({ card: this.cardData }))
+      this.store.dispatch(AddToFavorite({ cardId: this.cardData.id }))
       this.favorite = true;
     }
   }
   removeFromFavorite() {
     if (this.cardData) {
-      this.store.dispatch(RemoveFromFavorite({ card: this.cardData }))
+      this.store.dispatch(RemoveFromFavorite({ cardId: this.cardData.id }))
       this.favorite = false;
     }
   }

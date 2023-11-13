@@ -16,8 +16,6 @@ export class HttpInteractionEffects {
     private httpService: HttpService,
     private itemManagement: ItemsManagementService) { }
 
-  searchWord$ = this.itemManagement.currentData.pipe(map(x => x.searchWord));
-
   loadItems$ = createEffect(() => this.actions$.pipe(
     ofType(getAllYoutubeItems),
     withLatestFrom(this.itemManagement.currentData.pipe(
@@ -35,6 +33,7 @@ export class HttpInteractionEffects {
     }
     )
   ))
+
 
 
 }

@@ -10,9 +10,8 @@ import { IStoredItem } from './models/store.models';
 import { youtubeItemsReducer } from './reducers/youtube-items.reducer';
 
 export interface IState {
-
   customItems: IItem[],
-  favoriteItems: IItem[],
+  favoriteItems: string[],
   youtubeItems: IStoredItem[]
 
 }

@@ -2,9 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IItem } from 'src/app/models/common-item.model';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IState } from 'src/app/store';
+import { oneItemSelector } from 'src/app/store/selectors/items.selector';
+import { oneCustomItemSelector } from 'src/app/store/selectors/custom-card.selector';
 
 @Component({
   selector: 'app-item-details',
@@ -25,13 +27,14 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     console.log('inside detaild component', itemId);
     if (itemId) {
       try {
-        this.subscription = this.store.select(state => state.customItems.find(x => x.id === itemId
-        )).subscribe(item => this.item = item)
+        this.subscription = this.store.select(oneCustomItemSelector(itemId)).subscribe(res => this.item = res)
       } catch (err) {
         console.log("error");
       }
       if (!this.item)
-        this.subscription = this.apiService.getById(itemId).subscribe({ next: (res) => (this.item = res) })
+        this.subscription = this.store.select(oneItemSelector(itemId)).subscribe(res => this.item = res)
+
+
 
     }
   }
