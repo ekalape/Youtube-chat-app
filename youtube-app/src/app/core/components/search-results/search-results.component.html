@@ -1,4 +1,6 @@
 <ng-content></ng-content>
 <div class="items-container">
+  <app-card *ngFor="let item of customItems" [cardData]="item"
+    class="card-selected"></app-card>
   <app-card *ngFor="let item of items" [cardData]="item" class="card-selected"></app-card>
 </div>

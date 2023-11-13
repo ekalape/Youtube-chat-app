@@ -10,5 +10,7 @@ import { IItem } from 'src/app/models/common-item.model';
 export class SearchResultsComponent {
 
   @Input() items: IItem[] | undefined;
+  @Input() customItems?: IItem[] | undefined | null;
+
 
 }
