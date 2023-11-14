@@ -1,5 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { Store } from '@ngrx/store';
 import { IItem } from 'src/app/models/common-item.model';
+import { IState } from 'src/app/store';
+import { updatePageSize } from 'src/app/store/actions/page-tokens.actions';
+import { getAllYoutubeItems } from 'src/app/store/actions/youtube-items.actions';
 
 
 @Component({
@@ -12,17 +17,36 @@ export class SearchResultsComponent {
   @Input() items: IItem[] | undefined;
   @Input() customItems?: IItem[] | undefined | null;
 
-  len = 0;
+  len = 20;
   pageSize = 5;
   currentPage = 0;
 
-  ngOnChanges() {
-    if (this.items && this.customItems)
-      this.len = (this.items?.length + this.customItems?.length)
+  constructor(private store: Store<IState>) {
 
-    console.log('this.len', this.len)
   }
 
+
+  onPageChange(event: PageEvent) {
+    if (event.pageSize !== this.pageSize) {
+      this.pageSize = event.pageSize;
+      this.store.dispatch(updatePageSize({ size: this.pageSize }))
+    }
+
+
+
+    if (event.pageIndex > this.currentPage) {
+      this.currentPage = event.pageIndex;
+      this.store.dispatch(getAllYoutubeItems({ direction: "forward" }))
+    }
+    if (event.pageIndex < this.currentPage) {
+      this.currentPage = event.pageIndex;
+      this.store.dispatch(getAllYoutubeItems({ direction: "back" }))
+    }
+
+
+
+
+  }
 
 
 }

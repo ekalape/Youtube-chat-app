@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IStoredItem } from '../models/store.models';
+import { IStoredItem } from '../models/store.model';
 
 export const youtubeItemsSelector = createFeatureSelector<IStoredItem[]>("youtubeItems")
 

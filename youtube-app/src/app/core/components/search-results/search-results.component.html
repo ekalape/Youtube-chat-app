@@ -4,5 +4,6 @@
     class="card-selected"></app-card>
   <app-card *ngFor="let item of items" [cardData]="item" class="card-selected"></app-card>
 </div>
-<mat-paginator [length]="len" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+<mat-paginator [length]="len" [pageSizeOptions]="[5, 10, 20]" [pageSize]="pageSize"
+  [pageIndex]="currentPage" aria-label="Select page" (page)="onPageChange($event)">
 </mat-paginator>

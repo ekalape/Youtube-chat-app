@@ -24,6 +24,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { HttpInteractionEffects } from './store/effects/http-interaction.effects';
+import { ResponceHttpInterceptor } from './core/interceptors/responce-token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -41,10 +43,11 @@ import { HttpInteractionEffects } from './store/effects/http-interaction.effects
     }),
     EffectsModule.forRoot([HttpInteractionEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    /* EffectsModule.forFeature([]), */
+
   ],
   providers: [ItemsManagementService, DevLoggerService,
     { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponceHttpInterceptor, multi: true },
   ],
   exports: [],
   bootstrap: [AppComponent],

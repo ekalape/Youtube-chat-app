@@ -5,6 +5,9 @@ import { ItemsManagementService } from 'src/app/core/services/item-management/it
 import { EMPTY, catchError, map, mergeMap, switchMap, withLatestFrom } from 'rxjs';
 import { getAllYoutubeItems, getOneItem, getOneYoutubeItem, getYoutubeItems } from '../actions/youtube-items.actions';
 import { IItem } from 'src/app/models/common-item.model';
+import { Store } from '@ngrx/store';
+import { IState } from '..';
+import { pageTokensSelector } from '../selectors/page-tokens.selector';
 
 
 
@@ -14,21 +17,26 @@ export class HttpInteractionEffects {
   constructor(
     private actions$: Actions,
     private httpService: HttpService,
-    private itemManagement: ItemsManagementService) { }
+    private itemManagement: ItemsManagementService,
+    private store: Store<IState>) { }
 
   loadItems$ = createEffect(() => this.actions$.pipe(
     ofType(getAllYoutubeItems),
-    withLatestFrom(this.itemManagement.currentData.pipe(
+    withLatestFrom(this.store.select(pageTokensSelector), this.itemManagement.currentData.pipe(
       map(x => x.searchWord)
     )),
-    mergeMap(([action, word]) => {
-      if (word && word.length) return this.httpService.getAll(word).pipe(
-        map((data: IItem[]) => getYoutubeItems({ items: data })),
-        catchError((err) => {
-          console.log("error", err.message)
-          return EMPTY
-        })
-      )
+    mergeMap(([action, pageTokens, word]) => {
+
+      if (word && word.length) {
+        console.log('pageTokens inside effect', pageTokens)
+        return this.httpService.getAll(word, pageTokens, action.direction).pipe(
+          map((data: IItem[]) => getYoutubeItems({ items: data })),
+          catchError((err) => {
+            console.log("error", err.message)
+            return EMPTY
+          })
+        )
+      }
       else return EMPTY
     }
     )

@@ -2,7 +2,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { getOneYoutubeItem, getYoutubeItems } from '../actions/youtube-items.actions';
 
-import { IStoredItem } from '../models/store.models';
+import { IStoredItem } from '../models/store.model';
 
 
 export const youtubeItemsReducer = createReducer<IStoredItem[]>([],

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, switchMap } from 'rxjs';
 import { IResponce, ISearchResponce } from '../../../models/response.model';
+import { IPageTokens } from 'src/app/store/models/page-tokens.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,25 @@ export class HttpService {
   constructor(private httpService: HttpClient) {
   }
 
-  getAll(searchValue = '') {
-    const firstRequest = `search?maxResults=10&q=${searchValue}`;
-    console.log("inside service");
-    return this.httpService.get<ISearchResponce>(firstRequest).pipe(
-      map((item) => item.items.map((x) => x.id.videoId)),
+  getAll(searchValue = '', pageTokens: IPageTokens, direction: string | undefined) {
+    const firstRequest = `search?`;
+    console.log('direction', direction)
+    console.log('pageTokens inside service', pageTokens)
+    let params = new HttpParams()
+      .set("maxResults", pageTokens.pageSize)
+      .set("type", "video")
+      .set("q", searchValue);
+    if (direction === "forward" && pageTokens.nextPageToken) {
+      console.log("--------------inside direction forward");
+      params = params.set("pageToken", pageTokens.nextPageToken);
+    }
+    if (direction === "back" && pageTokens.previousPageToken) { params = params.append("pageToken", pageTokens.previousPageToken); }
+    console.log("inside service", params);
+    return this.httpService.get<ISearchResponce>(firstRequest, { params }).pipe(
+      map((item) => {
+        console.log('responce', item)
+        return item.items.map((x) => x.id.videoId)
+      }),
       switchMap((ids) => {
         const secondRequest = `videos?id=${ids.join(',')}&part=snippet,statistics`;
         return this.httpService.get<IResponce>(secondRequest);

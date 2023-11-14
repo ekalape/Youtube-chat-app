@@ -47,12 +47,12 @@ export class HeaderComponent implements OnInit {
 
   setSearchText(value: string) {
     this.itemsManager.setSearchWord(value);
-    this.store.dispatch(getAllYoutubeItems())
+    this.store.dispatch(getAllYoutubeItems({ direction: undefined }))
   }
 
   setFilterText(value: string) {
     this.itemsManager.setFilterWord(value);
-    console.log(value);
+
   }
 
   setSortingRule(value: string) {
@@ -65,11 +65,9 @@ export class HeaderComponent implements OnInit {
   }
   gotoFavourites() {
     this.router.navigate([Pathes.FAVORITES]);
-    console.log("go to favourites");
   }
   gotoCustom() {
     this.router.navigate([Pathes.CUSTOM]);
-    console.log("go to custom");
   }
 
   gotoMainPage() {

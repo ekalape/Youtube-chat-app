@@ -3,7 +3,9 @@ import { IRawYoutubeItem, IYoutubeItem } from './youtube-item.model';
 export interface ISearchResponce {
   TODO: string
   kind: string
-  etag: string
+  etag: string,
+  nextPageToken: string | undefined,
+  prevPageToken: string | undefined,
   pageInfo: {
     totalResults: number
     resultsPerPage: number
