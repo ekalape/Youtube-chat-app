@@ -12,5 +12,17 @@ export class SearchResultsComponent {
   @Input() items: IItem[] | undefined;
   @Input() customItems?: IItem[] | undefined | null;
 
+  len = 0;
+  pageSize = 5;
+  currentPage = 0;
+
+  ngOnChanges() {
+    if (this.items && this.customItems)
+      this.len = (this.items?.length + this.customItems?.length)
+
+    console.log('this.len', this.len)
+  }
+
+
 
 }

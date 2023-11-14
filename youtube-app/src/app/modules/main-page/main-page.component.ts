@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { IItem } from 'src/app/models/common-item.model';
@@ -17,27 +17,31 @@ import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 })
 export class MainPageComponent implements OnInit {
 
-
   youtubeItems$: Observable<IItem[]> | undefined = this.store.select(itemsSelector);
   customItems$: Observable<IItem[]> | undefined = this.store.select(customItemsSelector);
   filterWord = '';
+
+  sub: Subscription | undefined
 
   sorting: SortingRule | null = null;
 
   searchWord = '';
 
-  constructor(private apiDataService: HttpService,
+  constructor(
     private itemsManager: ItemsManagementService,
     private store: Store<IState>) {
   }
 
   ngOnInit() {
-    this.itemsManager.currentData.subscribe((data) => {
+    this.sub = this.itemsManager.currentData.subscribe((data) => {
       this.filterWord = data.filterWord;
       this.searchWord = data.searchWord;
       this.sorting = data.sorting;
     });
+  }
 
+  ngOnDestroy() {
+    this.sub?.unsubscribe()
   }
 
 }

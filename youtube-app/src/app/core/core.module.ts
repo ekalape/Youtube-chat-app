@@ -17,7 +17,7 @@ import { NotSelectedPipe } from '../modules/main-page/pipes/not-selected.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -44,6 +44,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
+    MatPaginatorModule
   ],
   exports: [CommonModule,
     CardComponent,
@@ -63,6 +64,12 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     NotSelectedPipe,
     MatCardModule,
     MatFormFieldModule,
-    SearchResultsComponent]
+    SearchResultsComponent,
+    MatPaginatorModule
+  ],
+  providers: [/* {
+      provide:  MatPaginatorIntl,
+      useClass:MyCustom
+    } */]
 })
 export class CoreModule { }
