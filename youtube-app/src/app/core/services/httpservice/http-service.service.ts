@@ -11,7 +11,7 @@ export class HttpService {
   constructor(private httpService: HttpClient) {
   }
 
-  getAll(searchValue = '', pageTokens: IPageTokens, direction: string | undefined) {
+  getAll(pageTokens: IPageTokens, direction: string | undefined, searchValue = '') {
     const firstRequest = 'search?';
     let params = new HttpParams()
       .set('maxResults', pageTokens.pageSize)

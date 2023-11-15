@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { IItem } from 'src/app/models/common-item.model';
-import { IState } from 'src/app/store';
 import { selectCustomItems } from 'src/app/store/selectors/custom-card.selector';
 import { selectItems } from 'src/app/store/selectors/items.selector';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';

@@ -10,7 +10,6 @@ import {
   getAllYoutubeItems, getOneItem, getOneYoutubeItem, getYoutubeItems,
 } from '../actions/youtube-items.actions';
 import { HttpService } from '../../core/services/httpservice/http-service.service';
-import { IState } from '..';
 import { selectPageTokens } from '../selectors/page-tokens.selector';
 import { updatePageSize } from '../actions/page-tokens.actions';
 
@@ -23,41 +22,38 @@ export class HttpInteractionEffects {
     private store: Store,
   ) { }
 
-  loadItems$ = createEffect(() => { return this.actions$.pipe(
-      ofType(getAllYoutubeItems),
-      withLatestFrom(this.store.select(selectPageTokens), this.itemManagement.currentData.pipe(
-        map((x) => x.searchWord),
-      )),
-      mergeMap(([action, pageTokens, word]) => {
-        if (word && word.length) {
-          return this.httpService.getAll(word, pageTokens, action.direction).pipe(
-            map((data: IItem[]) => getYoutubeItems({ items: data })),
-            catchError((err) => {
-              console.log('error', err.message);
-              return EMPTY;
-            }),
-          )
-        }
-        return EMPTY;
-      },
-      )
-    ) });
+  loadItems$ = createEffect(() => this.actions$.pipe(
+    ofType(getAllYoutubeItems),
+    withLatestFrom(this.store.select(selectPageTokens), this.itemManagement.currentData.pipe(
+      map((x) => x.searchWord),
+    )),
+    mergeMap(([action, pageTokens, word]) => {
+      if (word && word.length) {
+        return this.httpService.getAll(pageTokens, action.direction, word).pipe(
+          map((data: IItem[]) => getYoutubeItems({ items: data })),
+          catchError((err) => {
+            console.log('error', err.message);
+            return EMPTY;
+          }),
+        );
+      }
+      return EMPTY;
+    }),
+  ));
 
-  loadOneItem$ = createEffect(() => { return this.actions$.pipe(
-      ofType(getOneItem),
-      switchMap((action) => {
-        return this.httpService.getById(action.id).pipe(
-          map((x) => getOneYoutubeItem({ item: x })),
-          catchError((err) => { console.log("error", err.message); return EMPTY })
-        )
-      })
-    ) });
+  loadOneItem$ = createEffect(() => this.actions$.pipe(
+    ofType(getOneItem),
+    switchMap((action) => this.httpService.getById(action.id).pipe(
+      map((x) => getOneYoutubeItem({ item: x })),
+      catchError((err) => { console.log('error', err.message); return EMPTY; }),
+    )),
+  ));
 
   pageSize$ = createEffect(() => this.actions$.pipe(
     ofType(updatePageSize),
     concatMap((action) => of(action).pipe(
-      withLatestFrom(this.store.select(selectPageTokens).pipe(map(x => x.pageSize))),
-      map((x) => getAllYoutubeItems({ direction: undefined }))
-    ))
+      withLatestFrom(this.store.select(selectPageTokens).pipe(map((x) => x.pageSize))),
+      map(() => getAllYoutubeItems({ direction: undefined })),
+    )),
   ));
 }

@@ -9,7 +9,6 @@ import {
 } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
-import { IState } from 'src/app/store';
 import { getAllYoutubeItems } from 'src/app/store/actions/youtube-items.actions';
 import { Pathes } from 'src/app/utils/enums/pathes';
 

@@ -1,10 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AddCustomCard } from 'src/app/store/actions/custom-card.actions';
-import { IState } from 'src/app/store';
-import { Subscription, map } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IItem } from 'src/app/models/common-item.model';
-import { selecCustomItemsLength } from 'src/app/store/selectors/custom-card.selector';
 
 @Component({
   selector: 'app-admin-main',
@@ -28,11 +26,6 @@ export class AdminMainComponent {
   }
 
   addCard(data: IItem) {
-    this.store.select(selecCustomItemsLength)
-      .pipe(
-        map((x) => this.customItemsLength = x),
-      );
-    data.id = (this.customItemsLength + 1).toString();
     this.store.dispatch(AddCustomCard({ card: data }));
   }
 }

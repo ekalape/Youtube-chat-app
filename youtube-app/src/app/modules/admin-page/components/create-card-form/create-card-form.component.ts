@@ -2,8 +2,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { map, take } from 'rxjs';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
 import { IItem } from 'src/app/models/common-item.model';
+import { selectCustomItemsLength } from 'src/app/store/selectors/custom-card.selector';
 
 import randomStatistics from 'src/app/utils/randomStatistics';
 
@@ -16,6 +19,8 @@ export class CreateCardFormComponent {
   addTagDisable = false;
 
   removeTagDisable = true;
+
+  cardId = 0;
 
   @Output() submitEvent = new EventEmitter();
 
@@ -54,7 +59,7 @@ export class CreateCardFormComponent {
     return this.cardCreationForm.get('tags') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   addTag() {
     this.removeTagDisable = false;
@@ -77,8 +82,13 @@ export class CreateCardFormComponent {
     const pattern = /^http(s):\/\/.*/i;
     if (this.imageLink.value && !pattern.test(this.imageLink.value)) image = 'assets/nothing.jpg';
 
+    this.store.select(selectCustomItemsLength)
+      .pipe(
+        take(1)
+      ).subscribe(x => this.cardId = x)
+
     const newitem: IItem = {
-      id: '0',
+      id: `${this.cardId}`,
       custom: true,
       title: this.title.value,
       imageLinks: { default: { url: image } },
