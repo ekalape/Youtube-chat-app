@@ -5,7 +5,7 @@ import {
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
 import { IItem } from 'src/app/models/common-item.model';
 
-import randomStatistics from 'src/app/utils/randomStatistics'
+import randomStatistics from 'src/app/utils/randomStatistics';
 
 @Component({
   selector: 'app-create-card-form',
@@ -73,17 +73,12 @@ export class CreateCardFormComponent {
   }
 
   onSubmit() {
-
-    let image = this.imageLink.value
-    const pattern = /^http(s):\/\/.*/i
-    if (this.imageLink.value && !pattern.test(this.imageLink.value))
-      image = 'assets/nothing.jpg'
-
-    console.log('image==>', image)
-    console.log('!pattern.test(this.imageLink.value)==>', !pattern.test(this.imageLink.value))
+    let image = this.imageLink.value;
+    const pattern = /^http(s):\/\/.*/i;
+    if (this.imageLink.value && !pattern.test(this.imageLink.value)) image = 'assets/nothing.jpg';
 
     const newitem: IItem = {
-      id: "0",
+      id: '0',
       custom: true,
       title: this.title.value,
       imageLinks: { default: { url: image } },
@@ -96,11 +91,10 @@ export class CreateCardFormComponent {
         likes: randomStatistics(false),
         dislikes: randomStatistics(false),
         comments: randomStatistics(true),
-      }
-    }
+      },
+    };
 
     this.submitEvent.emit(newitem);
-    console.log('Submitted');
     this.onReset();
   }
 

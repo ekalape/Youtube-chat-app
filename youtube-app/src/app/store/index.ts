@@ -1,7 +1,7 @@
 import { isDevMode } from '@angular/core';
 import {
   ActionReducerMap,
-  MetaReducer
+  MetaReducer,
 } from '@ngrx/store';
 import { IItem } from '../models/common-item.model';
 import { customCardReducer } from './reducers/custom-card.reducer';
@@ -23,19 +23,18 @@ export const StoreInitialState: IState = {
   favoriteItems: [],
   youtubeItems: [],
   pageTokens: {
-    pageSize: 5,
+    pageSize: 20,
     nextPageToken: undefined,
-    previousPageToken: undefined
-  }
-}
+    previousPageToken: undefined,
+  },
+};
 
 export const reducers: ActionReducerMap<IState> = {
   customItems: customCardReducer,
   favoriteItems: favoriteReducer,
   youtubeItems: youtubeItemsReducer,
-  pageTokens: pageTokensReducer
+  pageTokens: pageTokensReducer,
 
 };
-
 
 export const metaReducers: MetaReducer<IState>[] = isDevMode() ? [] : [];

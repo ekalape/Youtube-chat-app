@@ -28,10 +28,12 @@ export class HeaderComponent implements OnInit {
 
   searchInput = new FormControl('');
 
-  constructor(private itemsManager: ItemsManagementService,
+  constructor(
+    private itemsManager: ItemsManagementService,
     public authService: AuthService,
     private router: Router,
-    private store: Store<IState>) { }
+    private store: Store,
+  ) { }
 
   ngOnInit() {
     this.searchInput.valueChanges.pipe(
@@ -47,12 +49,11 @@ export class HeaderComponent implements OnInit {
 
   setSearchText(value: string) {
     this.itemsManager.setSearchWord(value);
-    this.store.dispatch(getAllYoutubeItems({ direction: undefined }))
+    this.store.dispatch(getAllYoutubeItems({ direction: undefined }));
   }
 
   setFilterText(value: string) {
     this.itemsManager.setFilterWord(value);
-
   }
 
   setSortingRule(value: string) {
@@ -63,9 +64,11 @@ export class HeaderComponent implements OnInit {
   gotoAdmin() {
     this.router.navigate([Pathes.ADMIN]);
   }
+
   gotoFavourites() {
     this.router.navigate([Pathes.FAVORITES]);
   }
+
   gotoCustom() {
     this.router.navigate([Pathes.CUSTOM]);
   }

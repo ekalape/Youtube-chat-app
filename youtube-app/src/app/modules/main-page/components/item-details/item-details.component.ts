@@ -19,7 +19,7 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
 
   subscription: Subscription | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: HttpService, private store: Store<IState>) {
+  constructor(private route: ActivatedRoute, private store: Store) {
 
   }
 
@@ -27,13 +27,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     const itemId = this.route.snapshot.paramMap.get('itemId');
 
     if (itemId) {
-      this.subscription = this.store.select(oneCustomItemSelector(itemId)).subscribe(res => this.item = res) ||
-        this.store.select(oneItemSelector(itemId)).subscribe(res => this.item = res)
+      this.subscription = this.store.select(oneCustomItemSelector(itemId)).subscribe((res) => this.item = res)
+        || this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
 
-
-      if (!this.item)
-        this.store.dispatch(getOneItem({ id: itemId }));
-      this.subscription = this.store.select(oneItemSelector(itemId)).subscribe(res => this.item = res)
+      if (!this.item) this.store.dispatch(getOneItem({ id: itemId }));
+      this.subscription = this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
     }
   }
 

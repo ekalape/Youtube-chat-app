@@ -1,4 +1,6 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component, Input, OnDestroy, OnInit,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IItem } from 'src/app/models/common-item.model';
 import { TimeDistanceColor } from 'src/app/utils/enums/colors';
@@ -6,13 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.directive';
 import { CommonModule } from '@angular/common';
-import { Store, select } from '@ngrx/store';
-import { IState } from 'src/app/store';
+import { Store } from '@ngrx/store';
 import { AddToFavorite, RemoveFromFavorite } from 'src/app/store/actions/favorites.actions';
 import { Subscription, map } from 'rxjs';
-import { favoriteItemsSelector } from 'src/app/store/selectors/items.selector';
+import { selectFavoriteItems } from 'src/app/store/selectors/items.selector';
+import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.directive';
 
 @Component({
   selector: 'app-card',
@@ -29,36 +30,37 @@ export class CardComponent implements OnInit, OnDestroy {
 
   timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
 
-  favorite = false
+  favorite = false;
 
   @Input() cardData: IItem | null = null;
 
-  sub: Subscription | undefined
+  sub: Subscription | undefined;
 
-  constructor(private store: Store<IState>) {
+  constructor(private store: Store) {
   }
 
   ngOnInit() {
-    this.sub = this.store.select(favoriteItemsSelector).pipe(
-      map(items => items.some(item => item.id === this.cardData?.id)))
-      .subscribe(x => this.favorite = x)
+    this.sub = this.store.select(selectFavoriteItems).pipe(
+      map((items) => items.some((item) => item.id === this.cardData?.id)),
+    )
+      .subscribe((x) => this.favorite = x);
   }
 
   addToFavorite() {
     if (this.cardData) {
-      this.store.dispatch(AddToFavorite({ cardId: this.cardData.id }))
+      this.store.dispatch(AddToFavorite({ cardId: this.cardData.id }));
       this.favorite = true;
     }
   }
+
   removeFromFavorite() {
     if (this.cardData) {
-      this.store.dispatch(RemoveFromFavorite({ cardId: this.cardData.id }))
+      this.store.dispatch(RemoveFromFavorite({ cardId: this.cardData.id }));
       this.favorite = false;
     }
   }
 
   ngOnDestroy() {
-    this.sub?.unsubscribe()
+    this.sub?.unsubscribe();
   }
-
 }

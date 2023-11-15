@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AddCustomCard } from 'src/app/store/actions/custom-card.actions';
 import { IState } from 'src/app/store';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { IItem } from 'src/app/models/common-item.model';
+import { selecCustomItemsLength } from 'src/app/store/selectors/custom-card.selector';
 
 @Component({
   selector: 'app-admin-main',
@@ -12,31 +13,26 @@ import { IItem } from 'src/app/models/common-item.model';
 })
 export class AdminMainComponent {
   formSubmitted = false;
-  customItemsLength = 0
-  indexSub: Subscription | undefined
 
-  constructor(private store: Store<IState>) {
+  customItemsLength = 0;
 
-  }
-  ngOnInit() {
-    this.store.subscribe(x => console.log(x))
-    //const index = this.store.pipe(select((state: State) => state.custom.customItems.length));
+  indexSub: Subscription | undefined;
+
+  constructor(private store: Store) {
+
   }
 
   submitForm(data: IItem) {
-    console.log(data);
-    this.addCard(data)
+    this.addCard(data);
     this.formSubmitted = true;
   }
 
   addCard(data: IItem) {
-    this.indexSub = this.store.select<number>((state: IState) => state.customItems.length).subscribe(x => this.customItemsLength = x);
-    data.id = (this.customItemsLength + 1).toString()
-    this.store.dispatch(AddCustomCard({ card: data }))
-    console.log("dispatched");
-  }
-
-  ngOnDestroy() {
-    this.indexSub?.unsubscribe()
+    this.store.select(selecCustomItemsLength)
+      .pipe(
+        map((x) => this.customItemsLength = x),
+      );
+    data.id = (this.customItemsLength + 1).toString();
+    this.store.dispatch(AddCustomCard({ card: data }));
   }
 }

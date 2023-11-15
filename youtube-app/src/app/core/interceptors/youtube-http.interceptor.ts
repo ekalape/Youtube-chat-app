@@ -4,11 +4,9 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpEventType,
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { apienvdata } from 'youtube-api-env';
-import { IResponce, ISearchResponce } from 'src/app/models/response.model';
 
 @Injectable()
 export class YoutubeHttpInterceptor implements HttpInterceptor {

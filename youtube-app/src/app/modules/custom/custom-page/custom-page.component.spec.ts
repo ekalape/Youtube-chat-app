@@ -8,7 +8,7 @@ describe('CustomPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomPageComponent]
+      declarations: [CustomPageComponent],
     });
     fixture = TestBed.createComponent(CustomPageComponent);
     component = fixture.componentInstance;

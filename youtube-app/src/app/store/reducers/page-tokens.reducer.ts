@@ -1,22 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
-import { updateNextPageToken, updatePageSize, updatePreviousPageToken } from '../actions/page-tokens.actions';
+import { updatePageSize, updatePageTokens } from '../actions/page-tokens.actions';
 import { IPageTokens } from '../models/page-tokens.model';
 
 const initialPageTokensState: IPageTokens = {
-  pageSize: 5,
+  pageSize: 20,
   nextPageToken: undefined,
-  previousPageToken: undefined
+  previousPageToken: undefined,
 
-}
-export const pageTokensReducer = createReducer(initialPageTokensState,
-  on(updatePageSize, (state, { size }) => ({
+};
+export const pageTokensReducer = createReducer(
+  initialPageTokensState,
+  on(updatePageSize, (state, { size }): IPageTokens => ({
     ...state,
-    pageSize: size
+    pageSize: size,
   })),
-  on(updateNextPageToken, (state, { token }) => ({
-    ...state, nextPageToken: token
+  on(updatePageTokens, (state, { nextToken, prevToken }): IPageTokens => ({
+    ...state,
+    nextPageToken: nextToken,
+    previousPageToken: prevToken,
   })),
-  on(updatePreviousPageToken, (state, { token }) => ({
-    ...state, previousPageToken: token
-  })),
-)
+);

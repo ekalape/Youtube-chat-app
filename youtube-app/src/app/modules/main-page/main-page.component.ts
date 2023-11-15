@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
 import { IItem } from 'src/app/models/common-item.model';
 import { IState } from 'src/app/store';
-import { customItemsSelector } from 'src/app/store/selectors/custom-card.selector';
-import { itemsSelector } from 'src/app/store/selectors/items.selector';
+import { selectCustomItems } from 'src/app/store/selectors/custom-card.selector';
+import { selectItems } from 'src/app/store/selectors/items.selector';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
 @Component({
@@ -15,13 +14,14 @@ import { SortingRule } from 'src/app/utils/enums/sorting-rules';
   styleUrls: ['./main-page.component.scss'],
 
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
+  youtubeItems$: Observable<IItem[]> | undefined = this.store.select(selectItems);
 
-  youtubeItems$: Observable<IItem[]> | undefined = this.store.select(itemsSelector);
-  customItems$: Observable<IItem[]> | undefined = this.store.select(customItemsSelector);
+  customItems$: Observable<IItem[]> | undefined = this.store.select(selectCustomItems);
+
   filterWord = '';
 
-  sub: Subscription | undefined
+  sub: Subscription | undefined;
 
   sorting: SortingRule | null = null;
 
@@ -29,7 +29,8 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private itemsManager: ItemsManagementService,
-    private store: Store<IState>) {
+    private store: Store,
+  ) {
   }
 
   ngOnInit() {
@@ -41,7 +42,6 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub?.unsubscribe()
+    this.sub?.unsubscribe();
   }
-
 }

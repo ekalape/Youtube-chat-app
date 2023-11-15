@@ -2,15 +2,19 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { IStoredItem } from '../models/store.model';
 
-export const youtubeItemsSelector = createFeatureSelector<IStoredItem[]>("youtubeItems")
+export const selectYoutubeItems = createFeatureSelector<IStoredItem[]>('youtubeItems');
 
+export const selectFavIds = createFeatureSelector<string[]>('favoriteItems');
 
-export const favIdsSelector = createFeatureSelector<string[]>("favoriteItems");
+export const selectItems = createSelector(selectYoutubeItems, (items) => items.map((x) => x.item));
 
-export const itemsSelector = createSelector(youtubeItemsSelector, (items) => items.map(x => x.item))
+export const selectFavoriteItems = createSelector(
+  selectYoutubeItems,
+  selectFavIds,
+  (items, ids) => items.filter((x) => ids.includes(x.id)).map((x) => x.item),
+);
 
-export const favoriteItemsSelector = createSelector(youtubeItemsSelector, favIdsSelector,
-  (items, ids) => items.filter(x => ids.includes(x.id)).map(x => x.item))
-
-
-export const oneItemSelector = (id: string) => createSelector(youtubeItemsSelector, (items) => items.find(x => x.id === id)?.item)
+export const oneItemSelector = (id: string) => createSelector(
+  selectYoutubeItems,
+  (items) => items.find((x) => x.id === id)?.item,
+);

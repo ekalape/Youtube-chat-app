@@ -1,9 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { IItem } from '../../models/common-item.model'
+import { IItem } from '../../models/common-item.model';
 
+export const selectCustomItems = createFeatureSelector<IItem[]>('customItems');
 
+export const selecCustomItemsLength = createSelector(
+  selectCustomItems,
+  (items) => items.length,
+);
 
-export const customItemsSelector = createFeatureSelector<IItem[]>("customItems");
-
-export const oneCustomItemSelector = (id: string) => createSelector(customItemsSelector, (items) => items.find(x => x.id === id))
+export const oneCustomItemSelector = (id: string) => createSelector(selectCustomItems, (items) => items.find((x) => x.id === id));

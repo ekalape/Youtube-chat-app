@@ -2,7 +2,7 @@
   <mat-toolbar-row class="header-row">
     <button mat-flat-button color="primary" (click)="gotoMainPage()">YTClient App
       Logo</button>
-    <form class="center-part">
+    <form class="center-part" *ngIf="authService.isLogged">
       <mat-form-field class="search-field">
         <mat-label>Search</mat-label>
         <input matNativeControl placeholder="..." [formControl]="searchInput">
@@ -12,7 +12,8 @@
           alt=""></app-custom-button>
     </form>
     <app-login-info-block>
-      <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" class="admin-icon">
+      <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" class="admin-icon"
+        *ngIf="authService.isLogged">
         <img src="assets/icons/admin-icon.png" alt="Admin area">
       </button>
       <mat-menu #menu="matMenu">

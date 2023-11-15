@@ -48,12 +48,11 @@
         ],
         "class-methods-use-this": "off",
         "no-console": "off",
+        "prefer-concat-latest-from":"off",
+        "no-store-subscription":"off",
+        "no-return-assign":"off",
         "no-underscore-dangle": [
           "off"
-        ],
-        "no-return-assign": [
-          "error",
-          "except-parens"
         ]
       }
     },

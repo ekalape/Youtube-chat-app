@@ -1,4 +1,4 @@
-import { IThumbnails } from './youtube-item.model'
+import { IThumbnails } from './youtube-item.model';
 
 export interface IItem {
   id: string,

@@ -5,7 +5,6 @@ import {
 import { ItemDetailsComponent } from '../main-page/components/item-details/item-details.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 
-
 const routes: Routes = [
   { path: ':itemId', component: ItemDetailsComponent },
   { path: '', component: FavoritesComponent },
