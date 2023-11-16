@@ -11,8 +11,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AddToFavorite, RemoveFromFavorite } from 'src/app/store/actions/favorites.actions';
-import { Subscription, map } from 'rxjs';
+import {
+  Observable, Subscription, map,
+} from 'rxjs';
 import { selectFavoriteItems } from 'src/app/store/selectors/items.selector';
+import { DeleteCustomCard } from 'src/app/store/actions/custom-card.actions';
+import { oneCustomItemSelector } from 'src/app/store/selectors/custom-card.selector';
 import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.directive';
 
 @Component({
@@ -36,14 +40,17 @@ export class CardComponent implements OnInit, OnDestroy {
 
   sub: Subscription | undefined;
 
+  custom$: Observable<IItem | undefined> | undefined;
+
   constructor(private store: Store) {
   }
 
   ngOnInit() {
     this.sub = this.store.select(selectFavoriteItems).pipe(
       map((items) => items.some((item) => item.id === this.cardData?.id)),
-    )
-      .subscribe((x) => this.favorite = x);
+    ).subscribe((x) => this.favorite = x);
+
+    this.custom$ = this.store.select(oneCustomItemSelector(this.cardData?.id));
   }
 
   addToFavorite() {
@@ -51,6 +58,10 @@ export class CardComponent implements OnInit, OnDestroy {
       this.store.dispatch(AddToFavorite({ cardId: this.cardData.id }));
       this.favorite = true;
     }
+  }
+
+  deleteCustomCard() {
+    if (this.cardData) this.store.dispatch(DeleteCustomCard({ id: this.cardData.id }));
   }
 
   removeFromFavorite() {

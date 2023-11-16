@@ -1,4 +1,6 @@
 <mat-card class="card">
+  <button mat-fab color="base" *ngIf="custom$|async" class="delete-btn"
+    (click)="deleteCustomCard()">x</button>
   <mat-card-header>
     <mat-card-title class="card-title"
       [title]="cardData?.title">{{cardData?.title}}</mat-card-title>

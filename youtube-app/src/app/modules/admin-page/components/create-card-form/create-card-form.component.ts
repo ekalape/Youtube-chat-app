@@ -3,7 +3,7 @@ import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs';
+import { take } from 'rxjs';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
 import { IItem } from 'src/app/models/common-item.model';
 import { selectCustomItemsLength } from 'src/app/store/selectors/custom-card.selector';
@@ -84,8 +84,8 @@ export class CreateCardFormComponent {
 
     this.store.select(selectCustomItemsLength)
       .pipe(
-        take(1)
-      ).subscribe(x => this.cardId = x)
+        take(1),
+      ).subscribe((x) => this.cardId = x);
 
     const newitem: IItem = {
       id: `${this.cardId}`,

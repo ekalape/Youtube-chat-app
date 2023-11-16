@@ -9,7 +9,7 @@ export const selectCustomItemsLength = createSelector(
   (items) => items.length,
 );
 
-export const oneCustomItemSelector = (id: string) => createSelector(
+export const oneCustomItemSelector = (id: string | undefined) => createSelector(
   selectCustomItems,
   (items) => items.find((x) => x.id === id),
 );
