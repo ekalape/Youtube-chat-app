@@ -1,6 +1,7 @@
 <mat-card class="card" *ngIf="item ;else notFoundItem"
   [appColorTimeIndicator]="item.snippet.publishedAt" [hasShadow]=true>
-  <img mat-card-image class="video-thumb" [src]="item.snippet.thumbnails.standard.url"
+  <img mat-card-image class="video-thumb"
+    [src]="item.snippet.thumbnails.standard?item.snippet.thumbnails.standard.url:item.snippet.thumbnails.default.url"
     alt="Video thumb">
   <mat-card-content class="card-content">
     <div class="card-description">
@@ -31,9 +32,9 @@
         <span>{{item.statistics.commentCount}}</span>
       </div>
     </div>
-    <mat-card-footer [appColorTimeIndicator]="item.snippet.publishedAt" class="footer">
-    </mat-card-footer>
   </mat-card-content>
+  <mat-card-footer [appColorTimeIndicator]="item.snippet.publishedAt" class="footer">
+  </mat-card-footer>
 </mat-card>
 
 

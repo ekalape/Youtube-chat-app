@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { SortingRule } from '../../../utils/enums';
+import { SortingRule } from '../../../utils/enums/sorting-rules';
 
 interface IFilterSortingData {
   filterWord: string;
@@ -22,7 +22,6 @@ export class ItemsManagementService {
 
   setSearchWord(value: string) {
     this.data.next({ ...this.data.value, searchWord: value });
-    console.log('inside service');
   }
 
   setFilterWord(value: string) {
@@ -31,10 +30,22 @@ export class ItemsManagementService {
 
   setSorting(value: string) {
     let sorting;
-    if (value === 'dateUp') sorting = SortingRule.DATE_UP;
-    else if (value === 'dateDown') sorting = SortingRule.DATE_DOWN;
-    else if (value === 'viewsUp') sorting = SortingRule.VIEWS_UP;
-    else sorting = SortingRule.VIEWS_DOWN;
+    switch (value) {
+      case 'dateUp':
+        sorting = SortingRule.DATE_UP;
+        break;
+      case 'dateDown':
+        sorting = SortingRule.DATE_DOWN;
+        break;
+      case 'viewsUp':
+        sorting = SortingRule.VIEWS_UP;
+        break;
+      case 'viewsDown':
+        sorting = SortingRule.VIEWS_DOWN;
+        break;
+      default: sorting = null;
+    }
+
     this.data.next({ ...this.data.value, sorting });
   }
 }

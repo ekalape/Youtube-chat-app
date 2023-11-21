@@ -14,6 +14,14 @@ const routes: Routes = [
       .then((m) => m.MainPageModule),
   },
   {
+    path: 'admin',
+    title: 'Admin page',
+    canActivate: [authGuard],
+    loadChildren: () => import('./modules/admin-page/admin-page.module')
+      .then((m) => m.AdminPageModule),
+  },
+
+  {
     path: '',
     title: 'Authorization page',
     pathMatch: 'full',

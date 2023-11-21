@@ -7,10 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthPageRoutingModule } from './auth-page-routing.module';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
-  declarations: [AuthMainComponent],
+  declarations: [AuthMainComponent, LoginFormComponent],
   imports: [
     CommonModule,
     AuthPageRoutingModule,
@@ -20,6 +22,7 @@ import { AuthPageRoutingModule } from './auth-page-routing.module';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
+    ReactiveFormsModule,
   ],
   providers: [],
 })

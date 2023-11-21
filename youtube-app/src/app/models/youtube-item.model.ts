@@ -1,7 +1,13 @@
+export interface IRawYoutubeItem {
+  kind: string
+  etag: string
+  id: { kind: string, videoId: string },
+  snippet: ISnippet
+}
 export interface IYoutubeItem {
   kind: string
   etag: string
-  id: string
+  id: string,
   snippet: ISnippet
   statistics: IStatistics
 }

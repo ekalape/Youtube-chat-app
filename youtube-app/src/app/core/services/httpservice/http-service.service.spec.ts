@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApidataService } from './apidata-service.service';
+import { HttpService } from './http-service.service';
 
 describe('ApidataService', () => {
-  let service: ApidataService;
+  let service: HttpService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApidataService);
+    service = TestBed.inject(HttpService);
   });
 
   it('should be created', () => {
