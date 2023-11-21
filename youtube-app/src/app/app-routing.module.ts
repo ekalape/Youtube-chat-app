@@ -5,7 +5,7 @@ import {
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { authGuard } from './core/guards/auth.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'main',
     title: 'Main page',
