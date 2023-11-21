@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IYoutubeItem } from 'src/app/models/youtube-item.model';
-import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
+import { IItem } from 'src/app/models/common-item.model';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { oneItemSelector } from 'src/app/store/selectors/items.selector';
+import { oneCustomItemSelector } from 'src/app/store/selectors/custom-card.selector';
+import { getOneItem } from 'src/app/store/actions/youtube-items.actions';
 
 @Component({
   selector: 'app-item-details',
@@ -10,19 +13,24 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./item-details.component.scss'],
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
-  item: IYoutubeItem | undefined;
+  item: IItem | undefined;
 
   subscription: Subscription | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: HttpService) {
+  constructor(private route: ActivatedRoute, private store: Store) {
 
   }
 
   ngOnInit() {
     const itemId = this.route.snapshot.paramMap.get('itemId');
-    console.log('inside detaild component', itemId);
 
-    if (itemId) this.subscription = this.apiService.getById(itemId).subscribe({ next: (res) => (this.item = res) });
+    if (itemId) {
+      this.subscription = this.store.select(oneCustomItemSelector(itemId)).subscribe((res) => this.item = res)
+        || this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
+
+      if (!this.item) this.store.dispatch(getOneItem({ id: itemId }));
+      this.subscription = this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
+    }
   }
 
   ngOnDestroy() {

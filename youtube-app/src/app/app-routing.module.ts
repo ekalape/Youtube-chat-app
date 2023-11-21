@@ -20,6 +20,20 @@ const routes: Routes = [
     loadChildren: () => import('./modules/admin-page/admin-page.module')
       .then((m) => m.AdminPageModule),
   },
+  {
+    path: 'custom',
+    title: 'Custom video page',
+    canActivate: [authGuard],
+    loadChildren: () => import('./modules/custom/custom-page.module')
+      .then((m) => m.CustomPageModule),
+  },
+  {
+    path: 'favorites',
+    title: 'Favorites video page',
+    canActivate: [authGuard],
+    loadChildren: () => import('./modules/favorites/favorites.module')
+      .then((m) => m.FavoritesModule),
+  },
 
   {
     path: '',

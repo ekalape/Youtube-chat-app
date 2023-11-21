@@ -2,7 +2,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormGroup, Validators, FormArray, FormBuilder, FormControl,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { DateValidator } from 'src/app/core/directives/date-validator.directive';
+import { IItem } from 'src/app/models/common-item.model';
+import { selectCustomItemsLength } from 'src/app/store/selectors/custom-card.selector';
+
+import randomStatistics from 'src/app/utils/randomStatistics';
 
 @Component({
   selector: 'app-create-card-form',
@@ -13,6 +19,8 @@ export class CreateCardFormComponent {
   addTagDisable = false;
 
   removeTagDisable = true;
+
+  cardId = 0;
 
   @Output() submitEvent = new EventEmitter();
 
@@ -51,7 +59,7 @@ export class CreateCardFormComponent {
     return this.cardCreationForm.get('tags') as FormArray;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   addTag() {
     this.removeTagDisable = false;
@@ -70,8 +78,33 @@ export class CreateCardFormComponent {
   }
 
   onSubmit() {
-    this.submitEvent.emit(this.cardCreationForm.value);
-    console.log('Submitted');
+    let image = this.imageLink.value;
+    const pattern = /^http(s):\/\/.*/i;
+    if (this.imageLink.value && !pattern.test(this.imageLink.value)) image = 'assets/nothing.jpg';
+
+    this.store.select(selectCustomItemsLength)
+      .pipe(
+        take(1),
+      ).subscribe((x) => this.cardId = x);
+
+    const newitem: IItem = {
+      id: `${this.cardId}`,
+      custom: true,
+      title: this.title.value,
+      imageLinks: { default: { url: image } },
+      videoLink: this.videoLink.value,
+      description: this.description.value,
+      createdAt: this.createdAt.value,
+      tags: this.tags.value,
+      statistics: {
+        views: randomStatistics(false),
+        likes: randomStatistics(false),
+        dislikes: randomStatistics(false),
+        comments: randomStatistics(true),
+      },
+    };
+
+    this.submitEvent.emit(newitem);
     this.onReset();
   }
 

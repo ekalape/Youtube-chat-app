@@ -1,43 +1,51 @@
 <mat-card class="card">
+  <button mat-fab color="base" *ngIf="custom$|async" class="delete-btn"
+    (click)="deleteCustomCard()">x</button>
   <mat-card-header>
     <mat-card-title class="card-title"
-      [title]="cardData?.snippet?.title">{{cardData?.snippet?.title}}</mat-card-title>
+      [title]="cardData?.title">{{cardData?.title}}</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content class="card-content">
     <img mat-card-image class="video-thumb"
-      [src]="cardData?.snippet?.thumbnails?.medium?.url" alt="Video thumb">
+      [src]="cardData?.imageLinks?.medium?cardData?.imageLinks?.medium?.url:cardData?.imageLinks?.default?.url"
+      alt="Video thumb">
     <mat-divider></mat-divider>
     <div class="info-block">
       <div class="info-block__content"> <mat-icon aria-hidden="false"
           aria-label="Views counter" fontIcon="visibility" color="primary"></mat-icon>
-        <span>{{cardData?.statistics?.viewCount}}</span>
+        <span>{{cardData?.statistics?.views}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Likes count" fontIcon="thumb_up"
           color="primary"></mat-icon>
-        <span>{{cardData?.statistics?.likeCount}}</span>
+        <span>{{cardData?.statistics?.likes}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Dislikes count" fontIcon="thumb_down"
           color="primary"></mat-icon>
-        <span>{{cardData?.statistics?.dislikeCount}}</span>
+        <span>{{cardData?.statistics?.dislikes||"N/A"}}</span>
       </div>
       <div class="info-block__content">
         <mat-icon aria-hidden="false" aria-label="Comments count" fontIcon="library_books"
           color="primary"></mat-icon>
-        <span>{{cardData?.statistics?.commentCount}}</span>
+        <span>{{cardData?.statistics?.comments}}</span>
       </div>
     </div>
     <mat-divider></mat-divider>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="action-btns">
+
+    <button mat-raised-button *ngIf="!cardData?.custom"
+      [color]="favorite ? 'primary' : 'base'"
+      (click)="favorite?removeFromFavorite():addToFavorite()">
+      <mat-icon *ngIf="favorite" fontIcon="favorite"></mat-icon>
+      {{favorite?"Favorite":"Add to favorite"}}</button>
 
     <a mat-raised-button color="primary"
-      [routerLink]="['/main', cardData?.id]">MORE...</a>
+      [routerLink]="cardData?.custom? ['/custom', cardData?.id] :['/main', cardData?.id]">MORE...</a>
 
   </mat-card-actions>
-  <mat-card-footer [appColorTimeIndicator]="cardData?.snippet?.publishedAt"
-    class="footer">
+  <mat-card-footer [appColorTimeIndicator]="cardData?.createdAt" class="footer">
 
   </mat-card-footer>
 </mat-card>

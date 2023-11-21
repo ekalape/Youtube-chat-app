@@ -31,16 +31,16 @@ export interface ISnippet {
 
 export interface IThumbnails {
   default: IThumbDetails
-  medium: IThumbDetails
-  high: IThumbDetails
-  standard: IThumbDetails
-  maxres: IThumbDetails
+  medium?: IThumbDetails
+  high?: IThumbDetails
+  standard?: IThumbDetails
+  maxres?: IThumbDetails
 }
 
 export interface IThumbDetails {
   url: string
-  width: number
-  height: number
+  width?: number
+  height?: number
 }
 
 export interface IStatistics {

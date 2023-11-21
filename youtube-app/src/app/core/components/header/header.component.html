@@ -12,10 +12,29 @@
           alt=""></app-custom-button>
     </form>
     <app-login-info-block>
-      <button mat-mini-fab (click)="gotoAdmin()" color="primary" class="admin-icon"
+      <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" class="admin-icon"
         *ngIf="authService.isLogged">
         <img src="assets/icons/admin-icon.png" alt="Admin area">
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="gotoAdmin()">
+          <mat-icon fontIcon="create_new_folder"></mat-icon>
+          <span>Create a video card</span>
+        </button>
+        <button mat-menu-item (click)="gotoFavourites()">
+          <mat-icon fontIcon="favorite"></mat-icon>
+          <span>Favorites videos</span>
+        </button>
+        <button mat-menu-item (click)="gotoCustom()">
+          <mat-icon fontIcon="ondemand_video"></mat-icon>
+          <span>All custom videos</span>
+        </button>
+        <button mat-menu-item (click)="gotoMainPage()">
+          <mat-icon fontIcon="video_library"></mat-icon>
+          <span>All youtube videos</span>
+        </button>
+      </mat-menu>
+
     </app-login-info-block>
   </mat-toolbar-row>
   <mat-toolbar-row class="header-sorting-row" *ngIf="filtersOpened">

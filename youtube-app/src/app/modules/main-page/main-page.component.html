@@ -1,2 +1,6 @@
-<app-search-results>
-  <router-outlet></router-outlet></app-search-results>
+<app-search-results [items]="youtubeItems$|async|filterCards:filterWord:sorting"
+  [customItems]="customItems$|async">
+  <h2 *ngIf="!(youtubeItems$|async)?.length">Use "search" field to find
+    items...</h2>
+  <router-outlet></router-outlet>
+</app-search-results>
