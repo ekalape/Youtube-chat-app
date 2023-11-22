@@ -30,9 +30,6 @@ import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.d
     MatCardModule, MatIconModule, ColorTimeIndicatorDirective, RouterModule],
 })
 export class CardComponent implements OnInit, OnDestroy {
-  timeDiff = 0;
-
-  timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
 
   favorite = false;
 

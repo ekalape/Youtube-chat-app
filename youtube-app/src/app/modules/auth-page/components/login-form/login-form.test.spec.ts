@@ -1,11 +1,6 @@
-import { StoreModule } from '@ngrx/store';
-import { AppComponent } from 'src/app/app.component';
+
 import { CoreModule } from 'src/app/core/core.module';
-import { AuthService } from 'src/app/core/services/authentification/auth.service';
-
-
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { LoginFormComponent } from './login-form.component';
@@ -40,7 +35,7 @@ describe('Authorization', () => {
         BrowserAnimationsModule,
         ReactiveFormsModule
       ],
-      providers: [AuthService]
+      providers: []
     }).compileComponents();
   });
 
@@ -49,7 +44,7 @@ describe('Authorization', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    submitBtn = fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement as HTMLButtonElement;
+    submitBtn = fixture.debugElement.query(By.css('button[type="submit"]')).nativeElement;
     nameField = fixture.debugElement.query(By.css('input[placeholder="Name"]')).nativeElement;
     emailField = fixture.debugElement.query(By.css('input[placeholder="E-mail"]')).nativeElement;
     passField = fixture.debugElement.query(By.css('input[placeholder="Password"]')).nativeElement;
@@ -87,7 +82,6 @@ describe('Authorization', () => {
     [nameField, emailField, passField].forEach(x => x.dispatchEvent(new Event('input')))
     fixture.detectChanges();
     const errors = fixture.debugElement.queryAll(By.css(".errors-message"))
-    console.log('errors', errors.length)
     expect(errors.length).toBe(6)
     expect(component.loginForm.status).toBe("INVALID")
     expect(submitBtn.disabled).toBe(true)
@@ -101,10 +95,29 @@ describe('Authorization', () => {
     fixture.detectChanges();
 
     const errors = fixture.debugElement.queryAll(By.css(".errors-message"))
-    console.log('errors', errors.length)
     expect(errors.length).toBe(3)
     expect(component.loginForm.status).toBe("INVALID")
     expect(submitBtn.disabled).toBe(true)
   });
 
+  it('should reset input fields by pressing "Reset" button', () => {
+    nameField.value = correctLoginData.name;
+    emailField.value = incorrectLoginData.email;
+    passField.value = correctLoginData.password;
+    [nameField, emailField, passField].forEach(x => x.dispatchEvent(new Event('input')))
+    fixture.detectChanges();
+
+    expect(submitBtn.disabled).toBe(true);
+
+    const resetBtn = fixture.debugElement.query(By.css('.reset-btn')).nativeElement as HTMLButtonElement;
+
+    resetBtn.click();
+
+    const formValues = component.loginForm.value
+
+    expect(formValues.nameInput).toBeNull();
+    expect(formValues.emailInput).toBeNull();
+    expect(formValues.passInput).toBeNull();
+
+  });
 });

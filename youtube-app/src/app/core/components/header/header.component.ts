@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
-  debounceTime, distinctUntilChanged, map,
+  debounceTime, distinctUntilChanged, filter, map,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
@@ -37,18 +37,20 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.searchInput.valueChanges.pipe(
       debounceTime(800),
-      map((x) => (x && x.length >= 3 ? x : '')),
       distinctUntilChanged(),
-    ).subscribe((x) => this.setSearchText(x || ''));
+      filter((x) => typeof x === 'string' && x.length >= 3),
+    ).subscribe((x) => this.setSearchText(x));
   }
 
   openFiltersBlock() {
     this.filtersOpened = !this.filtersOpened;
   }
 
-  setSearchText(value: string) {
-    this.itemsManager.setSearchWord(value);
-    this.store.dispatch(getAllYoutubeItems({ direction: undefined }));
+  setSearchText(value: string | null) {
+    if (value) {
+      this.itemsManager.setSearchWord(value);
+      this.store.dispatch(getAllYoutubeItems({ direction: undefined }));
+    }
   }
 
   setFilterText(value: string) {
