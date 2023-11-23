@@ -4,11 +4,11 @@ import { HeaderComponent } from './header.component'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { metaReducers, reducers } from 'src/app/store';
 import { AuthService } from '../../services/authentification/auth.service';
-import { first, of, take } from 'rxjs';
+import { of, take } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomButtonComponent } from 'src/app/components/custom-button/custom-button.component';
 import { By } from '@angular/platform-browser';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 
 describe('Header testing', () => {
   let component: HeaderComponent;
@@ -31,25 +31,15 @@ describe('Header testing', () => {
         { provide: AuthService, useValue: authServiceStub }
       ]
     }).compileComponents();
-    /*  TestBed.overrideComponent(CustomButtonComponent, {
-       set: {
-         template: '<button (btnClick)="openFiltersBlick()"></button>',
-         styleUrls: [],
-       },
-     }); */
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
-
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService)
     fixture.detectChanges();
   })
 
-  afterEach(() => {
-
-  })
 
   it("should display search elements if logged in", () => {
     const searchElements = fixture.nativeElement.querySelector('.center-part');

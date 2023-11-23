@@ -8,10 +8,10 @@ import { TimeDistanceColor } from 'src/app/utils/enums/colors'
 
 @Component({
   standalone: true,
-  template: `<div id="testdiv-oldiest" [appColorTimeIndicator]="oldiestDate"></div>
-  <div id="testdiv-old" [appColorTimeIndicator]="oldDate"></div>
-  <div id="testdiv-medium" [appColorTimeIndicator]="mediumDate"></div>
-  <div id="testdiv-new" [appColorTimeIndicator]="newDate"></div>
+  template: `<div [appColorTimeIndicator]="oldiestDate"></div>
+  <div  [appColorTimeIndicator]="oldDate"></div>
+  <div [appColorTimeIndicator]="mediumDate"></div>
+  <div [appColorTimeIndicator]="newDate"></div>
   `,
   imports: [ColorTimeIndicatorDirective],
 })
@@ -24,7 +24,7 @@ class TestComponent {
 }
 
 
-describe("Color indicator Directive testing", () => {
+describe("Color Indicator Directive testing", () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let testDivs: DebugElement[];
@@ -45,8 +45,6 @@ describe("Color indicator Directive testing", () => {
   })
 
   it("should be correct colors", () => {
-    console.log('component :>> ', component);
-
     expect(testDivs[0].nativeElement.style.backgroundColor).toBe(TimeDistanceColor.OLDIEST);
     expect(testDivs[1].nativeElement.style.backgroundColor).toBe(TimeDistanceColor.OLD);
     expect(testDivs[2].nativeElement.style.backgroundColor).toBe(TimeDistanceColor.MEDIUM);

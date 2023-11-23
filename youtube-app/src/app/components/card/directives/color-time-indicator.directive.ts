@@ -32,7 +32,6 @@ export class ColorTimeIndicatorDirective implements AfterViewInit {
   }
 
   private setColorIndicator() {
-    console.log("inside directive", this.publishedAt);
     if (this.publishedAt) {
       let timeDiff = 0;
       timeDiff = (Date.now() - Date.parse(this.publishedAt)) / 1000;
