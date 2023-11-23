@@ -1,4 +1,4 @@
-import { first, lastValueFrom, map } from 'rxjs';
+import { first } from 'rxjs';
 import { ItemsManagementService } from './items-management.service';
 import { SortingRule } from 'src/app/utils/enums/sorting-rules';
 
@@ -37,11 +37,11 @@ describe('Filtering/sorting service test', () => {
       })
   })
   it('should return null sorting', (done) => {
-    service.setSorting("test")
+    service.setSorting("test");
+
     service.currentData.pipe(
       first()).subscribe({
         next: (val) => {
-          console.log(val);
           expect(val.sorting).toBeNull();
           done()
         }

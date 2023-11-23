@@ -1,3 +1,4 @@
+import { IItem } from './common-item.model';
 import { IRawYoutubeItem, IYoutubeItem } from './youtube-item.model';
 
 export interface ISearchResponce {
@@ -12,7 +13,7 @@ export interface ISearchResponce {
   }
   items: IRawYoutubeItem[]
 }
-export interface IResponce {
+export interface IRawResponce {
   TODO: string
   kind: string
   etag: string
@@ -21,4 +22,14 @@ export interface IResponce {
     resultsPerPage: number
   }
   items: IYoutubeItem[]
+}
+export interface IResponce {
+  TODO: string
+  kind: string
+  etag: string
+  pageInfo: {
+    totalResults: number
+    resultsPerPage: number
+  }
+  items: IItem[]
 }

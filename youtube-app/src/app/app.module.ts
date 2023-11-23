@@ -15,6 +15,7 @@ import { reducers, metaReducers } from './store';
 import { CoreModule } from './core/core.module';
 import { HttpInteractionEffects } from './store/effects/http-interaction.effect';
 import { ResponceHttpInterceptor } from './core/interceptors/responce-token.interceptor';
+import { NessesaryFieldsInterceptor } from './core/interceptors/responce-nesessary-fields.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ResponceHttpInterceptor } from './core/interceptors/responce-token.inte
   providers: [ItemsManagementService, DevLoggerService,
     { provide: HTTP_INTERCEPTORS, useClass: YoutubeHttpInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ResponceHttpInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: NessesaryFieldsInterceptor, multi: true },
   ],
   exports: [],
   bootstrap: [AppComponent],

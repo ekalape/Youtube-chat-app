@@ -30,6 +30,11 @@ export class HttpInteractionEffects {
     mergeMap(([action, pageTokens, word]) => {
       if (word && word.length) {
         return this.httpService.getAll(pageTokens, action.direction, word).pipe(
+          map((data) => {
+            if ("items" in data)
+              return data.items
+            else return data;
+          }),
           map((data: IItem[]) => getYoutubeItems({ items: data })),
           catchError((err) => {
             console.log('error', err.message);
@@ -44,6 +49,11 @@ export class HttpInteractionEffects {
   loadOneItem$ = createEffect(() => this.actions$.pipe(
     ofType(getOneItem),
     switchMap((action) => this.httpService.getById(action.id).pipe(
+      map(data => {
+        if ("items" in data)
+          return data.items[0];
+        else return data[0]
+      }),
       map((x) => getOneYoutubeItem({ item: x })),
       catchError((err) => { console.log('error', err.message); return EMPTY; }),
     )),

@@ -30,7 +30,7 @@ export class HttpService {
       switchMap((ids) => {
         const secondRequest = `videos?id=${ids.join(',')}&part=snippet,statistics`;
         return this.httpService.get<IResponce>(secondRequest);
-      }),
+      })/* ,
       map((res) => res.items.map((x) => ({
         id: x.id,
         title: x.snippet.title,
@@ -45,7 +45,7 @@ export class HttpService {
           dislikes: x.statistics.dislikeCount,
           comments: x.statistics.commentCount,
         },
-      }))),
+      }))), */
 
     );
   }
@@ -54,21 +54,21 @@ export class HttpService {
     const url = `videos?id=${itemId}&part=snippet,statistics`;
 
     const res = this.httpService.get<IResponce>(url)
-      .pipe(map((items) => ({
-        id: items.items[0].id,
-        title: items.items[0].snippet.title,
-        description: items.items[0].snippet.description,
-        imageLinks: items.items[0].snippet.thumbnails,
-        videoLink: items.items[0].snippet.channelId,
-        createdAt: items.items[0].snippet.publishedAt,
-        tags: items.items[0].snippet.tags,
-        statistics: {
-          views: items.items[0].statistics.viewCount,
-          likes: items.items[0].statistics.likeCount,
-          dislikes: items.items[0].statistics.dislikeCount,
-          comments: items.items[0].statistics.commentCount,
-        },
-      })));
+    /* .pipe(map((items) => ({
+      id: items.items[0].id,
+      title: items.items[0].snippet.title,
+      description: items.items[0].snippet.description,
+      imageLinks: items.items[0].snippet.thumbnails,
+      videoLink: items.items[0].snippet.channelId,
+      createdAt: items.items[0].snippet.publishedAt,
+      tags: items.items[0].snippet.tags,
+      statistics: {
+        views: items.items[0].statistics.viewCount,
+        likes: items.items[0].statistics.likeCount,
+        dislikes: items.items[0].statistics.dislikeCount,
+        comments: items.items[0].statistics.commentCount,
+      },
+    }))); */
 
     return res;
   }

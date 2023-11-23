@@ -23,7 +23,7 @@ export const StoreInitialState: IState = {
   favoriteItems: [],
   youtubeItems: [],
   pageTokens: {
-    pageSize: 20,
+    pageSize: 5,
     nextPageToken: undefined,
     previousPageToken: undefined,
   },
