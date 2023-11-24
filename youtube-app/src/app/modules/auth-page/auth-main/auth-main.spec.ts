@@ -1,27 +1,21 @@
-import { StoreModule } from '@ngrx/store';
-import { AppComponent } from 'src/app/app.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { AuthService } from 'src/app/core/services/authentification/auth.service';
-import { reducers, metaReducers } from 'src/app/store';
-import { AuthMainComponent } from './auth-main.component';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { LoginFormComponent } from '../components/login-form/login-form.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
+import { LoginFormComponent } from '../components/login-form/login-form.component';
+import { AuthMainComponent } from './auth-main.component';
 
 describe('Authorization', () => {
   let component: AuthMainComponent;
   let fixture: ComponentFixture<AuthMainComponent>;
-
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AuthMainComponent, LoginFormComponent],
       imports: [
         CoreModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
-      providers: []
+      providers: [],
     }).compileComponents();
   });
 
@@ -36,9 +30,7 @@ describe('Authorization', () => {
   });
 
   it('should render the login form', () => {
-    const el = fixture.nativeElement.querySelector('app-login-form')
-    expect(el).toBeTruthy()
+    const el = fixture.nativeElement.querySelector('app-login-form');
+    expect(el).toBeTruthy();
   });
-
-
 });

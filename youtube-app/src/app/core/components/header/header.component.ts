@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
-  debounceTime, distinctUntilChanged, filter, map,
+  debounceTime, distinctUntilChanged, filter,
 } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';

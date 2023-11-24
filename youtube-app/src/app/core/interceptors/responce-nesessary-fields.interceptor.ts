@@ -1,13 +1,13 @@
-import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IItem } from 'src/app/models/common-item.model';
 import { IRawResponce, IResponce } from 'src/app/models/response.model';
 
-
 @Injectable()
 export class NessesaryFieldsInterceptor implements HttpInterceptor {
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<IResponce>> {
     return next.handle(request).pipe(
       map((event) => {
@@ -31,9 +31,9 @@ export class NessesaryFieldsInterceptor implements HttpInterceptor {
             }));
             return event.clone({ body: transItems });
           }
-          else return event;
+          return event;
         }
-        else return event
+        return event;
       }),
     );
   }

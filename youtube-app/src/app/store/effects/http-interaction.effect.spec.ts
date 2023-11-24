@@ -1,22 +1,24 @@
-import { BehaviorSubject, ReplaySubject, of, take } from 'rxjs';
-import { HttpInteractionEffects } from './http-interaction.effect'
+import {
+  BehaviorSubject, ReplaySubject, of, take,
+} from 'rxjs';
 import { Action } from '@ngrx/store';
 import { HttpService } from 'src/app/core/services/httpservice/http-service.service';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { IState } from '..';
-import { responce } from 'src/app/utils/enums/mocks/mockedResponse'
-import { getAllYoutubeItems, getYoutubeItems } from '../actions/youtube-items.actions';
+import { responce } from 'src/app/utils/enums/mocks/mockedResponse';
 import { ItemsManagementService } from 'src/app/core/services/item-management/items-management.service';
-import { IItem } from 'src/app/models/common-item.model';
+import { mockedItems } from 'src/app/utils/enums/mocks/mockedItems';
+import {
+  getAllYoutubeItems, getOneItem, getOneYoutubeItem, getYoutubeItems,
+} from '../actions/youtube-items.actions';
+import { IState } from '..';
+import { HttpInteractionEffects } from './http-interaction.effect';
 
-describe("Http effect testing", () => {
-
+describe('Http effect testing', () => {
   let effect: HttpInteractionEffects;
   let actions$: ReplaySubject<Action>;
   let httpService: HttpService;
-  let itemManagerService: ItemsManagementService;
 
   const initialState: IState = {
     customItems: [],
@@ -27,7 +29,7 @@ describe("Http effect testing", () => {
       nextPageToken: undefined,
       previousPageToken: undefined,
     },
-  }
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,42 +37,47 @@ describe("Http effect testing", () => {
         HttpInteractionEffects,
         provideMockActions(() => actions$),
         provideMockStore({
-          initialState
+          initialState,
         }),
         {
           provide: HttpService,
           useValue: {
-            getAll: jest.fn(() => of(responce))
-          }
+            getAll: jest.fn(() => of(responce)),
+            getById: jest.fn(() => of(mockedItems[0])),
+          },
         },
         {
           provide: ItemsManagementService,
           useValue: {
-            currentData: new BehaviorSubject({ searchWord: "test" })
-          }
-        }
+            currentData: new BehaviorSubject({ searchWord: 'test' }),
+          },
+        },
       ],
     });
     effect = TestBed.inject(HttpInteractionEffects);
     httpService = TestBed.inject(HttpService);
-    itemManagerService = TestBed.inject(ItemsManagementService)
-    actions$ = new ReplaySubject()
+    actions$ = new ReplaySubject();
   }));
-
-
 
   it('should be created', () => {
     expect(effect).toBeTruthy();
   });
 
-  it('should be called right service method and correct result returned', async () => {
+  it('should be called getAll service method and correct result returned', (done) => {
     actions$.next(getAllYoutubeItems({ direction: undefined }));
     effect.loadItems$.pipe(take(1)).subscribe((val) => {
-      expect(val).toEqual(responce.items)
-    })
-
+      expect(val).toEqual({ items: responce.items, type: getYoutubeItems.type });
+      done();
+    });
     expect(httpService.getAll).toHaveBeenCalled();
-
   });
-})
 
+  it('should be called getOneYoutubeItem action and correct result returned', (done) => {
+    actions$.next(getOneItem({ id: mockedItems[0].id }));
+    effect.loadOneItem$.pipe(take(1)).subscribe((val) => {
+      expect(val).toEqual({ item: mockedItems[0], type: getOneYoutubeItem.type });
+      done();
+    });
+    expect(httpService.getById).toHaveBeenCalled();
+  });
+});

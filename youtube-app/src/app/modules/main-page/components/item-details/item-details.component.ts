@@ -27,9 +27,10 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     if (itemId) {
       this.subscription = this.store.select(oneCustomItemSelector(itemId)).subscribe((res) => this.item = res)
         || this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
-
-      if (!this.item) this.store.dispatch(getOneItem({ id: itemId }));
-      this.subscription = this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
+      if (!this.item) {
+        this.subscription = this.store.select(oneItemSelector(itemId)).subscribe((res) => this.item = res);
+        if (!this.item) this.store.dispatch(getOneItem({ id: itemId }));
+      }
     }
   }
 
