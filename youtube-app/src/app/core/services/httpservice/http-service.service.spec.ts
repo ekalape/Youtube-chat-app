@@ -17,6 +17,7 @@ describe('Http-service testing', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [HttpService],
+
     });
     service = TestBed.inject(HttpService);
     httpClient = TestBed.inject(HttpClient);

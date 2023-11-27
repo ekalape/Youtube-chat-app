@@ -60,7 +60,7 @@ describe('Header testing', () => {
     });
   });
 
-  it('should open/close filters block', () => {
+  it('filtersOpenFn should be called after clicking on settings button', () => {
     authService.isLogged = true;
     const customBtnDe = fixture.debugElement
       .query(By.css('app-custom-button[title="Open filters block"]'))
@@ -72,6 +72,19 @@ describe('Header testing', () => {
     fixture.detectChanges();
 
     expect(spyOnFiltersOpenFn).toHaveBeenCalled();
+
+  });
+
+  it('should open/close filters block', () => {
+    authService.isLogged = true;
+    const customBtnDe = fixture.debugElement
+      .query(By.css('app-custom-button[title="Open filters block"]'))
+      .componentInstance as CustomButtonComponent;
+    const spyOnFiltersOpenFn = jest.spyOn(component, 'openFiltersBlock');
+
+    customBtnDe.useClick();
+
+    fixture.detectChanges();
 
     const filtersPart = fixture.nativeElement.querySelector('.header-sorting-row') as HTMLDivElement;
 

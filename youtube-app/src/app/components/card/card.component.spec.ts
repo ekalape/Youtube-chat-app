@@ -11,6 +11,7 @@ import { By } from '@angular/platform-browser';
 import { AddToFavorite, RemoveFromFavorite } from 'src/app/store/actions/favorites.actions';
 import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.directive';
 import { CardComponent } from './card.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('Card testing', () => {
   let component: CardComponent;
@@ -24,18 +25,14 @@ describe('Card testing', () => {
       declarations: [],
       imports: [
         CardComponent,
-        ColorTimeIndicatorDirective,
-        MatButtonModule,
-        MatDividerModule,
-        CommonModule,
-        MatCardModule, MatIconModule,
-
       ],
       providers: [
         provideMockStore({ initialState }),
         provideRouter([
         ]),
+
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     store = TestBed.inject(MockStore);
 
@@ -53,13 +50,24 @@ describe('Card testing', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be added to favorites', () => {
+  it('store.dispatch with correct action should be called', () => {
     expect(favBtn.textContent).toBe(' Add to favorite');
     component.addToFavorite();
     fixture.detectChanges();
-
     expect(store.dispatch).toHaveBeenCalledWith(AddToFavorite({ cardId: mockedItems[0].id }));
+
+  });
+  it('favorite property should be true', () => {
+    expect(favBtn.textContent).toBe(' Add to favorite');
+    component.addToFavorite();
+    fixture.detectChanges();
     expect(component.favorite).toBe(true);
+
+  });
+  it('button text should be "Favorite" after calling "add to favorites"', () => {
+    expect(favBtn.textContent).toBe(' Add to favorite');
+    component.addToFavorite();
+    fixture.detectChanges();
     expect(favBtn.textContent).toBe(' Favorite');
   });
 
@@ -68,8 +76,14 @@ describe('Card testing', () => {
     fixture.detectChanges();
     component.removeFromFavorite();
     fixture.detectChanges();
-
     expect(store.dispatch).toHaveBeenCalledWith(RemoveFromFavorite({ cardId: mockedItems[0].id }));
+
+  });
+  it('button text should be "Add to favorite" after calling "remove from favorites"', () => {
+    component.addToFavorite();
+    fixture.detectChanges();
+    component.removeFromFavorite();
+    fixture.detectChanges();
     expect(favBtn.textContent).toBe(' Add to favorite');
   });
 });

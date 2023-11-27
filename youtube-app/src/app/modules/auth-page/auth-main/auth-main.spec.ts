@@ -1,8 +1,8 @@
-import { CoreModule } from 'src/app/core/core.module';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { AuthMainComponent } from './auth-main.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('Authorization', () => {
   let component: AuthMainComponent;
@@ -11,11 +11,7 @@ describe('Authorization', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AuthMainComponent, LoginFormComponent],
-      imports: [
-        CoreModule,
-        BrowserAnimationsModule,
-      ],
-      providers: [],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
