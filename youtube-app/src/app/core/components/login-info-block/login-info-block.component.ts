@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { AuthService } from 'src/app/core/services/authentification/auth.service';
 import { DevLoggerService } from 'src/app/core/services/loggers/dev-logger.service';
 import { Pathes } from 'src/app/utils/enums/pathes';
@@ -17,7 +18,7 @@ export class LoginInfoBlockComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private logService: DevLoggerService) { }
 
   ngOnInit() {
-    this.authService.username.subscribe((name) => {
+    this.authService.username.pipe(take(1)).subscribe((name) => {
       this.username = name;
       if (name.length > 0) this.loggedIn = true;
     });

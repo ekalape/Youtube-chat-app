@@ -35,7 +35,7 @@
   </mat-card-content>
   <mat-card-actions class="action-btns">
 
-    <button mat-raised-button *ngIf="!cardData?.custom"
+    <button mat-raised-button *ngIf="!cardData?.custom" aria-label="favoriteButton"
       [color]="favorite ? 'primary' : 'base'"
       (click)="favorite?removeFromFavorite():addToFavorite()">
       <mat-icon *ngIf="favorite" fontIcon="favorite"></mat-icon>

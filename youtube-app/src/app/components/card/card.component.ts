@@ -3,7 +3,6 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IItem } from 'src/app/models/common-item.model';
-import { TimeDistanceColor } from 'src/app/utils/enums/colors';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -30,10 +29,6 @@ import { ColorTimeIndicatorDirective } from './directives/color-time-indicator.d
     MatCardModule, MatIconModule, ColorTimeIndicatorDirective, RouterModule],
 })
 export class CardComponent implements OnInit, OnDestroy {
-  timeDiff = 0;
-
-  timeDistance: TimeDistanceColor = TimeDistanceColor.NEW;
-
   favorite = false;
 
   @Input() cardData: IItem | null = null;

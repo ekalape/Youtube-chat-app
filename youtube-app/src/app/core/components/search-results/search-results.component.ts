@@ -21,7 +21,7 @@ export class SearchResultsComponent {
 
   len = 30;
 
-  pageSize = 20;
+  pageSize = 5;
 
   currentPage = 0;
 

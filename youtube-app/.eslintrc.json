@@ -40,6 +40,7 @@
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "import/prefer-default-export": "off",
+        "prefer-destructuring":"off",
         "max-len": [
           "error",
           {
@@ -55,6 +56,7 @@
           "off"
         ]
       }
+
     },
     {
       "files": [
@@ -71,7 +73,7 @@
         "*.ts"
       ],
       "extends": [
-        
+
       ]
     }
   ]

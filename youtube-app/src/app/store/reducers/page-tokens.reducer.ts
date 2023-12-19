@@ -3,7 +3,7 @@ import { updatePageSize, updatePageTokens } from '../actions/page-tokens.actions
 import { IPageTokens } from '../models/page-tokens.model';
 
 const initialPageTokensState: IPageTokens = {
-  pageSize: 20,
+  pageSize: 5,
   nextPageToken: undefined,
   previousPageToken: undefined,
 
