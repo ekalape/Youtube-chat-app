@@ -12,7 +12,7 @@
     "test:cov": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "ng lint --fix",
-    "deploy": "ng deploy --base-href=https://rolling-scopes-school.github.io/ekalape-ANGULAR2023Q4/"
+    "deploy": "ng deploy --base-href=https://ekalape.github.io/Youtube-chat-app/"
   },
   "eslintIgnore": [
     "mockedItems.ts",

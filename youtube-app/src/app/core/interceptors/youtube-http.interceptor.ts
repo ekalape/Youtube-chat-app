@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { apienvdata } from 'youtube-api-env';
+import { apienvdata } from 'api-env';
 
 @Injectable()
 export class YoutubeHttpInterceptor implements HttpInterceptor {
