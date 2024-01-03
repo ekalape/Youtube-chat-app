@@ -1,0 +1,103 @@
+<mat-card class="form">
+  <form class="form-content" [formGroup]="cardCreationForm" (ngSubmit)="onSubmit()">
+    <h1> Please compile the form</h1>
+
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+    <div class="errors-container" *ngIf="title.invalid&&(title.dirty||title.touched)">
+      <p class="errors-message" *ngIf="title.errors?.['required']">
+        Please enter title.
+      </p>
+      <p class="errors-message" *ngIf="title.errors?.['minlength']">
+        The title is too short.
+      </p>
+      <p class="errors-message" *ngIf="title.errors?.['maxlength']">
+        The title is too long.
+      </p>
+    </div>
+
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description"
+          formControlName="description"></textarea>
+      </mat-form-field>
+      <div class="errors-container"
+        *ngIf="description.invalid&&(description.dirty||description.touched)">
+        <p class="errors-message" *ngIf="description.errors?.['maxlength']">
+          The description is too long.
+        </p>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Cover Image Link</mat-label>
+        <input matInput placeholder="Cover Image" formControlName="imageLink">
+      </mat-form-field>
+      <div class="errors-container"
+        *ngIf="imageLink.invalid&&(imageLink.dirty||imageLink.touched)">
+        <p class="errors-message" *ngIf="imageLink.errors?.['required']">
+          Please enter a link to the image
+        </p>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Video Link</mat-label>
+        <input matInput placeholder="Video Link" formControlName="videoLink">
+      </mat-form-field>
+      <div class="errors-container"
+        *ngIf="videoLink.invalid&&(videoLink.dirty||videoLink.touched)">
+        <p class="errors-message" *ngIf="videoLink.errors?.['required']">
+          Please enter a link to the video
+        </p>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Creation Date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY"
+          formControlName="createdAt">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="errors-container"
+        *ngIf="createdAt.invalid&&(createdAt.dirty||createdAt.touched)">
+        <p class="errors-message" *ngIf="createdAt.errors?.['required']">
+          Please enter a creation date
+        </p>
+        <p class="errors-message" *ngIf="createdAt.errors?.['futureDate']">
+          The date is in future.
+        </p>
+        <p class="errors-message" *ngIf="createdAt.errors?.['invalidDate']">
+          The date is invalid. Use the date picker instead.
+        </p>
+      </div>
+    </div>
+
+    <div formArrayName="tags" class="tags">
+      <mat-form-field appearance="outline" *ngFor="let tag of tags.controls; let i=index">
+        <mat-label>Tag-{{i+1}}</mat-label>
+        <input matInput placeholder="Enter tag" [formControlName]="i" id="tag-{{i}}">
+      </mat-form-field>
+      <div class="tag-control-btns">
+        <button mat-mini-fab color="base" class="add-btn" (click)="addTag()"
+          [disabled]="addTagDisable" type="button">+</button>
+        <button mat-mini-fab color="base" class="add-btn" (click)="removeTag()"
+          [disabled]="removeTagDisable" type="button">-</button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-card-footer class="form-footer">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!cardCreationForm.valid">Submit</button>
+      <button mat-button (click)="onReset()"
+        type="button">Reset</button></mat-card-footer>
+  </form>
+</mat-card>

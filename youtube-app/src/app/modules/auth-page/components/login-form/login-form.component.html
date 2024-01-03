@@ -1,0 +1,58 @@
+<mat-card class="form">
+  <form (ngSubmit)="onLogin()" class="form-content" [formGroup]="loginForm">
+    <h1>Login</h1>
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="nameInput">
+    </mat-form-field>
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput placeholder="E-mail" formControlName="emailInput">
+      </mat-form-field>
+      <div class="errors-container" *ngIf="email.invalid&&(email.dirty||email.touched)">
+        <p class="errors-message" *ngIf="email.errors?.['required']">
+          Please enter e-mail.
+        </p>
+        <p class="errors-message" *ngIf="email.errors?.['email']">
+          E-mail is not valid.
+        </p>
+      </div>
+    </div>
+    <div class="input-field">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="passInput">
+      </mat-form-field>
+      <div class="errors-container"
+        *ngIf="password.invalid&&(password.dirty||password.touched)">
+        <p class="errors-message" *ngIf="password.errors?.['required']">
+          Password is required.
+        </p>
+        <p class="errors-message" *ngIf="password.errors?.['noUpperCaseLetters']">
+          {{password.errors?.['noUpperCaseLetters']}}
+        </p>
+        <p class="errors-message" *ngIf="password.errors?.['noLowerCaseLetters']">
+          {{password.errors?.['noLowerCaseLetters']}}
+        </p>
+        <p class="errors-message" *ngIf="password.errors?.['noNumber']">
+          {{password.errors?.['noNumber']}}
+        </p>
+        <p class="errors-message" *ngIf="password.errors?.['noSpecialCharacter']">
+          {{password.errors?.['noSpecialCharacter']}}
+        </p>
+        <p class="errors-message" *ngIf="password.errors?.['tooShort']">
+          {{password.errors?.['tooShort']}}
+
+        </p>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-card-footer class="form-footer">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!loginForm.valid">Submit</button>
+      <button mat-button (click)="onReset($event)"
+        class="reset-btn">Reset</button></mat-card-footer>
+  </form>
+</mat-card>

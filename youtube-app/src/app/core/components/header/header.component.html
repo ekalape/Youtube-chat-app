@@ -1,0 +1,63 @@
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row class="header-row">
+    <button mat-flat-button color="primary" (click)="gotoMainPage()">YTClient App
+      Logo</button>
+    <form class="center-part" *ngIf="authService.isLogged">
+      <mat-form-field class="search-field">
+        <mat-label>Search</mat-label>
+        <input matNativeControl placeholder="..." [formControl]="searchInput">
+      </mat-form-field>
+      <app-custom-button (btnClick)="openFiltersBlock()" class="settings-btn"
+        title="Open filters block"><img src="assets/icons/settings-icon.png"
+          alt="filters"></app-custom-button>
+    </form>
+    <app-login-info-block>
+      <button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" class="admin-icon"
+        *ngIf="authService.isLogged">
+        <img src="assets/icons/admin-icon.png" alt="Admin area">
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="gotoAdmin()">
+          <mat-icon fontIcon="create_new_folder"></mat-icon>
+          <span>Create a video card</span>
+        </button>
+        <button mat-menu-item (click)="gotoFavourites()">
+          <mat-icon fontIcon="favorite"></mat-icon>
+          <span>Favorites videos</span>
+        </button>
+        <button mat-menu-item (click)="gotoCustom()">
+          <mat-icon fontIcon="ondemand_video"></mat-icon>
+          <span>All custom videos</span>
+        </button>
+        <button mat-menu-item (click)="gotoMainPage()">
+          <mat-icon fontIcon="video_library"></mat-icon>
+          <span>All youtube videos</span>
+        </button>
+      </mat-menu>
+
+    </app-login-info-block>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="header-sorting-row" *ngIf="filtersOpened">
+    <div class="sorting-block">
+      <span class="sorting-title">Sorting by: </span>
+      <mat-button-toggle-group name="dateSortingMethod" aria-label="dateSortingMethod"
+        (change)="setSortingRule($event.value)" class="sorting-toggle-group"
+        [(ngModel)]="sorting" #dateSortingMethod>
+        <span>Date</span>
+        <mat-button-toggle value="dateUp">↑</mat-button-toggle>
+        <mat-button-toggle value="dateDown">↓</mat-button-toggle>
+        <span>Views</span>
+        <mat-button-toggle value="viewsUp">↑</mat-button-toggle>
+        <mat-button-toggle value="viewsDown">↓</mat-button-toggle>
+      </mat-button-toggle-group>
+
+    </div>
+    <div class="filterByWord-form">
+      <span class="sorting-title">Filter by word or sentance: </span>
+      <input class="filter-input" type="text" #filterInput
+        (input)="setFilterText(filterInput.value)">
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- *ngIf="authService.isLogged" -->

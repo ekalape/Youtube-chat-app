@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #3f51b5;
+  font-style: italic;
+  ::ng-deep {
+    & h2 {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.items-container {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card-selected {
+  box-shadow: 10px 10px 20px 0 black;
+}
+.card-non-selected {
+  opacity: 0.5;
+}
